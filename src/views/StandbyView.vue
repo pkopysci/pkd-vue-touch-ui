@@ -1,15 +1,22 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRootStore } from '@/stores/rootStore'
+import LoadingModal from '@/components/modals/LoadingModal.vue'
 
 const rootStore = useRootStore()
 const datetime = ref(new Date())
+const loading = ref(true)
+
 let intervalId = undefined
 
 onMounted(() => {
   intervalId = setInterval(() => {
     datetime.value = new Date()
   }, 60000)
+
+  setTimeout(() => {
+    loading.value = false
+  }, 10000)
 })
 
 onUnmounted(() => {
@@ -22,6 +29,9 @@ function onStartSession() {
 </script>
 
 <template>
+  <Transition>
+    <LoadingModal :text="'Shutting Down...'" v-if="loading" />
+  </Transition>
   <div class="standby-view" @click="onStartSession">
     <div class="info-row">
       <h1>{{ rootStore.roomName }}</h1>

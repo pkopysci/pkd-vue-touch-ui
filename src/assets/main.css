@@ -5,18 +5,70 @@
 @import './fontawesome/css/brands.min.css';
 
 :root {
-  --app-background: linear-gradient(to bottom, rgb(14, 22, 29),rgb(26, 40, 52));
+  --app-background: linear-gradient(to bottom, rgb(14, 22, 29), rgb(26, 40, 52));
   --text-color: #ecf7ff;
   --active-color: #4ed963;
+  --alert-color: #f6730c;
+  --button-idle-color: #2b535d;
+  --button-border-color: linear-gradient(45deg, rgba(0, 0, 0, 0.1) 10%, rgb(14, 22, 29), 100%);
+  --card-background: rgba(255, 255, 255, 0.05);
+  --modal-border-color: #ecf7ff;
+  --modal-backdrop-color: rgba(0, 0, 0, 0.5);
 }
+
 html {
   font-family: 'Lato';
   font-weight: 300;
   height: 100%;
 }
+
 body {
   font-family: 'Lato';
   background: var(--app-background);
   color: var(--text-color);
   height: 100%;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 { 
+  font-size: 1.25rem;
+}
+
+.error {
+  z-index: 1000;
+}
+.warning { 
+  z-index: 999;
+}
+.notice { 
+  z-index: 998;
+}
+
+.Vue-Toastification__toast-body {
+  font-size: 2em !important;
+}
+
+.fade-in {
+  animation: fadeIn .25s
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.25s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
