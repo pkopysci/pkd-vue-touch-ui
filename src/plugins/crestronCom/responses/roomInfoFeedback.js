@@ -1,6 +1,7 @@
 import { CrComLib } from '@crestron/ch5-crcomlib/build_bundles/cjs/cr-com-lib'
 import { useRootStore } from '@/stores/rootStore'
-import { onlineHook, systemUseHook } from './api/systemState'
+import { onlineHook, roomConfigHook } from '../api/apiHooks'
+import { parseResponse } from './dataParser'
 
 function initCrestronHooks() {
   // Create global access to base connection
@@ -11,6 +12,15 @@ function initCrestronHooks() {
   window.bridgeReceiveBooleanFromNative = CrComLib.bridgeReceiveBooleanFromNative
   window.bridgeReceiveStringFromNative = CrComLib.bridgeReceiveStringFromNative
   window.bridgeReceiveObjectFromNative = CrComLib.bridgeReceiveObjectFromNative
+}
+
+const roomCommands = {
+  CONFIG: (store, cmd) => {
+    store.updateStateData(cmd.Data)
+  },
+  USESTATE: (store, cmd) => {
+    store.updateUseStatusFeedback(cmd.Data)
+  }
 }
 
 /**
@@ -28,8 +38,25 @@ export default function createCrestronPlugin() {
     rootStore.updateOnlineStatusFeedback(state)
   })
 
-  // begin monitoring system use status (standby/ in use)
-  window.CrComLib.subscribeState(systemUseHook.type, systemUseHook.join, (state) => {
-    rootStore.updateUseStatusFeedback(state)
+  let dataBuffer = ''
+  window.CrComLib.subscribeState(roomConfigHook.type, roomConfigHook.join, (data) => {
+    if (!data || data.length <= 0) return
+
+    dataBuffer += data
+    let separated = parseResponse(dataBuffer)
+    dataBuffer = separated.remainingData
+
+    if (separated.firstCommand) {
+      try {
+        let cmd = JSON.parse(separated.firstCommand)
+        if (cmd.Command == 'ERROR') { 
+          console.error(`roomInfoFeedback - error RX received: ${cmd.Data}`)
+        } else {
+          roomCommands[cmd.Command](rootStore, cmd)
+        }
+      } catch (err) {
+        console.error(err.message)
+      }
+    }
   })
 }

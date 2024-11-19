@@ -1,11 +1,5 @@
 <script setup>
-import { useRootStore } from '@/stores/rootStore'
-import { toggleInUseStatus } from './plugins/crestronCom/crestronCommands';
-
-const rootStore = useRootStore()
-
 const onStatusToggle = () => {
-  toggleInUseStatus()
 }
 </script>
 

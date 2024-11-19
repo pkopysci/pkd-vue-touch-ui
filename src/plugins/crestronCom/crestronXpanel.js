@@ -11,7 +11,6 @@ export default function createCrestronXpanelPlugin() {
     getWebXPanel(!runsInContainerApp())
 
   if (!isActive) {
-    console.log('XPanel not active - skipping initialization.')
     return
   }
 
@@ -22,10 +21,9 @@ export default function createCrestronXpanelPlugin() {
   const httpQuery = window.location.search
   const urlParams = new URLSearchParams(httpQuery)
 
-  WebXPanelConfigParams.host = urlParams.has('host') ? urlParams.get('host') : '0.0.0.0'
+  WebXPanelConfigParams.host = urlParams.has('host') ? urlParams.get('host') : '10.16.6.10'
   WebXPanelConfigParams.ipId = urlParams.has('ipid') ? urlParams.get('ipid') : '3'
   WebXPanelConfigParams.roomId = urlParams.has('roomid') ? urlParams.get('roomid') : ''
 
-  console.log(WebXPanelConfigParams)
   WebXPanel.initialize(WebXPanelConfigParams) 
 }
