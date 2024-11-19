@@ -15,9 +15,9 @@ export const useRootStore = defineStore('rootStore', {
     /** true = system is in an active state, false = in standby */
     isInUse: false,
     /** The friendly name of the room to display on the UI */
-    roomName: '',
+    roomName: 'Default Room Name',
     /** The tehc support contact info displayed on the help UI */
-    helpNumber: '',
+    helpNumber: '555-555-5555',
     /** room type tag used to determine what elements are shown */
     roomType: 'baseline',
     /** true = UI should allow advanced tech elements, false = normal options only */

@@ -1,9 +1,22 @@
-body {
-    background-color: #000;
-    color: #DFDFDF;
-}
+@import './reset.css';
+@import './lato-styles.css';
+@import './fontawesome/css/fontawesome.min.css';
+@import './fontawesome/css/solid.min.css';
+@import './fontawesome/css/brands.min.css';
 
-button {
-    min-width: 200px;
-    min-height: 200px;
+:root {
+  --app-background: linear-gradient(to bottom, rgb(14, 22, 29),rgb(26, 40, 52));
+  --text-color: #ecf7ff;
+  --active-color: #4ed963;
+}
+html {
+  font-family: 'Lato';
+  font-weight: 300;
+  height: 100%;
+}
+body {
+  font-family: 'Lato';
+  background: var(--app-background);
+  color: var(--text-color);
+  height: 100%;
 }
