@@ -12,6 +12,8 @@
   --button-idle-color: #2b535d;
   --button-border-color: linear-gradient(45deg, rgba(0, 0, 0, 0.1) 10%, rgb(14, 22, 29), 100%);
   --card-background: rgba(255, 255, 255, 0.05);
+  --card-button-background: none;
+  --card-button-border: solid 1px var(--text-color);
   --modal-border-color: #ecf7ff;
   --modal-backdrop-color: rgba(0, 0, 0, 0.5);
 }
@@ -37,17 +39,24 @@ h2 {
   font-size: 1.5rem;
 }
 
-h3 { 
+h3 {
   font-size: 1.25rem;
+}
+
+button {
+  border-radius: 5px;
+}
+button:active {
+  background: var(--active-color);
 }
 
 .error {
   z-index: 1000;
 }
-.warning { 
+.warning {
   z-index: 999;
 }
-.notice { 
+.notice {
   z-index: 998;
 }
 
@@ -56,13 +65,20 @@ h3 {
 }
 
 .fade-in {
-  animation: fadeIn .25s
+  animation: fadeIn 0.25s;
 }
 @keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
+#app {
+  height: 100vh;
+}
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.25s ease;

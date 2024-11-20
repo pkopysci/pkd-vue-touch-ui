@@ -81,6 +81,10 @@ export const useSecurityStore = defineStore('securityStore', () => {
    */
   function validatePasscode(userEntry) {
     sendPasscodeCheck(userEntry)
+
+    //TODO: REMOVE!
+    console.log('securityStore.validatePasscode(' + userEntry + ')')
+    updatePasscodeResult(false)
   }
 
   /**
