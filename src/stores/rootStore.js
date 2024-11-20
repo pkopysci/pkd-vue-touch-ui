@@ -24,6 +24,8 @@ export const useRootStore = defineStore('rootStore', {
     isTech: false,
     /** The tag of the activity that will be shown during startup. */
     defaultActivity: 'av-routing',
+    /** The model of the touchscreen or other interface running the display project. */
+    uiModel: 'Default UI Device',
     /**Collection of config objects that define what activities are shown on the main navigation.
      * Data object is {id: string, label: string, control: string, source: string}
     */

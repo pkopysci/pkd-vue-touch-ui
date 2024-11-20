@@ -9,8 +9,8 @@
   --text-color: #ecf7ff;
   --active-color: #4ed963;
   --alert-color: #f6730c;
-  --button-idle-color: #2b535d;
-  --button-border-color: linear-gradient(45deg, rgba(0, 0, 0, 0.1) 10%, rgb(14, 22, 29), 100%);
+  --button-idle-color: #2b353d;
+  --button-border-color: #555555;
   --card-background: rgba(255, 255, 255, 0.05);
   --card-button-background: none;
   --card-button-border: solid 1px var(--text-color);
@@ -44,8 +44,13 @@ h3 {
 }
 
 button {
-  border-radius: 5px;
+  font-size: 1.5rem;
+  color: var(--text-color);
+  background: var(--button-idle-color);
+  border: solid 1px var(--button-border-color);
+  border-radius: 10px;
 }
+
 button:active {
   background: var(--active-color);
 }

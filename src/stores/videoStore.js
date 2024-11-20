@@ -49,7 +49,11 @@ export const useVideoStore = defineStore('videoStore', {
     /**
      * A collection of objects representing all controllable displays/projectors in the system.
      */
-    displays: [],
+    displays: [
+      { Id: 'disp01', Label: 'Default Display', Model: 'Default Model' },
+      { Id: 'disp01', Label: 'Default Display', Model: 'Default Model' },
+      { Id: 'disp01', Label: 'Default Display', Model: 'Default Model' }
+    ],
     /**
      * A collection of objects representing selectable AV sources in the system.
      */
@@ -70,7 +74,7 @@ export const useVideoStore = defineStore('videoStore', {
      * A collection of objects representing video routing devices in the system. This will contain
      * make/model and online status.
      */
-    avrRouters: []
+    avrRouters: [{ Label: 'Default AVR' }]
   }),
   getters: {
     selectableSources: (state) => {
@@ -156,8 +160,8 @@ export const useVideoStore = defineStore('videoStore', {
     },
     updateDisplay(display) {
       if (!checkDefined(display, 'display', 'videoStore.updateDisplay')) return false
-      let idx = this.displays.findIndex(x => x.Id == display.Id)
-      if (idx < 0 ) {
+      let idx = this.displays.findIndex((x) => x.Id == display.Id)
+      if (idx < 0) {
         console.error('videoStore.UpdateDisplay() - no display found with ID ' + display.Id)
         return
       }

@@ -11,7 +11,7 @@ const securityStore = useSecurityStore()
 </script>
 
 <template>
-  <SystemNoticeModal
+<SystemNoticeModal
     v-if="securityStore.uiLockoutActive"
     icon="fa-solid fa-lock"
     title="System Locked"
