@@ -28,15 +28,18 @@ export const useRootStore = defineStore('rootStore', {
     uiModel: 'Default UI Device',
     /**Collection of config objects that define what activities are shown on the main navigation.
      * Data object is {id: string, label: string, control: string, source: string}
-    */
-    mainMenu: []
+     */
+    mainMenu: [
+      { id: 'm01', label: 'Routing', icon: 'routing', control: 'av-routing', tags: [] },
+      { id: 'm02', label: 'Displays', icon: 'tv', control: 'displays', tags: [] }
+    ]
   }),
   getters: {
     menu: (state) => {
       if (state.isTech) {
         return state.mainMenu
       } else {
-        return state.mainMenu.filter((x) => !x.Tags.includes('tech'))
+        return state.mainMenu.filter((x) => !x.tags.includes('tech'))
       }
     }
   },
@@ -64,7 +67,7 @@ export const useRootStore = defineStore('rootStore', {
       MainMenu
     }) {
       let result =
-        checkBoolean(IsInUse, "IsInUse", 'rootStore.updateStateData') &&
+        checkBoolean(IsInUse, 'IsInUse', 'rootStore.updateStateData') &&
         checkBoolean(IsSecure, 'IsSecure', 'rootStore.updateStateData') &&
         checkBoolean(IsTech, 'IsTech', 'rootStore.updateStateData') &&
         checkString(RoomName, 'RoomName', 'rootStore.updateStateData', 1) &&
@@ -76,7 +79,7 @@ export const useRootStore = defineStore('rootStore', {
       if (!result) {
         return
       }
-      
+
       this.isInUse = IsInUse
       this.roomName = RoomName
       this.helpNumber = HelpNumber
@@ -84,7 +87,7 @@ export const useRootStore = defineStore('rootStore', {
       this.isTech = IsTech
       this.defaultActivity = DefaultActivity
       Object.assign(this.mainMenu, MainMenu)
-      
+
       let securityStore = useSecurityStore()
       securityStore.updateIsSecure(IsSecure)
     },

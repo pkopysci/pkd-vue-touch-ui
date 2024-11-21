@@ -11,7 +11,8 @@ const securityStore = useSecurityStore()
 </script>
 
 <template>
-<SystemNoticeModal
+<ActiveView />
+<!-- <SystemNoticeModal
     v-if="securityStore.uiLockoutActive"
     icon="fa-solid fa-lock"
     title="System Locked"
@@ -28,5 +29,5 @@ const securityStore = useSecurityStore()
   <PasscodeModal v-if="securityStore.isSecure" v-show="securityStore.systemLocked"></PasscodeModal>
 
   <ActiveView v-if="rootStore.isInUse" />
-  <StandbyView v-else />
+  <StandbyView v-else /> -->
 </template>

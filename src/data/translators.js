@@ -1,5 +1,5 @@
 const icons = [
-  { id: 'alert', css: 'fa-solid fa-circle-info' },
+  { id: 'alert', css: 'fa-solid fa-circle-exclamation' },
   { id: 'power', css: 'fa-solid fa-power-off' },
   { id: 'home', css: 'fa-solid fa-house' },
   { id: 'volume', css: 'fa-solid fa-volume-off' },
