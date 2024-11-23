@@ -23,6 +23,7 @@ const onSelectErrors = () => {
 const onSelectPower = () => {
   modalStore.setShutdownConfirmationVisibility(true)
 }
+
 const checkMics = () => {
   let newMute = false
   audioStore.mics.forEach((mic) => {

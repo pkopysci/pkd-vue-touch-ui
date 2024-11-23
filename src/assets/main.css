@@ -59,6 +59,11 @@ button:active {
   background: var(--active-color);
 }
 
+.button-danger {
+  background: var(--alert-color);
+  font-weight: bold;
+}
+
 .error {
   z-index: 1000;
 }
