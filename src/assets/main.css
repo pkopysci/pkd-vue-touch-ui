@@ -111,3 +111,7 @@ button:active {
 .alert {
   color: var(--alert-color);
 }
+
+.active { 
+  background: var(--active-color);
+}

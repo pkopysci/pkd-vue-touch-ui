@@ -2,23 +2,22 @@
 import { RouterView } from 'vue-router'
 import { useModalStore } from '@/stores/modalStore'
 import { useRootStore } from '@/stores/rootStore'
-import ActiveHeader from '@/components/ActiveHeader.vue'
 import MainNav from '@/components/ui/MainNav.vue'
 import SystemInfoModal from '@/components/modals/SystemInfoModal.vue'
 import SystemErrorsModal from '@/components/modals/SystemErrorsModal.vue'
 import ConfirmationModal from '@/components/modals/ConfirmationModal.vue'
-import LevelGauge from '@/components/ui/LevelGauge.vue'
+import ActiveFooter from '@/components/ActiveFooter.vue'
 
 const modalStore = useModalStore()
 const rootStore = useRootStore()
 
 const onShutdownConfirm = () => {
-    modalStore.setShutdownConfirmationVisibility(false)
-    rootStore.requestUseStateChange(false)
+  modalStore.setShutdownConfirmationVisibility(false)
+  rootStore.requestUseStateChange(false)
 }
 
 const onShutdownCancel = () => {
-    modalStore.setShutdownConfirmationVisibility(false)
+  modalStore.setShutdownConfirmationVisibility(false)
 }
 </script>
 
@@ -38,11 +37,8 @@ const onShutdownCancel = () => {
   <div class="active-view">
     <MainNav />
     <section>
-      <ActiveHeader />
       <RouterView></RouterView>
-      <div class="active-footer">
-        <LevelGauge :isHorizontal="true"/>
-      </div>
+      <ActiveFooter v-if="rootStore.roomType === 'baseline'" />
     </section>
   </div>
 </template>
@@ -50,7 +46,7 @@ const onShutdownCancel = () => {
 <style scoped>
 .active-view {
   display: grid;
-  grid-template-columns: 15% auto;
+  grid-template-columns: 16% auto;
   min-height: 100vh;
   min-width: 100vw;
 }

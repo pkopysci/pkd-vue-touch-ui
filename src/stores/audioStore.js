@@ -13,15 +13,15 @@ import {
 } from '@/plugins/crestronCom/commands/audioCommands'
 
 export const emptyChannel = {
-  id: '',
-  label: '',
-  icon: '',
-  zones: [],
-  hasSync: false,
-  muteState: false,
-  level: 0,
-  tags: '',
-  routedInput: ''
+  Id: 'emptychannel',
+  Label: 'Empty Channel',
+  Icon: '',
+  Zones: [],
+  HasSync: false,
+  MuteState: false,
+  Level: 75,
+  Tags: ['pgm'],
+  RoutedInput: ''
 }
 
 export const useAudioStore = defineStore('audioStore', {
@@ -33,7 +33,8 @@ export const useAudioStore = defineStore('audioStore', {
     /** A data object that provides the id, model, online status of the DSP in the system. */
     dspInfo: [{Model: 'Default DSP'}],
     /** A collection of all audio input channels that contain the tag 'mic'.*/
-    mics: []
+    mics: [{Id: 'mic01', Label: 'Microphone', Icon: 'microphone', Zones: [], HasSync: false, MuteState: true, Level: 75, Tags: ['microphone'], RoutedInput: ''}],
+    programAudio: emptyChannel
   }),
   getters: {},
   actions: {

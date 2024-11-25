@@ -17,7 +17,7 @@ defineProps(['level', 'isHorizontal', 'style'])
 
 <style scoped>
 .level-gauge {
-  border-radius: 5px;
+  border-radius: 1rem;
   overflow: hidden;
   background-color: var(--button-idle-color);
   position: relative;
