@@ -50,9 +50,9 @@ export const useVideoStore = defineStore('videoStore', {
      * A collection of objects representing all controllable displays/projectors in the system.
      */
     displays: [
-      { Id: 'disp01', Label: 'Default Display', Model: 'Default Model', Tags: [] },
-      { Id: 'disp01', Label: 'Default Display', Model: 'Default Model', Tags: [] },
-      { Id: 'disp01', Label: 'Default Display', Model: 'Default Model', Tags: [] }
+      { Id: 'disp01', Label: 'Projector 1', PowerState: true, HasScreen: true, Model: 'Default Model', Tags: [] },
+      { Id: 'disp02', Label: 'Display 2', PowerState: true, HasScreen: false, Model: 'Default Model', Tags: [] },
+      { Id: 'disp03', Label: 'Display 3', PowerState: true, HasScreen: false, Model: 'Default Model', Tags: [] },
     ],
     /**
      * A collection of objects representing selectable AV sources in the system.
