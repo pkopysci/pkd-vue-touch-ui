@@ -12,6 +12,7 @@
   --button-idle-color: #2b353d;
   --button-border-color: #555555;
   --card-background: rgba(255, 255, 255, 0.05);
+  --card-border: solid 1px #555555;
   --card-button-background: none;
   --card-button-border: solid 1px var(--text-color);
   --modal-border-color: #ecf7ff;

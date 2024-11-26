@@ -8,15 +8,19 @@ import {
 } from '@/plugins/crestronCom/commands/deviceControlCommands'
 
 export const emptyDevice = {
-  Id: '',
-  Label: '',
-  Icon: '',
-  Type: '',
-  SupportsOnOff: false,
-  SupportsColor: false,
-  SupportsVideo: false,
-  SupportsDvr: false,
-  Favorites: [],
+  Id: 'emptydevice',
+  Label: 'Empty Device',
+  Icon: 'alert',
+  Type: 'cable-tv',
+  SupportsDiscretePower: true,
+  SupportsColorButtons: true,
+  SupportsVideoTransports: true,
+  SupportsDvrTransports: true,
+  Favorites: [
+    { Id: 'favorite1', Label: 'Favorite 1'},
+    { Id: 'favorite2', Label: 'Favorite 2'},
+    { Id: 'favorite3', Label: 'Favorite 3'}
+  ],
   Tags: []
 }
 

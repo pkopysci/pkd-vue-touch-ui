@@ -6,7 +6,7 @@ defineEmits(['onSelect'])
 </script>
 
 <template>
-    <button class="source-button" :="{'active': isActive}" @click="$emit('onSelect', id)">
+    <button class="source-button" :class="{'active': isActive}" @click="$emit('onSelect', id)">
         <i :class="translateIconTag(icon)"></i>
         {{ label }}
     </button>

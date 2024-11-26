@@ -1,9 +1,17 @@
 <script setup>
-defineProps(['level'])
+defineProps(['level', 'style'])
 </script>
 <template>
-  <div class="modal-backdrop fade-in" :class="level">
-    <div class="modal-wrapper">
+  <div
+    class="modal-backdrop fade-in"
+    :class="level"
+    @click="
+      ($event) => {
+        $event.stopPropagation()
+      }
+    "
+  >
+    <div class="modal-wrapper" :style="style ? style : ''">
       <slot></slot>
     </div>
   </div>

@@ -58,7 +58,7 @@ export const useVideoStore = defineStore('videoStore', {
      * A collection of objects representing selectable AV sources in the system.
      */
     sources: [
-      { Id: 'source1', Label: 'HDMI', Icon: 'hdmi', Control: '', Tags: [] },
+      { Id: 'source1', Label: 'HDMI', Icon: 'hdmi', Control: 'emptydevice', Tags: [] },
       { Id: 'source2', Label: 'PC', Icon: 'lectern', Control: '', Tags: [] },
       { Id: 'source3', Label: 'VGA', Icon: 'vga', Control: '', Tags: [] },
       { Id: 'source4', Label: 'Cable TV', Icon: 'cable-tv', Control: 'tv01', Tags: [] }
@@ -71,7 +71,7 @@ export const useVideoStore = defineStore('videoStore', {
         Id: 'dest1',
         Label: 'Projector 1',
         Icon: 'projector',
-        CurrentSourceId: '',
+        CurrentSourceId: 'source1',
         Tags: []
       }
     ],

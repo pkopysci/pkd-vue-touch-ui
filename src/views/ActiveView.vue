@@ -7,6 +7,7 @@ import SystemInfoModal from '@/components/modals/SystemInfoModal.vue'
 import SystemErrorsModal from '@/components/modals/SystemErrorsModal.vue'
 import ConfirmationModal from '@/components/modals/ConfirmationModal.vue'
 import ActiveFooter from '@/components/ActiveFooter.vue'
+import TransportsModal from '@/components/modals/transports/TransportsModal.vue'
 
 const modalStore = useModalStore()
 const rootStore = useRootStore()
@@ -33,7 +34,7 @@ const onShutdownCancel = () => {
   />
   <SystemInfoModal v-show="modalStore.helpVisible" />
   <SystemErrorsModal v-show="modalStore.errorListVisible" />
-
+  <TransportsModal v-if="modalStore.sourceControlState.isVisible"/>
   <div class="active-view">
     <MainNav />
     <section>

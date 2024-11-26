@@ -10,7 +10,7 @@ export const useModalStore = defineStore('useModalStore', {
     shutownConfirmationVisible: false,
     helpVisible: false,
     sourceControlState: { id: '', isVisible: false },
-    audioChannelControlState: { id: '', isVisible: false }
+    audioChannelControlState: { id: '', isVisible: false },
   }),
   actions: {
     /**
