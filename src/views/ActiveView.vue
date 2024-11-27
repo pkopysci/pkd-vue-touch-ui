@@ -48,8 +48,8 @@ const onShutdownCancel = () => {
 .active-view {
   display: grid;
   grid-template-columns: 16% auto;
-  min-height: 100vh;
-  min-width: 100vw;
+  max-height: 100vh;
+  width: 100vw;
 }
 
 .active-view section {

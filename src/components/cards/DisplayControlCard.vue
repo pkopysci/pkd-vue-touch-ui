@@ -1,35 +1,29 @@
 <script setup>
+import ToggleSwitch from '../ui/ToggleSwitch.vue';
 import CardWrapper from './CardWrapper.vue'
 
-defineProps(['id', 'label', 'powerState', 'hasScreen'])
+defineProps(['id', 'label', 'powerState', 'hasScreen', 'columnCard'])
 defineEmits(['onPower', 'onScreen'])
-
-const wrapperStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'center',
-  padding: '30px',
-  width: '250px',
-  minHeight: '60%',
-  gap: '3rem'
-}
 </script>
 
 <template>
-  <CardWrapper :style="wrapperStyle">
+  <CardWrapper :class="columnCard ? 'column-card' : 'row-card'">
     <h2>{{ label }}</h2>
     <div class="control-row">
       <h3>Power</h3>
-      <span>
+      <span v-if="columnCard">
         <button :class="{ active: powerState }" @click="$emit('onPower', id, true)">On</button>
         <button :class="{ active: !powerState }" @click="$emit('onPower', id, false)">Off</button>
       </span>
+      <ToggleSwitch v-else :is-on="powerState" @on-toggle="$emit('onPower', id, $event)"/>
     </div>
     <div v-show="hasScreen" class="control-row">
       <h3>Screen</h3>
       <span>
         <button @click="$emit('onScreen', id, true)"><i class="fa-solid fa-chevron-up" /></button>
-        <button @click="$emit('onScreen', id, false)"><i class="fa-solid fa-chevron-down" /></button>
+        <button @click="$emit('onScreen', id, false)">
+          <i class="fa-solid fa-chevron-down" />
+        </button>
       </span>
     </div>
   </CardWrapper>
@@ -39,28 +33,65 @@ const wrapperStyle = {
 h2 {
   font-weight: 700;
   font-size: 2rem;
+  width: 100%;
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: var(--card-border);
 }
 
 h3 {
   font-size: 1.8rem;
 }
+
 i {
   font-size: 2rem;
 }
-.control-row {
+/* when the column prop is set to true */
+.column-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  gap: 15px;
-}
-.control-row span {
-  display: flex;
-  gap: 15px;
-}
-.control-row button {
   padding: 30px;
-  width: 125px;
-  font-size: 1.5rem;
+  width: 250px;
+  min-height: 65%;
+  gap: 30px;
+}
+button {
+  padding: 30px;
+}
+.column-card .control-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+  justify-content: center;
+}
+.column-card h3 {
+  width: 100%;
+  text-align: center;
+}
+.column-card span {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+/* horizontally expanding card, used for vertical scrolling */
+.row-card {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 25px;
+  width: 75%;
+}
+.row-card .control-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.row-card span {
+  display: flex;
+  gap: 20px;
 }
 </style>

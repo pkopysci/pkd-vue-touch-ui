@@ -14,7 +14,7 @@ const onScreenChange = (id, state) => {
 </script>
 
 <template>
-  <div class="basic-displays fade-in" :class="{ 'justify-left': videoStore.displays.length > 3 }">
+  <div class="fade-in" :class="videoStore.displays.length > 3 ? 'vertical-scroll' : 'basic-displays'">
     <DisplayControlCard
       v-for="display in videoStore.displays"
       :key="display.Id"
@@ -22,6 +22,7 @@ const onScreenChange = (id, state) => {
       :label="display.Label"
       :powerState="display.PowerState"
       :hasScreen="display.HasScreen"
+      :columnCard="videoStore.displays.length <= 3"
       @onPower="onPowerChange"
       @onScreen="onScreenChange"
     />
@@ -39,7 +40,13 @@ const onScreenChange = (id, state) => {
   padding: 20px;
 }
 
-.justify-left {
-  justify-content: flex-start;
+.vertical-scroll {
+  max-height: 75vh;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
 }
 </style>
