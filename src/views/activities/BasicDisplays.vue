@@ -14,7 +14,10 @@ const onScreenChange = (id, state) => {
 </script>
 
 <template>
-  <div class="fade-in" :class="videoStore.displays.length > 3 ? 'vertical-scroll' : 'basic-displays'">
+  <div
+    class="fade-in"
+    :class="videoStore.displays.length > 3 ? 'vertical-activity' : 'horizontal-activity'"
+  >
     <DisplayControlCard
       v-for="display in videoStore.displays"
       :key="display.Id"
@@ -28,25 +31,4 @@ const onScreenChange = (id, state) => {
     />
   </div>
 </template>
-<style scoped>
-.basic-displays {
-  max-width: 80vw;
-  overflow-x: scroll;
-  display: flex;
-  flex-grow: 1;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  padding: 20px;
-}
 
-.vertical-scroll {
-  max-height: 75vh;
-  overflow-y: scroll;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  padding: 20px;
-}
-</style>

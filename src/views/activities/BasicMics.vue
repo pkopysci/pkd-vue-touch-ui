@@ -1,6 +1,27 @@
-<script setup></script>
+<script setup>
+import { useAudioStore } from '@/stores/audioStore'
+import AudioChannelCard from '@/components/cards/AudioChannelCard.vue'
+
+const audioStore = useAudioStore()
+
+const onSetLevel = (id, level) => audioStore.sendMicLevel(id, level)
+const onMute = (id, newState) => audioStore.sendMuteMic(id, newState)
+</script>
 <template>
-    <div class="basic-mics">
-        <h1>Basic Mics</h1>
-    </div>
+  <div
+    class="basic-mics fade-in horizontal-activity"
+    :class="audioStore.mics.length > 3 ? 'justify-left' : ''"
+  >
+    <AudioChannelCard
+      v-for="channel in audioStore.mics"
+      :key="channel.id"
+      :channel-object="channel"
+      :is-mic="true"
+      :channelObject="channel"
+      @setLevel="onSetLevel"
+      @setMute="onMute"
+    ></AudioChannelCard>
+  </div>
 </template>
+
+style

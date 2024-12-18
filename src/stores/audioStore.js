@@ -33,7 +33,11 @@ export const useAudioStore = defineStore('audioStore', {
     /** A data object that provides the id, model, online status of the DSP in the system. */
     dspInfo: [{Model: 'Default DSP'}],
     /** A collection of all audio input channels that contain the tag 'mic'.*/
-    mics: [{Id: 'mic01', Label: 'Microphone', Icon: 'microphone', Zones: [], HasSync: false, MuteState: true, Level: 75, Tags: ['microphone'], RoutedInput: ''}],
+    mics: [
+      {Id: 'mic01', Label: 'Podium', Icon: 'microphone', Zones: [], HasSync: false, MuteState: true, Level: 75, Tags: ['microphone'], RoutedInput: ''},
+      {Id: 'mic02', Label: 'Wireless 1', Icon: 'microphone', Zones: [], HasSync: false, MuteState: true, Level: 25, Tags: ['microphone'], RoutedInput: ''},
+      {Id: 'mic03', Label: 'Wireless 2', Icon: 'microphone', Zones: [], HasSync: false, MuteState: true, Level: 100, Tags: ['microphone'], RoutedInput: ''},
+  ],
     programAudio: emptyChannel
   }),
   getters: {},
