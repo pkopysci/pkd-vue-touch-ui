@@ -29,6 +29,9 @@ export const lightingControlHook = { type: 's', join: '8' }
 export const errorReportingHook = { type: 's', join: '9'}
 
 export const trySend = (commandObject, hook) => {
+
+  console.log('apiHooks.trySend(' + JSON.stringify(commandObject) + ')', hook)
+
   try {
     let cmd = JSON.stringify(commandObject) + 'EOF';
     window.CrComLib.publishEvent(hook.type, hook.join, cmd)

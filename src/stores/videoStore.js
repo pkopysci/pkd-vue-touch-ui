@@ -49,32 +49,15 @@ export const useVideoStore = defineStore('videoStore', {
     /**
      * A collection of objects representing all controllable displays/projectors in the system.
      */
-    displays: [
-      { Id: 'disp01', Label: 'Projector 1', PowerState: true, HasScreen: true, Model: 'Default Model', Tags: [] },
-      { Id: 'disp02', Label: 'Display 2', PowerState: true, HasScreen: false, Model: 'Default Model', Tags: [] },
-      { Id: 'disp03', Label: 'Display 3', PowerState: true, HasScreen: false, Model: 'Default Model', Tags: [] },
-    ],
+    displays: [],
     /**
      * A collection of objects representing selectable AV sources in the system.
      */
-    sources: [
-      { Id: 'source1', Label: 'HDMI', Icon: 'hdmi', Control: 'emptydevice', Tags: [] },
-      { Id: 'source2', Label: 'PC', Icon: 'lectern', Control: '', Tags: [] },
-      { Id: 'source3', Label: 'VGA', Icon: 'vga', Control: '', Tags: [] },
-      { Id: 'source4', Label: 'Cable TV', Icon: 'cable-tv', Control: 'tv01', Tags: [] }
-    ],
+    sources: [],
     /**
      * A collection of objects representing selectable AV destinations in the system.
      */
-    destinations: [
-      {
-        Id: 'dest1',
-        Label: 'Projector 1',
-        Icon: 'projector',
-        CurrentSourceId: 'source1',
-        Tags: []
-      }
-    ],
+    destinations: [],
     /**
      * true = all video outputs are in the "freeze" state, false = normal video motion.
      */

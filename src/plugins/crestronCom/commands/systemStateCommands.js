@@ -14,5 +14,8 @@ export function setSytemUseState(newState) {
  * menu items.
  */
 export function getConfig() {
+
+  console.log('systemStateCommands.getConfig()')
+
   sendGet('CONFIG', '', roomConfigHook)
 }

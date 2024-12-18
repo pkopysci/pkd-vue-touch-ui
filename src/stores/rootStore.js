@@ -30,15 +30,15 @@ export const useRootStore = defineStore('rootStore', {
      * Data object is {id: string, label: string, control: string, source: string}
      */
     mainMenu: [
-      { id: 'm01', label: 'Routing', icon: 'routing', control: 'av-routing', tags: [] },
-      { id: 'm02', label: 'Displays', icon: 'tv', control: 'displays', tags: [] },
-      { id: 'm03', label: 'Mics', icon: 'mics', control: 'mics', tags: [] },
-      { id: 'm04', label: 'Video', icon: 'tv', control: 'video-matrix', tags: [] },
-      { id: 'm05', label: 'Audio', icon: 'note', control: 'audio-matrix', tags: [] },
-      { id: 'm06', label: 'Events', icon: 'event', control: 'generic-events', tags: [] },
-      { id: 'm07', label: 'Mic Zones', icon: 'mics', control: 'mics-routable', tags: [] },
-      { id: 'm08', label: 'Lighting', icon: 'lights', control: 'lighting', tags: [] },
-      { id: 'm09', label: 'Video Wall', icon: 'grid', control: 'video-wall', tags: [] }
+      // { id: 'm01', label: 'Routing', icon: 'routing', control: 'av-routing', tags: [] },
+      // { id: 'm02', label: 'Displays', icon: 'tv', control: 'displays', tags: [] },
+      // { id: 'm03', label: 'Mics', icon: 'mics', control: 'mics', tags: [] },
+      // { id: 'm04', label: 'Video', icon: 'tv', control: 'video-matrix', tags: [] },
+      // { id: 'm05', label: 'Audio', icon: 'note', control: 'audio-matrix', tags: [] },
+      // { id: 'm06', label: 'Events', icon: 'event', control: 'generic-events', tags: [] },
+      // { id: 'm07', label: 'Mic Zones', icon: 'mics', control: 'mics-routable', tags: [] },
+      // { id: 'm08', label: 'Lighting', icon: 'lights', control: 'lighting', tags: [] },
+      // { id: 'm09', label: 'Video Wall', icon: 'grid', control: 'video-wall', tags: [] }
     ]
   }),
   getters: {
@@ -46,7 +46,7 @@ export const useRootStore = defineStore('rootStore', {
       if (state.isTech) {
         return state.mainMenu
       } else {
-        return state.mainMenu.filter((x) => !x.tags.includes('tech'))
+        return state.mainMenu.filter((x) => !x.Tags.includes('tech'))
       }
     }
   },
@@ -86,6 +86,9 @@ export const useRootStore = defineStore('rootStore', {
       if (!result) {
         return
       }
+
+      console.log('updating rootStore state data. Menu:')
+      console.log(MainMenu)
 
       this.isInUse = IsInUse
       this.roomName = RoomName
