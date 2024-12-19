@@ -140,6 +140,8 @@ export const useVideoStore = defineStore('videoStore', {
      */
     updateVideoRoute(destId, srcId) {
       let index = this.destinations.findIndex((x) => x.Id == destId)
+      if (this.destinations.length == 0) return
+      
       if (index > -1) {
         this.destinations[index].CurrentSourceId = srcId
       } else {
@@ -156,6 +158,8 @@ export const useVideoStore = defineStore('videoStore', {
     },
     updateDisplay(display) {
       if (!checkDefined(display, 'display', 'videoStore.updateDisplay')) return false
+      if (this.displays.length == 0) return
+
       let idx = this.displays.findIndex((x) => x.Id == display.Id)
       if (idx < 0) {
         console.error('videoStore.UpdateDisplay() - no display found with ID ' + display.Id)

@@ -40,6 +40,9 @@ export default function createCrestronPlugin() {
 
   let dataBuffer = ''
   window.CrComLib.subscribeState(roomConfigHook.type, roomConfigHook.join, (data) => {
+    
+    console.log('roomInfoFeedback.subscribeState()', data)
+
     if (!data || data.length <= 0) return
 
     dataBuffer += data
@@ -49,7 +52,7 @@ export default function createCrestronPlugin() {
     if (separated.firstCommand) {
       try {
         let cmd = JSON.parse(separated.firstCommand)
-        if (cmd.Command == 'ERROR') { 
+        if (cmd.Command == 'ERROR') {
           console.error(`roomInfoFeedback - error RX received: ${cmd.Data}`)
         } else {
           roomCommands[cmd.Command](rootStore, cmd)
@@ -59,5 +62,4 @@ export default function createCrestronPlugin() {
       }
     }
   })
-
 }

@@ -1,12 +1,18 @@
 <script setup>
+import { onBeforeMount } from 'vue';
 import { translateIconTag } from '@/data/translators'
 import { useRootStore } from '@/stores/rootStore'
-import SystemControls from '../SystemControls.vue'
 
 const rootStore = useRootStore()
+
+onBeforeMount(() => {
+  // if (rootStore.menu.length < 1) {
+  //   rootStore.requestConfigUpdate()
+  // }
+})
+
 </script>
 <template>
-  <section class="sidebar">
     <nav>
       <ul>
         <li v-for="item in rootStore.menu" :key="item.Id">
@@ -17,8 +23,6 @@ const rootStore = useRootStore()
         </li>
       </ul>
     </nav>
-    <SystemControls />
-  </section>
 </template>
 
 <style scoped>
@@ -30,8 +34,6 @@ nav {
   display: flex;
   flex-direction: column;
   background-color: var(--card-background);
-  max-height: 553px;
-  flex-grow: 1;
 }
 
 nav a {

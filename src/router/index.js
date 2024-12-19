@@ -6,8 +6,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      //component: () => import('@/views/activities/BasicRouting.vue'),
-      component: () => import('@/views/activities/BasicDisplays.vue'),
+      component: () => import('@/views/activities/BasicRouting.vue'),
     },
     {
       path: '/basicRouting',

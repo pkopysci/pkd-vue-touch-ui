@@ -56,7 +56,11 @@ export default function createVideoControlPlugin() {
     if (parsed.firstCommand) {
       try {
         const cmd = JSON.parse(parsed.firstCommand)
-        displayCommands[cmd.Command](videoStore, cmd)
+        if (cmd.Command == 'ERROR') {
+          console.error(`displayInfoFeedback - error RX received: ${cmd.Data}`)
+        } else {
+          displayCommands[cmd.Command](videoStore, cmd)
+        }
       } catch (err) {
         console.error(`createVideoControlPlugin - failed to parse display response: ${err.message}`)
       }

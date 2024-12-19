@@ -5,10 +5,10 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import router from './router'
-import Toast from "vue-toastification"
-import "vue-toastification/dist/index.css";
+import Toast from 'vue-toastification'
+import 'vue-toastification/dist/index.css'
 
-import createErudaPlugin from './plugins/eruda'
+//import createErudaPlugin from './plugins/eruda'
 import createCrestronPlugin from './plugins/crestronCom/responses/roomInfoFeedback'
 import createCrestronXpanelPlugin from './plugins/crestronCom/crestronXpanel'
 import createVideoControlPlugin from './plugins/crestronCom/responses/VideoInfoFeedback'
@@ -23,15 +23,15 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 app.use(Toast, {
-    transition: "Vue-Toastification__bounce",
-    maxToasts: 20,
-    newestOnTop: true,
-    timeout: 2000
-  })
+  transition: 'Vue-Toastification__bounce',
+  maxToasts: 20,
+  newestOnTop: true,
+  timeout: 2000
+})
 app.mount('#app')
 
 // load touchscreen UI developer tools.
-createErudaPlugin()
+//createErudaPlugin()
 
 // Initialize & establish an XPanel connection with a target control system.
 createCrestronXpanelPlugin()

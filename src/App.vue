@@ -1,30 +1,37 @@
 <script setup>
 import { useRootStore } from './stores/rootStore'
 import { useSecurityStore } from './stores/securityStore'
-// import { useVideoStore } from './stores/videoStore'
-// import { useAudioStore } from './stores/audioStore'
+import { useVideoStore } from './stores/videoStore'
+import { useAudioStore } from './stores/audioStore'
 import ActiveView from './views/ActiveView.vue'
 import StandbyView from './views/StandbyView.vue'
 import SystemNoticeModal from './components/modals/SystemNoticeModal.vue'
 import PasscodeModal from '@/components/modals/PasscodeModal.vue'
+import { watch } from 'vue'
+import { storeToRefs } from 'pinia'
 
 const rootStore = useRootStore()
+const rootStoreRefs = storeToRefs(rootStore)
+
 const securityStore = useSecurityStore()
-// const videoStore = useVideoStore()
-// const audioStore = useAudioStore()
+const videoStore = useVideoStore()
+const audioStore = useAudioStore()
 
-// const isOnline = storeToRefs(rootStore)
 
-// const getData = () => {
-//   rootStore.requestConfigUpdate()
-//   videoStore.requestConfigUpdate()
-//   audioStore.requestConfigUpdate()
-// }
+const getData = () => {
+  rootStore.requestConfigUpdate()
+  videoStore.requestConfigUpdate()
+  audioStore.requestConfigUpdate()
+}
 
+watch(rootStoreRefs.isOnline, () => {
+  if (rootStoreRefs.isOnline.value) {
+    getData()
+  }
+})
 </script>
 
 <template>
-  <!-- <ActiveView /> -->
   <SystemNoticeModal
     v-if="securityStore.uiLockoutActive"
     icon="fa-solid fa-lock"

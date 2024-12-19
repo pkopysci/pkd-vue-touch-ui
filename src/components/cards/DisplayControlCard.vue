@@ -53,7 +53,7 @@ i {
   align-items: center;
   padding: 30px;
   width: 250px;
-  min-height: 65%;
+  min-height: 80%;
   gap: 30px;
 }
 button {
