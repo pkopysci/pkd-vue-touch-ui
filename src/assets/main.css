@@ -140,3 +140,7 @@ button:active {
 .justify-left {
   justify-content: left;
 }
+
+.vertical-center {
+  justify-content: center;
+}

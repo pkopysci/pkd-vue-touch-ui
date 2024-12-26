@@ -9,8 +9,8 @@ const onMute = (id, newState) => audioStore.sendMuteMic(id, newState)
 </script>
 <template>
   <div
-    class="basic-mics fade-in horizontal-activity"
-    :class="audioStore.mics.length > 3 ? 'justify-left' : ''"
+    class="basic-mics fade-in vertical-activity"
+    :class="{ 'vertical-center' : audioStore.mics.length < 4 }"
   >
     <AudioChannelCard
       v-for="channel in audioStore.mics"
@@ -23,3 +23,9 @@ const onMute = (id, newState) => audioStore.sendMuteMic(id, newState)
     ></AudioChannelCard>
   </div>
 </template>
+
+<style scoped>
+.basic-mics {
+  height:100%;
+}
+</style>
