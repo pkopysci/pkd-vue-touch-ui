@@ -4,6 +4,8 @@ import { checkString, checkBoolean, checkDefined } from '@/data/validators'
 import { useSecurityStore } from './securityStore'
 import { setSytemUseState } from '../plugins/crestronCom/commands/systemStateCommands'
 
+import { testMenu } from '@/data/TestData'
+
 /**
  * Base state management for general room information. State object:
  * { isOnline, isInUse, roomName, helpNumber, roomType, isSecure, isTech, mainMenu[{id, label, icon, control, source}]}
@@ -29,7 +31,7 @@ export const useRootStore = defineStore('rootStore', {
     /**Collection of config objects that define what activities are shown on the main navigation.
      * Data object is {id: string, label: string, control: string, source: string}
      */
-    mainMenu: []
+    mainMenu: testMenu //[]
   }),
   getters: {
     menu: (state) => {

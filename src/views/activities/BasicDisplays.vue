@@ -15,8 +15,8 @@ const onScreenChange = (id, state) => {
 
 <template>
   <div
-    class="fade-in"
-    :class="videoStore.displays.length > 3 ? 'vertical-activity' : 'horizontal-activity'"
+    class="fade-in vertical-activity"
+    :class="{single: videoStore.displays.length < 2, grid: videoStore.displays.length > 5 }"
   >
     <DisplayControlCard
       v-for="display in videoStore.displays"
@@ -25,10 +25,23 @@ const onScreenChange = (id, state) => {
       :label="display.Label"
       :powerState="display.PowerState"
       :hasScreen="display.HasScreen"
-      :columnCard="videoStore.displays.length <= 3"
+      :gridCard="videoStore.displays.length > 5"
       @onPower="onPowerChange"
       @onScreen="onScreenChange"
     />
   </div>
 </template>
+
+<style scoped>
+.single {
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.grid {
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+</style>
 
