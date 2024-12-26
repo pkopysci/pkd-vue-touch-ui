@@ -60,3 +60,39 @@ export const testMenu = [
     Tags: []
   }
 ]
+
+export const testMics = [
+  {
+    Id: 'ch02',
+    Label: 'Podium',
+    Icon: '',
+    Zones: [],
+    HasSync: false,
+    MuteState: false,
+    Level: 75,
+    Tags: ['microphone', 'input'],
+    RoutedInput: ''
+  },
+  {
+    Id: 'ch03',
+    Label: 'Wireless 1',
+    Icon: '',
+    Zones: [],
+    HasSync: false,
+    MuteState: true,
+    Level: 25,
+    Tags: ['microphone', 'input'],
+    RoutedInput: ''
+  },
+  {
+    Id: 'ch04',
+    Label: 'Wireless 2',
+    Icon: '',
+    Zones: [],
+    HasSync: false,
+    MuteState: false,
+    Level: 25,
+    Tags: ['microphone', 'input'],
+    RoutedInput: ''
+  }
+]
