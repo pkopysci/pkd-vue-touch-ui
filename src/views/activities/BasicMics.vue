@@ -23,5 +23,3 @@ const onMute = (id, newState) => audioStore.sendMuteMic(id, newState)
     ></AudioChannelCard>
   </div>
 </template>
-
-style

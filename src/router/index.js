@@ -52,6 +52,11 @@ const router = createRouter({
       path: '/audiomatrix',
       name: 'audio-matrix',
       component: () => import('../views/activities/AudioMatrix.vue'),
+    },
+    {
+      path: '/videoconference',
+      name: 'video-conference',
+      component: () => import('../views/activities/VideoConference.vue'),
     }
   ]
 })

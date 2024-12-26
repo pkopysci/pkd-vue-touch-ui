@@ -53,6 +53,7 @@ const icons = [
   { id: 'theater', css: 'fa-solid fa-film' },
   { id: 'event', css: 'fa-solid fa-eye' },
   { id: 'grid', css: 'fa-solid fa-table-cells' },
+  { id: 'computer', css: 'fa-solid fa-computer' },
 ]
 
 /**Convert a config response icon keyword to the custom fon CSS class for that icon

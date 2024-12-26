@@ -94,7 +94,7 @@ const onVolDownStop = (event) => {
   display: flex;
   min-width: 250px;
   min-height: 60%;
-  max-height: 80%;
+  max-height: 90%;
   flex-direction: column;
   align-items: center;
   padding: 20px;

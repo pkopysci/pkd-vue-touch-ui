@@ -7,7 +7,7 @@ defineEmits(['onSelect'])
 
 <template>
     <button class="source-button" :class="{'active': isActive}" @click="$emit('onSelect', id)">
-        <i :class="translateIconTag(icon)"></i>
+        <i v-if="icon" :class="translateIconTag(icon)"></i>
         {{ label }}
     </button>
 </template>

@@ -29,17 +29,7 @@ export const useRootStore = defineStore('rootStore', {
     /**Collection of config objects that define what activities are shown on the main navigation.
      * Data object is {id: string, label: string, control: string, source: string}
      */
-    mainMenu: [
-      // { id: 'm01', label: 'Routing', icon: 'routing', control: 'av-routing', tags: [] },
-      // { id: 'm02', label: 'Displays', icon: 'tv', control: 'displays', tags: [] },
-      // { id: 'm03', label: 'Mics', icon: 'mics', control: 'mics', tags: [] },
-      // { id: 'm04', label: 'Video', icon: 'tv', control: 'video-matrix', tags: [] },
-      // { id: 'm05', label: 'Audio', icon: 'note', control: 'audio-matrix', tags: [] },
-      // { id: 'm06', label: 'Events', icon: 'event', control: 'generic-events', tags: [] },
-      // { id: 'm07', label: 'Mic Zones', icon: 'mics', control: 'mics-routable', tags: [] },
-      // { id: 'm08', label: 'Lighting', icon: 'lights', control: 'lighting', tags: [] },
-      // { id: 'm09', label: 'Video Wall', icon: 'grid', control: 'video-wall', tags: [] }
-    ]
+    mainMenu: []
   }),
   getters: {
     menu: (state) => {
