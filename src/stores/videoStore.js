@@ -12,9 +12,6 @@ import {
   sendDisplayInputSelect
 } from '@/plugins/crestronCom/commands/videoCommands'
 
-
-import { testDisplays } from '@/data/TestData'
-
 export const emptySource = {
   Id: '',
   Label: '',
@@ -52,7 +49,7 @@ export const useVideoStore = defineStore('videoStore', {
     /**
      * A collection of objects representing all controllable displays/projectors in the system.
      */
-    displays: testDisplays,//[],
+    displays: [],
     /**
      * A collection of objects representing selectable AV sources in the system.
      */

@@ -1,4 +1,5 @@
 <script setup>
+import { ref, onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 import { useModalStore } from '@/stores/modalStore'
 import { useRootStore } from '@/stores/rootStore'
@@ -9,9 +10,18 @@ import ConfirmationModal from '@/components/modals/ConfirmationModal.vue'
 import ActiveFooter from '@/components/ActiveFooter.vue'
 import TransportsModal from '@/components/modals/transports/TransportsModal.vue'
 import ActiveHeader from '@/components/ui/ActiveHeader.vue'
+import LoadingModal from '@/components/modals/LoadingModal.vue'
 
 const modalStore = useModalStore()
 const rootStore = useRootStore()
+
+const loading = ref(true)
+
+onMounted(() => {
+  setTimeout(() => {
+    loading.value = false
+  }, 10000)
+})
 
 const onShutdownConfirm = () => {
   modalStore.setShutdownConfirmationVisibility(false)
@@ -25,6 +35,9 @@ const onShutdownCancel = () => {
 </script>
 
 <template>
+  <Transition>
+    <LoadingModal :text="'Starting up...'" v-if="loading" />
+  </Transition>
   <ConfirmationModal
     v-show="modalStore.shutownConfirmationVisible"
     title="End this session?"
