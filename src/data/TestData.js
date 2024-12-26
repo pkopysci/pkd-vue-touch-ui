@@ -5,7 +5,7 @@ export const testDisplays = [
     Icon: 'projector',
     IsOnline: true,
     HasScreen: true,
-    PowerState: false,
+    PowerState: true,
     Tags: '',
     Inputs: []
   },
@@ -25,7 +25,7 @@ export const testDisplays = [
     Icon: 'tv',
     IsOnline: true,
     HasScreen: false,
-    PowerState: false,
+    PowerState: true,
     Tags: '',
     Inputs: []
   }

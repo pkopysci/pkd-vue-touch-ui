@@ -58,5 +58,6 @@ const onShutdownCancel = () => {
 .active-view section {
   display: flex;
   flex-direction: column;
+  max-height: 100vh;
 }
 </style>
