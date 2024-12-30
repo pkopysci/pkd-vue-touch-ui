@@ -1,15 +1,8 @@
 <script setup>
-import { onBeforeMount } from 'vue';
 import { translateIconTag } from '@/data/translators'
 import { useRootStore } from '@/stores/rootStore'
 
 const rootStore = useRootStore()
-
-onBeforeMount(() => {
-  // if (rootStore.menu.length < 1) {
-  //   rootStore.requestConfigUpdate()
-  // }
-})
 
 </script>
 <template>

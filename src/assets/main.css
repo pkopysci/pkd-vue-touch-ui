@@ -5,7 +5,11 @@
 @import './fontawesome/css/brands.min.css';
 
 :root {
-  --app-background: linear-gradient(to bottom, rgb(14, 22, 29), rgb(26, 40, 52));
+  /* --app-background: linear-gradient(to bottom, rgb(14, 22, 29), rgb(26, 40, 52)); */
+  --app-background: radial-gradient(circle at bottom left,  rgba(14, 22, 29, .20) 30%, rgba(14, 22, 29, 0) 0),
+  radial-gradient(circle at top right,  rgba(14, 22, 29, .20) 30%, rgba(14, 22, 29, 0) 0),
+  linear-gradient(305deg, rgba(14, 22, 29, 1) 0%,rgba(26, 40, 52, 1) 100%);
+
   --text-color: #ecf7ff;
   --active-color: #4ed963;
   --alert-color: #f6730c;
@@ -143,4 +147,17 @@ button:active {
 
 .vertical-center {
   justify-content: center;
+}
+
+.modal-backdrop {
+  background-color: var(--modal-backdrop-color);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
 }

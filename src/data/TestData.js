@@ -58,7 +58,30 @@ export const testMenu = [
     Control: 'mics',
     SourceSelect: '',
     Tags: []
+  },
+  {
+    Id: 'MENU04',
+    Visible: true,
+    Label: 'Lighting',
+    Icon: 'lights',
+    Control: 'lighting',
+    SourceSelect: '',
+    Tags: []
   }
+]
+
+export const testAudioOutputs = [
+  {
+    Id: 'ao01',
+    Label: 'Program Volume',
+    Icon: 'volume',
+    Zones: [],
+    HasSync: false,
+    MuteState: false,
+    Level: 75,
+    Tags: ['pgm', 'output'],
+    RoutedInput: ''
+    }
 ]
 
 export const testMics = [
@@ -68,7 +91,7 @@ export const testMics = [
     Icon: '',
     Zones: [],
     HasSync: false,
-    MuteState: false,
+    MuteState: true,
     Level: 75,
     Tags: ['microphone', 'input'],
     RoutedInput: ''
@@ -94,5 +117,95 @@ export const testMics = [
     Level: 25,
     Tags: ['microphone', 'input'],
     RoutedInput: ''
+  }
+]
+
+export const testLightingZones = [
+  {
+    Id: 'light01',
+    ControlId: 'ctrl01',
+    Label: 'Zone 1',
+    Load: 0,
+    Tags: []
+  },
+  {
+    Id: 'light02',
+    ControlId: 'ctrl01',
+    Label: 'Zone 2',
+    Load: 25,
+    Tags: []
+  },
+  {
+    Id: 'light03',
+    ControlId: 'ctrl01',
+    Label: 'Zone 3',
+    Load: 50,
+    Tags: []
+  },
+  {
+    Id: 'light04',
+    ControlId: 'ctrl01',
+    Label: 'Zone 4',
+    Load: 75,
+    Tags: []
+  },
+  {
+    Id: 'light05',
+    ControlId: 'ctrl01',
+    Label: 'Zone 5',
+    Load: 100,
+    Tags: []
+  },
+  {
+    Id: 'light06',
+    ControlId: 'ctrl01',
+    Label: 'Zone 6',
+    Load: 0,
+    Tags: []
+  },
+  {
+    Id: 'light07',
+    ControlId: 'ctrl01',
+    Label: 'Zone 7',
+    Load: 25,
+    Tags: []
+  },
+  {
+    Id: 'light08',
+    ControlId: 'ctrl01',
+    Label: 'Zone 8',
+    Load: 50,
+    Tags: []
+  }
+]
+
+export const testLightingScenes = [
+  {
+    Id: 'scene01',
+    ControlId: 'ctrl01',
+    Label: 'Scene 1',
+    Set: true,
+    Tags: []
+  },
+  {
+    Id: 'scene02',
+    ControlId: 'ctrl01',
+    Label: 'Scene 2',
+    Set: false,
+    Tags: []
+  },
+  {
+    Id: 'scene03',
+    ControlId: 'ctrl01',
+    Label: 'Scene 3',
+    Set: false,
+    Tags: []
+  },
+  {
+    Id: 'scene04',
+    ControlId: 'ctrl01',
+    Label: 'Scene 4',
+    Set: false,
+    Tags: []
   }
 ]

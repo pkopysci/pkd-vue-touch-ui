@@ -7,14 +7,15 @@ import MainNav from '@/components/ui/MainNav.vue'
 import SystemInfoModal from '@/components/modals/SystemInfoModal.vue'
 import SystemErrorsModal from '@/components/modals/SystemErrorsModal.vue'
 import ConfirmationModal from '@/components/modals/ConfirmationModal.vue'
-import ActiveFooter from '@/components/ActiveFooter.vue'
 import TransportsModal from '@/components/modals/transports/TransportsModal.vue'
 import ActiveHeader from '@/components/ui/ActiveHeader.vue'
 import LoadingModal from '@/components/modals/LoadingModal.vue'
+import AudioChannelModal from '@/components/modals/AudioChannelModal.vue'
+import { useAudioStore } from '@/stores/audioStore'
 
 const modalStore = useModalStore()
 const rootStore = useRootStore()
-
+const audioStore = useAudioStore()
 const loading = ref(true)
 
 onMounted(() => {
@@ -31,13 +32,12 @@ const onShutdownConfirm = () => {
 const onShutdownCancel = () => {
   modalStore.setShutdownConfirmationVisibility(false)
 }
-
 </script>
 
 <template>
-  <Transition>
+  <!-- <Transition>
     <LoadingModal :text="'Starting up...'" v-if="loading" />
-  </Transition>
+  </Transition> -->
   <ConfirmationModal
     v-show="modalStore.shutownConfirmationVisible"
     title="End this session?"
@@ -49,13 +49,19 @@ const onShutdownCancel = () => {
   />
   <SystemInfoModal v-show="modalStore.helpVisible" />
   <SystemErrorsModal v-show="modalStore.errorListVisible" />
-  <TransportsModal v-if="modalStore.sourceControlState.isVisible"/>
+  <TransportsModal v-if="modalStore.sourceControlState.isVisible" />
+  <AudioChannelModal
+    v-show="modalStore.pgmAudiovisible"
+    width="40vw"
+    :showCloseButton="true"
+    :audioChannel="audioStore.programAudio"
+    @closeModal="modalStore.setProgramAudioVisibility(false)"
+  />
   <div class="active-view">
     <MainNav />
     <section>
       <ActiveHeader />
       <RouterView></RouterView>
-      <ActiveFooter v-if="rootStore.roomType === 'baseline'" />
     </section>
   </div>
 </template>

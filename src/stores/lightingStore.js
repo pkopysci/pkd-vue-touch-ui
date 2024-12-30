@@ -6,17 +6,18 @@ import {
   sendLoadLevelCommand,
   sendSelectedSceneQuery
 } from '@/plugins/crestronCom/commands/lightingCommands'
+import { testLightingScenes, testLightingZones } from '@/data/TestData'
 
 export const useLightingStore = defineStore('lightingStore', {
   state: () => ({
     /**
      * A collection of all lighting zones in the system.
      */
-    zones: [],
+    zones: testLightingZones, //[],
     /**
      * A collection of all lighting scenes that can be recalled.
      */
-    scenes: [],
+    scenes: testLightingScenes,
     controllerIds: []
   }),
   getters: {},
@@ -110,6 +111,7 @@ export const useLightingStore = defineStore('lightingStore', {
         return
       }
 
+      console.log("setting scene: " + sceneId)
       sendSceneSelectCommand(controlId, sceneId)
     },
     /**

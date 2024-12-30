@@ -9,6 +9,7 @@ export const useModalStore = defineStore('useModalStore', {
     errorListVisible: false,
     shutownConfirmationVisible: false,
     helpVisible: false,
+    pgmAudiovisible: false,
     sourceControlState: { id: '', isVisible: false },
     audioChannelControlState: { id: '', isVisible: false },
   }),
@@ -66,6 +67,10 @@ export const useModalStore = defineStore('useModalStore', {
 
       this.audioChannelControlState.id = id
       this.audioChannelControlState.isVisible = isVisible
+    },
+    setProgramAudioVisibility(isVisible) {
+      if (!checkBoolean(isVisible, 'isVisible', 'modalStore.setProgramAudioVisibility')) return
+      this.pgmAudiovisible = isVisible
     }
   }
 })

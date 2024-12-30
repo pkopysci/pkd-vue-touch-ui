@@ -11,6 +11,7 @@ import {
   sendMicrophoneZoneEnable,
   sendMatrixAudioRoute
 } from '@/plugins/crestronCom/commands/audioCommands'
+import { testAudioOutputs } from '@/data/TestData'
 
 export const emptyChannel = {
   Id: 'emptychannel',
@@ -29,12 +30,12 @@ export const useAudioStore = defineStore('audioStore', {
     /** A collection of objects representing all audio inputs that are not tagged as microphones. */
     inputs: [],
     /** A collection of audio channel objects representing all outputs in the system. */
-    outputs: [],
+    outputs: testAudioOutputs, //[],
     /** A data object that provides the id, model, online status of the DSP in the system. */
     dspInfo: [{Model: 'Default DSP'}],
     /** A collection of all audio input channels that contain the tag 'mic'.*/
     mics: [],
-    programAudio: emptyChannel
+    programAudio: testAudioOutputs[0] //EmptyChannel
   }),
   getters: {},
   actions: {

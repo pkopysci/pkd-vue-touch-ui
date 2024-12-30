@@ -41,13 +41,19 @@ onBeforeMount(() => {
   <div class="active-header">
     <i v-if="customEventStore.activeEvents.length > 0" class="fa-solid fa-eye"></i>
     <i v-show="micIsMuted" class="fa-solid fa-microphone-slash alert"></i>
-    <i
-      v-show="audioStore.programAudio && audioStore.programAudio.MuteState"
-      class="fa-solid fa-volume-mute alert"
-    ></i>
     <div class="header-controls">
       <button @click="onSelectErrors()" v-show="errorStore.errorsList.length > 0">
         <i class="fa-solid fa-circle-exclamation alert"></i>
+      </button>
+      <button
+        v-if="audioStore.programAudio"
+        :class="{ 'pgm-mute-active': audioStore.programAudio.MuteState }"
+        @click="modalStore.setProgramAudioVisibility(true)"
+      >
+        <i
+          class="fa-solid"
+          :class="audioStore.programAudio.MuteState ? 'fa-volume-mute' : 'fa-volume-high'"
+        ></i>
       </button>
       <button @click="onSelectHelp()">
         <i class="fa-solid fa-circle-question"></i>
@@ -70,7 +76,7 @@ onBeforeMount(() => {
 }
 .header-controls {
   display: flex;
-  gap: 30px;
+  gap: 40px;
   padding: 20px;
   border-radius: 10px;
   background: var(--card-background);
@@ -81,5 +87,35 @@ onBeforeMount(() => {
   padding: 0;
   font-size: 2.8rem;
   margin: 0;
+}
+
+.pgm-mute-active {
+  color: var(--alert-color);
+  animation: fade 1000ms infinite;
+  -webkit-animation: fade 2000ms infinite;
+}
+
+@keyframes fade {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fade {
+  from {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+  to {
+    opacity: 1;
+  }
 }
 </style>

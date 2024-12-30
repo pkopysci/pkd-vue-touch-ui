@@ -29,8 +29,8 @@ const onDragStart = () => {
 }
 
 const onDragEnd = () => {
-  tempLevel.value = props.channelObject.Level
   clearInterval(intervalId)
+  tempLevel.value = props.channelObject.Level
 }
 </script>
 

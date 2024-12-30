@@ -33,8 +33,8 @@ watch(rootStoreRefs.isOnline, () => {
 
 <template>
   <ActiveView></ActiveView>
-  <!-- 
-  <SystemNoticeModal
+  
+  <!-- <SystemNoticeModal
     v-if="securityStore.uiLockoutActive"
     icon="fa-solid fa-lock"
     title="System Locked"
@@ -51,6 +51,6 @@ watch(rootStoreRefs.isOnline, () => {
   <PasscodeModal v-if="securityStore.isSecure" v-show="securityStore.systemLocked"></PasscodeModal>
 
   <ActiveView v-if="rootStore.isInUse" />
-  <StandbyView v-else />
-  -->
+  <StandbyView v-else /> -->
+ 
 </template>

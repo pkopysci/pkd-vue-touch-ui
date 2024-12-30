@@ -18,19 +18,6 @@ defineProps(['level', 'style'])
 </template>
 
 <style scoped>
-.modal-backdrop {
-  background-color: var(--modal-backdrop-color);
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
 .modal-wrapper {
   width: 100%;
   border-top: solid 1px var(--modal-border-color);
