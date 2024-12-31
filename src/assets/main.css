@@ -161,3 +161,11 @@ button:active {
   top: 0;
   left: 0;
 }
+
+.close-button {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: none;
+  font-size: 2rem;
+}

@@ -67,6 +67,15 @@ export const testMenu = [
     Control: 'lighting',
     SourceSelect: '',
     Tags: []
+  },
+  {
+    Id: 'MENU05',
+    Visible: true,
+    Label: 'Video',
+    Icon: 'tv',
+    Control: 'video-matrix',
+    SourceSelect: '',
+    Tags: []
   }
 ]
 
@@ -81,7 +90,7 @@ export const testAudioOutputs = [
     Level: 75,
     Tags: ['pgm', 'output'],
     RoutedInput: ''
-    }
+  }
 ]
 
 export const testMics = [
@@ -206,6 +215,153 @@ export const testLightingScenes = [
     ControlId: 'ctrl01',
     Label: 'Scene 4',
     Set: false,
+    Tags: []
+  }
+]
+
+export const testVideoInputs = [
+  {
+    Id: 'vs01',
+    Label: 'Video Source 1',
+    Icon: 'computer',
+    Control: '',
+    HasSync: true,
+    Tags: ''
+  },
+  {
+    Id: 'vs02',
+    Label: 'Video Source 2',
+    Icon: 'vga',
+    Control: '',
+    HasSync: true,
+    Tags: ''
+  },
+  {
+    Id: 'vs03',
+    Label: 'Video Source 3',
+    Icon: 'laptop',
+    Control: '',
+    HasSync: true,
+    Tags: ''
+  },
+  {
+    Id: 'vs04',
+    Label: 'Cable TV 1',
+    Icon: 'cable-tv',
+    Control: 'ctv01',
+    HasSync: true,
+    Tags: ''
+  },
+  {
+    Id: 'vs05',
+    Label: 'Cable TV 2',
+    Icon: 'cable-tv',
+    Control: 'ctv02',
+    HasSync: true,
+    Tags: ''
+  },
+  {
+    Id: 'vs06',
+    Label: 'Apple TV',
+    Icon: 'apple-tv',
+    Control: 'ctv03',
+    HasSync: true,
+    Tags: ''
+  }
+]
+
+export const testVideDestinations = [
+  {
+    Id: 'vd01',
+    Label: 'Destination 1',
+    Icon: 'tv',
+    CurrentSourceId: 'vs05',
+    Tags: ''
+  },
+  {
+    Id: 'vd02',
+    Label: 'Destination 2',
+    Icon: 'tv',
+    CurrentSourceId: 'vs02',
+    Tags: ''
+  },
+  {
+    Id: 'vd03',
+    Label: 'Destination 3',
+    Icon: 'tv',
+    CurrentSourceId: 'vs03',
+    Tags: ''
+  },
+  {
+    Id: 'vd04',
+    Label: 'Destination 4',
+    Icon: 'tv',
+    CurrentSourceId: 'vs03',
+    Tags: ''
+  },
+  {
+    Id: 'vd05',
+    Label: 'Destination 5',
+    Icon: 'tv',
+    CurrentSourceId: 'vs02',
+    Tags: ''
+  },
+  {
+    Id: 'vd06',
+    Label: 'Destination 6',
+    Icon: 'tv',
+    CurrentSourceId: 'vs01',
+    Tags: ''
+  }
+]
+
+export const testTransportDevices = [
+  {
+    Id: 'ctv01',
+    Label: 'Cable TV 1',
+    Icon: 'cable-tv',
+    Type: 'cable-tv',
+    SupportsDiscretePower: true,
+    SupportsColorButtons: true,
+    SupportsVideoTransports: true,
+    SupportsDvrTransports: true,
+    Favorites: [
+      { Id: 'favorite1', Label: 'Favorite 1' },
+      { Id: 'favorite2', Label: 'Favorite 2' },
+      { Id: 'favorite3', Label: 'Favorite 3' }
+    ],
+    Tags: []
+  },
+  {
+    Id: 'ctv02',
+    Label: 'Cable TV 2',
+    Icon: 'cable-tv',
+    Type: 'cable-tv',
+    SupportsDiscretePower: false,
+    SupportsColorButtons: true,
+    SupportsVideoTransports: false,
+    SupportsDvrTransports: false,
+    Favorites: [
+      { Id: 'favorite1', Label: 'Favorite 1' },
+      { Id: 'favorite2', Label: 'Favorite 2' }
+    ],
+    Tags: []
+  },
+  {
+    Id: 'ctv03',
+    Label: 'Cable TV 3',
+    Icon: 'cable-tv',
+    Type: 'cable-tv',
+    SupportsDiscretePower: true,
+    SupportsColorButtons: false,
+    SupportsVideoTransports: false,
+    SupportsDvrTransports: false,
+    Favorites: [
+      { Id: 'favorite1', Label: 'Favorite 1' },
+      { Id: 'favorite2', Label: 'Favorite 2' },
+      { Id: 'favorite3', Label: 'Favorite 3' },
+      { Id: 'favorite4', Label: 'Favorite 4' }
+    ],
     Tags: []
   }
 ]

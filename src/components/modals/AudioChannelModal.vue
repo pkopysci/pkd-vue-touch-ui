@@ -57,7 +57,7 @@ const onVolDownStop = (event) => {
 </script>
 
 <template>
-  <div class="modal-backdrop fade-in" @click="onModalClose">
+  <div class="modal-backdrop fade-in notice" @click="onModalClose">
     <CardWrapper :style="{ width: width ? width : '100%' }" class="room-volume-modal" @click.stop>
       <h2 style="margin-bottom: 15px">{{ audioChannel.Label }}</h2>
       <div class="audio-modal-controls">
@@ -105,6 +105,7 @@ const onVolDownStop = (event) => {
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  background: var(--app-background);
 }
 .room-volume-modal h2 {
   font-size: 2rem;
@@ -136,12 +137,6 @@ const onVolDownStop = (event) => {
 }
 
 .close-button {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: none;
   margin-top: 30px;
-  font-size: 2rem;
 }
 </style>
-0

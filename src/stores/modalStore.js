@@ -12,6 +12,7 @@ export const useModalStore = defineStore('useModalStore', {
     pgmAudiovisible: false,
     sourceControlState: { id: '', isVisible: false },
     audioChannelControlState: { id: '', isVisible: false },
+    videoDestinationControlState: { id: '', isVisible: false }
   }),
   actions: {
     /**
@@ -49,6 +50,7 @@ export const useModalStore = defineStore('useModalStore', {
         return
       }
 
+      console.log('modalStore.setSourceControlState(' + id + ', ' + isVisible + ')')
       this.sourceControlState.id = id
       this.sourceControlState.isVisible = isVisible
     },
@@ -68,9 +70,24 @@ export const useModalStore = defineStore('useModalStore', {
       this.audioChannelControlState.id = id
       this.audioChannelControlState.isVisible = isVisible
     },
+    /**
+     * Set the visibility of the program audio modal.
+     * @param {boolean} isVisible true = show modal, false = hide modal
+     */
     setProgramAudioVisibility(isVisible) {
       if (!checkBoolean(isVisible, 'isVisible', 'modalStore.setProgramAudioVisibility')) return
       this.pgmAudiovisible = isVisible
+    },
+    setVideoDestinationControlState(id, isVisible) {
+      if (
+        !checkString(id, 'id', 'modalStore.setVideoDestinationControlState') ||
+        !checkBoolean(isVisible, 'isVisible', 'modalStore.setVideoDestinationControlState')
+      ) {
+        return
+      }
+
+      this.videoDestinationControlState.id = id
+      this.videoDestinationControlState.isVisible = isVisible
     }
   }
 })

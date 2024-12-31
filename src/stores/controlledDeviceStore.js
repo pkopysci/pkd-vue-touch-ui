@@ -7,6 +7,8 @@ import {
   sendTransportCommand
 } from '@/plugins/crestronCom/commands/deviceControlCommands'
 
+import { testTransportDevices } from '@/data/TestData'
+
 export const emptyDevice = {
   Id: 'emptydevice',
   Label: 'Empty Device',
@@ -27,7 +29,7 @@ export const emptyDevice = {
 /** Store management for all controlled input devices, such as Blu-ray, Cable TV, DVD, etc. */
 export const useControlledDeviceStore = defineStore('controlledDeviceStore', {
   state: () => ({
-    devices: []
+    devices: testTransportDevices //[]
   }),
   actions: {
     requestConfigUpdate() {

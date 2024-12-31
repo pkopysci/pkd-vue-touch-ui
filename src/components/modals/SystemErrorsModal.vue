@@ -14,8 +14,8 @@ const onDone = () => {
 </script>
 
 <template>
-  <ModalWrapper level="notice">
-    <div class="system-errors-modal">
+  <ModalWrapper @click="onDone" level="notice">
+    <div class="system-errors-modal" @click.stop>
       <div class="header">
         <h1>System Errors</h1>
         <span>Support Contact: {{ rootStore.helpNumber }}</span>
@@ -23,7 +23,7 @@ const onDone = () => {
       <ul>
         <li v-for="error in errorStore.errorsList" :key="error">{{ error }}</li>
       </ul>
-      <button @click="onDone()">Done</button>
+      <button class="close-button" @click="onDone()">X</button>
     </div>
   </ModalWrapper>
 </template>
@@ -63,8 +63,5 @@ const onDone = () => {
   padding: 10px;
 }
 
-.system-errors-modal button {
-  width: 10rem;
-  height: 5rem;
-}
+
 </style>

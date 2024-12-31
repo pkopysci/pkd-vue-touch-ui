@@ -1,6 +1,8 @@
 <script setup>
 import { ref } from 'vue'
 
+defineProps({selected: {type: Boolean, default: false}})
+
 const isActive = ref(false)
 
 const onDown = () => {
@@ -19,7 +21,7 @@ const onUp = () => {
     @mouseup="onUp()"
     @touchstart="onDown()"
     @touchend="onUp()"
-    :style="[isActive ? { background: 'var(--active-color)' } : {}]"
+    :style="[isActive || selected ? { background: 'var(--active-color)' } : {}]"
   >
     <slot></slot>
   </button>

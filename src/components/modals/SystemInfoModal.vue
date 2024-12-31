@@ -16,8 +16,8 @@ const onDone = () => {
 </script>
 
 <template>
-  <ModalWrapper level="notice">
-    <div class="system-info-modal">
+  <ModalWrapper @click="onDone" level="notice">
+    <div class="system-info-modal" @click.stop>
       <div class="info-content">
         <div class="room-contact">
           <h1>{{ rootStore.roomName }}</h1>
@@ -44,7 +44,7 @@ const onDone = () => {
           </div>
         </div>
       </div>
-      <button class="done-button" @click="onDone()">Done</button>
+      <button class="close-button" @click="onDone()">X</button>
     </div>
   </ModalWrapper>
 </template>
