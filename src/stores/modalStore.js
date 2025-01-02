@@ -12,7 +12,8 @@ export const useModalStore = defineStore('useModalStore', {
     pgmAudiovisible: false,
     sourceControlState: { id: '', isVisible: false },
     audioChannelControlState: { id: '', isVisible: false },
-    videoDestinationControlState: { id: '', isVisible: false }
+    videoDestinationControlState: { id: '', isVisible: false },
+    audioDestinationControlState: { id: '', isVisible: false }
   }),
   actions: {
     /**
@@ -88,6 +89,17 @@ export const useModalStore = defineStore('useModalStore', {
 
       this.videoDestinationControlState.id = id
       this.videoDestinationControlState.isVisible = isVisible
+    },
+    setAudioDestinationControlState(id, isVisible) {
+      if (
+        !checkString(id, 'id', 'modalStore.setAudioDestinationControlState') ||
+        !checkBoolean(isVisible, 'isVisible', 'modalStore.setAudioDestinationControlState')
+      ) {
+        return
+      }
+
+      this.audioDestinationControlState.id = id
+      this.audioDestinationControlState.isVisible = isVisible
     }
   }
 })

@@ -62,7 +62,7 @@ watch(props.dataObject, () => {
 
 button {
   display: flex;
-  align-items: center0;
+  align-items: center;
   justify-content: space-around;
   border-radius: 0 0 10px 10px;
   padding: 20px;

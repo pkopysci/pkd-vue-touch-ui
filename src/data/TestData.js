@@ -76,6 +76,15 @@ export const testMenu = [
     Control: 'video-matrix',
     SourceSelect: '',
     Tags: []
+  },
+  {
+    Id: 'MENU06',
+    Visible: true,
+    Label: 'Audio',
+    Icon: 'note',
+    Control: 'audio-matrix',
+    SourceSelect: '',
+    Tags: []
   }
 ]
 
@@ -89,6 +98,108 @@ export const testAudioOutputs = [
     MuteState: false,
     Level: 75,
     Tags: ['pgm', 'output'],
+    RoutedInput: 'ai02'
+  },
+  {
+    Id: 'ao02',
+    Label: 'Zone 1',
+    Icon: 'volume',
+    Zones: [],
+    HasSync: false,
+    MuteState: false,
+    Level: 25,
+    Tags: ['output'],
+    RoutedInput: 'ai02'
+  },
+  {
+    Id: 'ao03',
+    Label: 'Zone 2',
+    Icon: 'volume',
+    Zones: [],
+    HasSync: false,
+    MuteState: true,
+    Level: 50,
+    Tags: ['output'],
+    RoutedInput: 'ai01'
+  },
+  {
+    Id: 'ao04',
+    Label: 'Zone 3',
+    Icon: 'volume',
+    Zones: [],
+    HasSync: false,
+    MuteState: false,
+    Level: 100,
+    Tags: ['output'],
+    RoutedInput: 'ai03'
+  },
+  {
+    Id: 'ao05',
+    Label: 'Zone 4',
+    Icon: 'volume',
+    Zones: [],
+    HasSync: false,
+    MuteState: false,
+    Level: 50,
+    Tags: ['output'],
+    RoutedInput: 'ai02'
+  },
+  {
+    Id: 'ao06',
+    Label: 'Zone 5',
+    Icon: 'volume',
+    Zones: [],
+    HasSync: false,
+    MuteState: true,
+    Level: 25,
+    Tags: ['output'],
+    RoutedInput: 'ai04'
+  }
+]
+
+export const testAudioInputs = [
+  {
+    Id: 'ai01',
+    Label: 'PC',
+    Icon: 'volume',
+    Zones: [],
+    HasSync: true,
+    MuteState: false,
+    Level: 0,
+    Tags: ['input'],
+    RoutedInput: ''
+  },
+  {
+    Id: 'ai02',
+    Label: 'Wallplate',
+    Icon: 'volume',
+    Zones: [],
+    HasSync: false,
+    MuteState: false,
+    Level: 0,
+    Tags: ['input'],
+    RoutedInput: ''
+  },
+  {
+    Id: 'ai03',
+    Label: 'Cable TV 1',
+    Icon: 'volume',
+    Zones: [],
+    HasSync: true,
+    MuteState: true,
+    Level: 0,
+    Tags: ['input'],
+    RoutedInput: ''
+  },
+  {
+    Id: 'ai04',
+    Label: 'Cable TV 2',
+    Icon: 'volume',
+    Zones: [],
+    HasSync: true,
+    MuteState: false,
+    Level: 0,
+    Tags: ['input'],
     RoutedInput: ''
   }
 ]
