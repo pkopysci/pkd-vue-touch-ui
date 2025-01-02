@@ -35,7 +35,7 @@ export const useAudioStore = defineStore('audioStore', {
     dspInfo: [{Model: 'Default DSP'}],
     /** A collection of all audio input channels that contain the tag 'mic'.*/
     mics: testMics, //[],
-    programAudio: testAudioOutputs[0] //EmptyChannel
+    programAudio: undefined
   }),
   getters: {},
   actions: {

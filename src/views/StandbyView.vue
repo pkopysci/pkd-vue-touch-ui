@@ -30,7 +30,7 @@ function onStartSession() {
 
 <template>
   <Transition>
-    <LoadingModal :text="'Shutting Down...'" v-if="loading" />
+    <LoadingModal :text="'Shutting Down...'" v-show="loading" />
   </Transition>
   <div class="standby-view" @click="onStartSession">
     <div class="info-row">

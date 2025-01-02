@@ -85,6 +85,15 @@ export const testMenu = [
     Control: 'audio-matrix',
     SourceSelect: '',
     Tags: []
+  },
+  {
+    Id: 'MENU07',
+    Visible: true,
+    Label: 'Video Wall',
+    Icon: 'grid',
+    Control: 'video-wall',
+    SourceSelect: '',
+    Tags: []
   }
 ]
 
@@ -97,7 +106,7 @@ export const testAudioOutputs = [
     HasSync: false,
     MuteState: false,
     Level: 75,
-    Tags: ['pgm', 'output'],
+    Tags: ['output'],
     RoutedInput: 'ai02'
   },
   {
@@ -474,5 +483,36 @@ export const testTransportDevices = [
       { Id: 'favorite4', Label: 'Favorite 4' }
     ],
     Tags: []
+  }
+]
+
+export const testVideoWallLayouts = [
+  {
+    Id: 'vw01',
+    Label: 'Layout 1',
+    Width: 2,
+    Height: 2,
+    Cells: [
+      { Id: 'vw02d01', Xposition: 1, Yposition: 1, SourceId: 'vs01' },
+      { Id: 'vw02d02', Xposition: 2, Yposition: 1, SourceId: 'vs01' },
+      { Id: 'vw02d03', Xposition: 1, Yposition: 2, SourceId: 'vs01' },
+      { Id: 'vw02d04', Xposition: 2, Yposition: 2, SourceId: 'vs01' }
+    ]
+  },
+  {
+    Id: 'vw02',
+    Label: 'Layout 2',
+    Width: 4,
+    Height: 2,
+    Cells: [
+      { Id: 'vw02d01', Xposition: 1, Yposition: 1, SourceId: 'vs01' },
+      { Id: 'vw02d02', Xposition: 2, Yposition: 1, SourceId: 'vs01' },
+      { Id: 'vw02d03', Xposition: 3, Yposition: 1, SourceId: 'vs01' },
+      { Id: 'vw02d04', Xposition: 4, Yposition: 1, SourceId: 'vs01' },
+      { Id: 'vw02d05', Xposition: 1, Yposition: 2, SourceId: 'vs01' },
+      { Id: 'vw02d06', Xposition: 2, Yposition: 2, SourceId: 'vs01' },
+      { Id: 'vw02d07', Xposition: 3, Yposition: 2, SourceId: 'vs01' },
+      { Id: 'vw02d08', Xposition: 4, Yposition: 2, SourceId: 'vs01' }
+    ]
   }
 ]

@@ -11,7 +11,7 @@ import TransportsModal from '@/components/modals/transports/TransportsModal.vue'
 import ActiveHeader from '@/components/ui/ActiveHeader.vue'
 import LoadingModal from '@/components/modals/LoadingModal.vue'
 import AudioChannelModal from '@/components/modals/AudioChannelModal.vue'
-import { useAudioStore } from '@/stores/audioStore'
+import { emptyChannel, useAudioStore } from '@/stores/audioStore'
 
 const modalStore = useModalStore()
 const rootStore = useRootStore()
@@ -36,7 +36,7 @@ const onShutdownCancel = () => {
 
 <template>
   <!-- <Transition>
-    <LoadingModal :text="'Starting up...'" v-if="loading" />
+    <LoadingModal :text="'Starting up...'" v-show="loading" />
   </Transition> -->
   <ConfirmationModal
     v-show="modalStore.shutownConfirmationVisible"
@@ -54,7 +54,7 @@ const onShutdownCancel = () => {
     v-show="modalStore.pgmAudiovisible"
     width="40vw"
     :showCloseButton="true"
-    :audioChannel="audioStore.programAudio"
+    :audioChannel="audioStore.programAudio ? audioStore.programAudio : emptyChannel"
     @closeModal="modalStore.setProgramAudioVisibility(false)"
   />
   <div class="active-view">
