@@ -1,12 +1,15 @@
 <script setup>
-import WallLayoutModal from '@/components/modals/WallLayoutModal.vue'
+import { ref } from 'vue'
 import { useVideoWallStore } from '@/stores/videoWallStore'
 import { useModalStore } from '@/stores/modalStore'
 import { emptySource, useVideoStore } from '@/stores/videoStore'
+import WallLayoutModal from '@/components/modals/WallLayoutModal.vue'
+import SourceListModal from '@/components/modals/SourceListModal.vue'
 
 const videoStore = useVideoStore()
 const videoWallStore = useVideoWallStore()
 const modalStore = useModalStore()
+const windowSelected = ref(undefined)
 
 const showLayoutsModal = () => {
   modalStore.setVideoWallLayoutVisibility(true)
@@ -16,9 +19,25 @@ const findSource = (id) => {
   let source = videoStore.sources.find((x) => x.Id == id)
   return source ? source : emptySource
 }
+
+const onWindowSelected = (cell) => {
+  windowSelected.value = cell
+  modalStore.setSourceListVisibility(true)
+}
+
+const onRouteRequested = (sourceId, destinationId) => {
+  videoWallStore.sendCellRoute(sourceId, destinationId)
+}
 </script>
 
 <template>
+  <SourceListModal
+    v-show="modalStore.sourceListVisible"
+    :sourceList="videoStore.sources"
+    :destinationId="windowSelected?.Id"
+    :selectedId="windowSelected?.selectedId"
+    @onSourceSelect="onRouteRequested"
+  />
   <WallLayoutModal v-show="modalStore.videoWallLayoutsVisible" />
   <div class="video-wall fade-in">
     <div
@@ -30,14 +49,15 @@ const findSource = (id) => {
     >
       <button
         v-for="cell in videoWallStore.selectedLayout.Cells"
-        :key="cell.Id"
         class="cell"
+        :key="cell.Id"
         :style="{
           gridRowStart: cell.Yposition,
           gridRowEnd: cell.Yposition,
           gridColumnStart: cell.Xposition,
           gridColumnEnd: cell.Xposition
         }"
+        @click="onWindowSelected(cell)"
       >
         {{ findSource(cell.SourceId).Label }}
       </button>

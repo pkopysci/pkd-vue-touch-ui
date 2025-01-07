@@ -74,8 +74,8 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    * @param {string} cellId - The id of the cell to route the source to.
    * @param {string} sourceId - The id of the source to route to the cell.
    */
-  function sendCellRoute(cellId, sourceId) {
-    console.warn('TODO: VideoWallStore.sendCellRoute(' + cellId + ', ' + sourceId + ')')
+  function sendCellRoute(sourceId, cellId) {
+    console.warn('TODO: VideoWallStore.sendCellRoute(' + sourceId + ', ' + cellId + ')')
   }
 
   return {
