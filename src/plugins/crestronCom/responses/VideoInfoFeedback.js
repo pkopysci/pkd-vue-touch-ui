@@ -20,6 +20,10 @@ const displayCommands = {
   STATUS: (store, cmd) => store.updateDisplay(cmd.Data)
 }
 
+/**
+ * Initializes subscriptions for video and display control feedback plugins.
+ * Updates associated states in the video store when commands are received.
+ */
 export default function createVideoControlPlugin() {
   const videoStore = useVideoStore()
 

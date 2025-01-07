@@ -28,9 +28,20 @@ export const lightingControlHook = { type: 's', join: '8' }
 /** String join for querying for and receiving device error notices. */
 export const errorReportingHook = { type: 's', join: '9'}
 
+/** String join for sending and receivingvideo wall commands. */
+export const videoWallHook = { type: 's', join: '10' }
+
+/**
+ * Tries to send a command to the control system. If successful, the command will be routed
+ * to the correct device or subsystem. If a failure occurs, the error will be logged to
+ * the console.
+ *
+ * @param {object} commandObject - The command object to be sent to the control system.
+ * @param {object} hook - The hook object that defines the type and join for the command.
+ */
 export const trySend = (commandObject, hook) => {
 
-  console.log('apiHooks.trySend(' + JSON.stringify(commandObject) + ')', hook)
+  console.debug('apiHooks.trySend(' + JSON.stringify(commandObject) + ')', hook)
 
   try {
     let cmd = JSON.stringify(commandObject) + 'EOF';
@@ -40,6 +51,12 @@ export const trySend = (commandObject, hook) => {
   }
 }
 
+/**
+ * Sends a POST request to the control system with the specified command and data.
+ * @param {string} command - The command to be sent.
+ * @param {object} data - The data associated with the command.
+ * @param {object} hook - The hook object that specifies the type and join for the command.
+ */
 export const sendPost = (command, data, hook) => {
   trySend(
     {
@@ -51,6 +68,12 @@ export const sendPost = (command, data, hook) => {
   )
 }
 
+/**
+ * Sends a GET request to the control system with the specified command and data.
+ * @param {string} command - The command to be sent.
+ * @param {object} data - The data associated with the command.
+ * @param {object} hook - The hook object that specifies the type and join for the command.
+ */
 export const sendGet = (command, data, hook) => {
   trySend(
     {

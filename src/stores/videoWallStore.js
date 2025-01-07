@@ -58,6 +58,46 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
   }
 
   /**
+   * Updates the currently routed source of the cell with the given id in the target layout.
+   * If the layout or cell does not exist, the method does nothing and logs an error to the console.
+   *
+   * @param {string} layoutid - The id of the layout to update.
+   * @param {string} cellId - The id of the cell to update.
+   * @param {string} sourceId - The id of the source currently routed to the cell.
+   */
+  function updateCellRoute(layoutid, cellId, sourceId) {
+    let found = layouts.value.find((x) => x.Id == layoutid)
+    if (!found) {
+      console.error(
+        'VideoWallStore.updateCellRoute(' +
+          layoutid +
+          ', ' +
+          cellId +
+          ', ' +
+          sourceId +
+          ') - no matching layout found.'
+      )
+      return
+    }
+
+    let cell = found.Cells.find((x) => x.Id == cellId)
+    if (!cell) {
+      console.error(
+        'VideoWallStore.updateCellRoute(' +
+          layoutid +
+          ', ' +
+          cellId +
+          ', ' +
+          sourceId +
+          ') - no matching cell found.'
+      )
+      return
+    }
+
+    cell.SourceId = sourceId
+  }
+
+  /**
    * Send a request to the control system to select the layout with the given id.
    * This will cause the video wall to display the selected layout.
    *
@@ -83,6 +123,7 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
     selectedLayout,
     updateLayouts,
     updateSelectedLayout,
+    updateCellRoute,
     sendLayoutSelect,
     sendCellRoute
   }

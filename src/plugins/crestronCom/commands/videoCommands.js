@@ -51,8 +51,6 @@ export function sendDisplayInputSelect(displayIds, inputId) {
  * @param {string} srcId The unique ID of the source being sent to the destinations
  */
 export function sendMatrixVideoRoute(destId, srcId) {
-  console.log('videoCommands.sendMatrixVideoRoute(' + destId + ', ' + srcId + ')')
-
   sendPost('ROUTE', { DestId: destId, SrcId: srcId }, videoControlHook)
 }
 
