@@ -104,9 +104,9 @@ export const testAudioOutputs = [
     Icon: 'volume',
     Zones: [],
     HasSync: false,
-    MuteState: false,
+    MuteState: true,
     Level: 75,
-    Tags: ['output'],
+    Tags: ['pgm','output'],
     RoutedInput: 'ai02'
   },
   {
@@ -489,19 +489,19 @@ export const testTransportDevices = [
 export const testVideoWallLayouts = [
   {
     Id: 'vw01',
-    Label: 'Layout 1',
+    Label: '2x2 Grid',
     Width: 2,
     Height: 2,
     Cells: [
       { Id: 'vw02d01', Xposition: 1, Yposition: 1, SourceId: 'vs01' },
-      { Id: 'vw02d02', Xposition: 2, Yposition: 1, SourceId: 'vs01' },
-      { Id: 'vw02d03', Xposition: 1, Yposition: 2, SourceId: 'vs01' },
-      { Id: 'vw02d04', Xposition: 2, Yposition: 2, SourceId: 'vs01' }
+      { Id: 'vw02d02', Xposition: 2, Yposition: 1, SourceId: 'vs02' },
+      { Id: 'vw02d03', Xposition: 1, Yposition: 2, SourceId: 'vs03' },
+      { Id: 'vw02d04', Xposition: 2, Yposition: 2, SourceId: 'vs04' }
     ]
   },
   {
     Id: 'vw02',
-    Label: 'Layout 2',
+    Label: '4x2 Grid',
     Width: 4,
     Height: 2,
     Cells: [
@@ -514,5 +514,22 @@ export const testVideoWallLayouts = [
       { Id: 'vw02d07', Xposition: 3, Yposition: 2, SourceId: 'vs01' },
       { Id: 'vw02d08', Xposition: 4, Yposition: 2, SourceId: 'vs01' }
     ]
-  }
+  },
+  {
+    Id: 'vw03',
+    Label: 'Dual Video',
+    Width: 2,
+    Height: 1,
+    Cells: [
+      { Id: 'vw03d01', Xposition: 1, Yposition: 1, SourceId: 'vs01' },
+      { Id: 'vw03d02', Xposition: 2, Yposition: 1, SourceId: 'vs01' }
+    ]
+  },
+  {
+    Id: 'vw04',
+    Label: 'Full Screen',
+    Width: 1,
+    Height: 1,
+    Cells: [{ Id: 'vw04d01', Xposition: 1, Yposition: 1, SourceId: 'vs01' }]
+  },
 ]

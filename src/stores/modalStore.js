@@ -10,6 +10,7 @@ export const useModalStore = defineStore('useModalStore', {
     shutownConfirmationVisible: false,
     helpVisible: false,
     pgmAudiovisible: false,
+    videoWallLayoutsVisible: false,
     sourceControlState: { id: '', isVisible: false },
     audioChannelControlState: { id: '', isVisible: false },
     videoDestinationControlState: { id: '', isVisible: false },
@@ -37,6 +38,14 @@ export const useModalStore = defineStore('useModalStore', {
     setHelpVisibility(isVisible) {
       if (!checkBoolean(isVisible, 'isVisible', 'modalStore.setHelpVisibility')) return
       this.helpVisible = isVisible
+    },
+    /**
+     * Set the visibility of the video wall layout modal.
+     * @param {boolean} isVisible - True to show the modal, false to hide it.
+     */
+    setVideoWallLayoutVisibility(isVisible) {
+      if (!checkBoolean(isVisible, 'isVisible', 'modalStore.setVideoWallLayoutVisibility')) return
+      this.videoWallLayoutsVisible = isVisible
     },
     /**
      * show or hide a device control modal on the UI.
@@ -79,6 +88,11 @@ export const useModalStore = defineStore('useModalStore', {
       if (!checkBoolean(isVisible, 'isVisible', 'modalStore.setProgramAudioVisibility')) return
       this.pgmAudiovisible = isVisible
     },
+    /**
+     * Set the visibility of a video destination control modal.
+     * @param {string} id The unique ID of the video destination to control.
+     * @param {boolean} isVisible true = show modal, false = hide modal.
+     */
     setVideoDestinationControlState(id, isVisible) {
       if (
         !checkString(id, 'id', 'modalStore.setVideoDestinationControlState') ||
@@ -90,6 +104,11 @@ export const useModalStore = defineStore('useModalStore', {
       this.videoDestinationControlState.id = id
       this.videoDestinationControlState.isVisible = isVisible
     },
+    /**
+     * Set the visibility of an audio destination control modal.
+     * @param {string} id The unique ID of the audio destination to control.
+     * @param {boolean} isVisible true = show modal, false = hide modal.
+     */
     setAudioDestinationControlState(id, isVisible) {
       if (
         !checkString(id, 'id', 'modalStore.setAudioDestinationControlState') ||

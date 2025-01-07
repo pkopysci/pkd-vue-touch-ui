@@ -53,7 +53,7 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    * @param  layoutId - The id of the layout that should be selected.
    */
   function updateSelectedLayout(layoutId) {
-    let found = layouts.value.find((x) => x.id == layoutId)
+    let found = layouts.value.find((x) => x.Id == layoutId)
     selectedLayout.value = found ? found : EmptyLayout
   }
 

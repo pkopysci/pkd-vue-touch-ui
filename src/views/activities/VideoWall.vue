@@ -1,10 +1,25 @@
 <script setup>
+import WallLayoutModal from '@/components/modals/WallLayoutModal.vue'
 import { useVideoWallStore } from '@/stores/videoWallStore'
+import { useModalStore } from '@/stores/modalStore'
+import { emptySource, useVideoStore } from '@/stores/videoStore'
 
+const videoStore = useVideoStore()
 const videoWallStore = useVideoWallStore()
+const modalStore = useModalStore()
+
+const showLayoutsModal = () => {
+  modalStore.setVideoWallLayoutVisibility(true)
+}
+
+const findSource = (id) => {
+  let source = videoStore.sources.find((x) => x.Id == id)
+  return source ? source : emptySource
+}
 </script>
 
 <template>
+  <WallLayoutModal v-show="modalStore.videoWallLayoutsVisible" />
   <div class="video-wall fade-in">
     <div
       class="cells"
@@ -24,10 +39,14 @@ const videoWallStore = useVideoWallStore()
           gridColumnEnd: cell.Xposition
         }"
       >
-        {{ cell.SourceId }}
+        {{ findSource(cell.SourceId).Label }}
       </button>
     </div>
-    <button class="layouts-button">
+    <button
+      v-if="videoWallStore.layouts.length > 1"
+      @click="showLayoutsModal"
+      class="layouts-button"
+    >
       <i class="fa-solid fa-grip"></i>
       Layouts
     </button>
