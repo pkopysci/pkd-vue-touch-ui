@@ -85,6 +85,7 @@ const setDvrState = (state) => {
               buttonsLabel="Channel"
             />
             <UpDownButtonColumn
+              @topButtonPresssed="onSendTransport(irCommands.get('info'))"
               @upPressed="onSendTransport(irCommands.get('pageUp'))"
               @downPressed="onSendTransport(irCommands.get('pageDown'))"
               @upReleased="onSendTransport(irCommands.get('pageStop'))"

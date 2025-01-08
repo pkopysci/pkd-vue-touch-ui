@@ -493,10 +493,10 @@ export const testVideoWallLayouts = [
     Width: 2,
     Height: 2,
     Cells: [
-      { Id: 'vw02d01', Xposition: 1, Yposition: 1, SourceId: 'vs01' },
-      { Id: 'vw02d02', Xposition: 2, Yposition: 1, SourceId: 'vs02' },
-      { Id: 'vw02d03', Xposition: 1, Yposition: 2, SourceId: 'vs03' },
-      { Id: 'vw02d04', Xposition: 2, Yposition: 2, SourceId: 'vs04' }
+      { Id: 'vw01d01', Xposition: 1, Yposition: 1, SourceId: 'vs01' },
+      { Id: 'vw01d02', Xposition: 2, Yposition: 1, SourceId: 'vs02' },
+      { Id: 'vw01d03', Xposition: 1, Yposition: 2, SourceId: 'vs03' },
+      { Id: 'vw01d04', Xposition: 2, Yposition: 2, SourceId: 'vs04' }
     ]
   },
   {

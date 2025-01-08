@@ -1,14 +1,15 @@
 <script setup>
+import { watch } from 'vue'
+import { storeToRefs } from 'pinia'
 import { useRootStore } from './stores/rootStore'
 import { useSecurityStore } from './stores/securityStore'
 import { useVideoStore } from './stores/videoStore'
 import { useAudioStore } from './stores/audioStore'
+import { useVideoWallStore } from './stores/videoWallStore'
 import ActiveView from './views/ActiveView.vue'
 import StandbyView from './views/StandbyView.vue'
 import SystemNoticeModal from './components/modals/SystemNoticeModal.vue'
 import PasscodeModal from '@/components/modals/PasscodeModal.vue'
-import { watch } from 'vue'
-import { storeToRefs } from 'pinia'
 
 const rootStore = useRootStore()
 const rootStoreRefs = storeToRefs(rootStore)
@@ -16,12 +17,13 @@ const rootStoreRefs = storeToRefs(rootStore)
 const securityStore = useSecurityStore()
 const videoStore = useVideoStore()
 const audioStore = useAudioStore()
-
+const videoWallStore = useVideoWallStore()
 
 const getData = () => {
   rootStore.requestConfigUpdate()
   videoStore.requestConfigUpdate()
   audioStore.requestConfigUpdate()
+  videoWallStore.requestConfigUpdate()
 }
 
 watch(rootStoreRefs.isOnline, () => {
@@ -31,10 +33,8 @@ watch(rootStoreRefs.isOnline, () => {
 })
 </script>
 
-<template>
-  <ActiveView></ActiveView>
-  
-  <!-- <SystemNoticeModal
+<template> 
+  <SystemNoticeModal
     v-if="securityStore.uiLockoutActive"
     icon="fa-solid fa-lock"
     title="System Locked"
@@ -51,6 +51,6 @@ watch(rootStoreRefs.isOnline, () => {
   <PasscodeModal v-if="securityStore.isSecure" v-show="securityStore.systemLocked"></PasscodeModal>
 
   <ActiveView v-if="rootStore.isInUse" />
-  <StandbyView v-else /> -->
+  <StandbyView v-else />
  
 </template>

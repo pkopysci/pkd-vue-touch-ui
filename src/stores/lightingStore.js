@@ -76,7 +76,7 @@ export const useLightingStore = defineStore('lightingStore', {
      * @param {string} sceneData Data object containing updated information on a single scene.
      */
     updateSelectedScene(sceneId) {
-      if (!checkDefined(sceneId, 'sceneData', 'lightingStore.updateSelectedScene')) {
+      if (!checkString(sceneId, 'sceneId', 'lightingStore.updateSelectedScene')) {
         return
       }
       this.scenes.forEach((x) => (x.Set = x.Id == sceneId))
@@ -110,8 +110,6 @@ export const useLightingStore = defineStore('lightingStore', {
       ) {
         return
       }
-
-      console.log("setting scene: " + sceneId)
       sendSceneSelectCommand(controlId, sceneId)
     },
     /**

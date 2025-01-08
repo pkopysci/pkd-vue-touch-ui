@@ -14,7 +14,7 @@ const onMute = (id, newState) => audioStore.sendMuteMic(id, newState)
   >
     <AudioChannelCard
       v-for="channel in audioStore.mics"
-      :key="channel.id"
+      :key="channel.Id"
       :channel-object="channel"
       :is-mic="true"
       :channelObject="channel"

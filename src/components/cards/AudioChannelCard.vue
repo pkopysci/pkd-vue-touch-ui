@@ -42,6 +42,7 @@ const onDragEnd = () => {
         v-model="tempLevel"
         v-bind="tempLevel"
         color="var(--text-color)"
+        trackColor="var(--card-background)"
         width="50%"
         alwaysShowHandle
         :min="0"
@@ -81,8 +82,8 @@ const onDragEnd = () => {
 }
 
 h2 {
-  font-weight: 700;
-  font-size: 2rem;
+  font-weight: 300;
+  font-size: 1.8rem;
   width: 25%;
 }
 

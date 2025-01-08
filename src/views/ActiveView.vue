@@ -35,9 +35,9 @@ const onShutdownCancel = () => {
 </script>
 
 <template>
-  <!-- <Transition>
+  <Transition>
     <LoadingModal :text="'Starting up...'" v-show="loading" />
-  </Transition> -->
+  </Transition>
   <ConfirmationModal
     v-show="modalStore.shutownConfirmationVisible"
     title="End this session?"

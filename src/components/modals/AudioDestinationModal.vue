@@ -39,27 +39,43 @@ const onDragEnd = () => {
   clearInterval(intervalId)
   tempLevel.value = audioChannel.value.Level
 }
-
 </script>
 
 <template>
-  <div class="modal-backdrop fade-in notice">
-    <CardWrapper class="audio-destination-modal">
+  <div class="modal-backdrop fade-in notice" @click="onModalClose">
+    <CardWrapper class="audio-destination-modal" @click.stop>
       <div class="card-title">
         <h2>{{ audioChannel.Label }}</h2>
       </div>
       <div class="card-content">
         <div class="source-list">
-          <button v-for="source in audioStore.inputs" :key="source.Id" class="source-button"
-            :class="{ active: source.Id == audioChannel.RoutedInput }">
+          <button
+            v-for="source in audioStore.inputs"
+            :key="source.Id"
+            class="source-button"
+            :class="{ active: source.Id == audioChannel.RoutedInput }"
+          >
             <i :class="translateIconTag(source.Icon)"></i>
             {{ source.Label }}
           </button>
         </div>
         <div class="level-control">
-          <Vue3Slider v-model="tempLevel" orientation="vertical" :height="10" width="100%" v-bind="tempLevel"
-            color="var(--text-color)" alwaysShowHandle :min="0" :max="100" :step="1" :handleScale="2.5"
-            @drag-start="onDragStart" @drag-end="onDragEnd" />
+          <Vue3Slider
+            v-model="tempLevel"
+            orientation="vertical"
+            :height="10"
+            width="100%"
+            v-bind="tempLevel"
+            color="var(--text-color)"
+            trackColor="var(--card-background)"
+            alwaysShowHandle
+            :min="0"
+            :max="100"
+            :step="1"
+            :handleScale="2.5"
+            @drag-start="onDragStart"
+            @drag-end="onDragEnd"
+          />
           <button :class="{ active: audioChannel.MuteState }" @click="onMuteToggle">
             <i class="fa-solid fa-microphone-slash" />
           </button>

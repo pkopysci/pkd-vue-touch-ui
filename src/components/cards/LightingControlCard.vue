@@ -78,4 +78,8 @@ const onSceneselect = () => {
   padding: 20px;
   gap: 20px;
 }
+
+.horizontal-control-card h2 {
+  font-size: 1.8rem;
+}
 </style>

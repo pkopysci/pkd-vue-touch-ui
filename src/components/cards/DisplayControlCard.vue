@@ -30,8 +30,8 @@ const onPowerToggle = () => {
 
 <style scoped>
 h2 {
-  font-weight: 700;
-  font-size: 2rem;
+  font-weight: bold;
+  font-size: 1.8rem;
 }
 
 h3 {

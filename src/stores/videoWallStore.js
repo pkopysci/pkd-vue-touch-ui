@@ -1,5 +1,10 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import {
+  sendVideoWallConfigQuery,
+  sendVideoWallLayoutSelect,
+  sendVideoWallCellRouteRequest
+} from '@/plugins/crestronCom/commands/videoWallCommands'
 import { testVideoWallLayouts } from '@/data/TestData'
 
 /**
@@ -35,6 +40,15 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    * The currently selected layout on the wall controller.
    */
   const selectedLayout = ref(testVideoWallLayouts[0])
+
+  /**
+   * Requests the current video wall configuration from the control system.
+   * This method should be called when the application is started or when the user
+   * requests an update of the video wall configuration.
+   */
+  function requestConfigUpdate() {
+    sendVideoWallConfigQuery()
+  }
 
   /**
    * Updates the list of available layouts in the store.
@@ -104,7 +118,7 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    * @param {string} layoutId - The id of the layout to select. If the layout does not exist, nothing is done.
    */
   function sendLayoutSelect(layoutId) {
-    console.warn('TODO: VideoWallStore.sendLayoutSelect(' + layoutId + ')')
+    sendVideoWallLayoutSelect(layoutId)
   }
 
   /**
@@ -115,12 +129,13 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    * @param {string} sourceId - The id of the source to route to the cell.
    */
   function sendCellRoute(sourceId, cellId) {
-    console.warn('TODO: VideoWallStore.sendCellRoute(' + sourceId + ', ' + cellId + ')')
+   sendVideoWallCellRouteRequest(selectedLayout.value.Id, cellId, sourceId)
   }
 
   return {
     layouts,
     selectedLayout,
+    requestConfigUpdate,
     updateLayouts,
     updateSelectedLayout,
     updateCellRoute,

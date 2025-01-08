@@ -3,7 +3,7 @@ import { getErrors } from '@/plugins/crestronCom/commands/errorCommands'
 
 export const useErrorStore = defineStore('errorStore', {
   state: () => ({
-    errorsList: ['some device offline', 'another device offline', 'yet another device offline']
+    errorsList: []
   }),
   getters: {},
   actions: {
