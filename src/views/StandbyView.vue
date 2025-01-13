@@ -6,6 +6,7 @@ import LoadingModal from '@/components/modals/LoadingModal.vue'
 const rootStore = useRootStore()
 const datetime = ref(new Date())
 const loading = ref(true)
+const pressed = ref(false)
 
 let intervalId = undefined
 
@@ -24,6 +25,7 @@ onUnmounted(() => {
 })
 
 function onStartSession() {
+  pressed.value = true
   rootStore.requestUseStateChange(true)
 }
 </script>
@@ -33,6 +35,7 @@ function onStartSession() {
     <LoadingModal :text="'Shutting Down...'" v-show="loading" />
   </Transition>
   <div class="standby-view" @click="onStartSession">
+    <div v-show="pressed" class="ripple-effect"></div>
     <div class="info-row">
       <h1>{{ rootStore.roomName }}</h1>
       <h2>
@@ -54,6 +57,7 @@ function onStartSession() {
   flex-grow: 1;
   height: 100vh;
 }
+
 .standby-view h1 {
   font-size: 3rem;
 }
@@ -86,5 +90,33 @@ function onStartSession() {
 }
 .call-to-action p {
   font-size: 2.5rem;
+}
+
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  left: 25vw;
+  top: 10vh;
+  height: 50vw;
+  width: 50vw;
+  margin: auto;
+  background: rgba(148, 189, 154, 0.15);
+  animation-name: ripple;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  opacity: 0;
+}
+@keyframes ripple {
+  0% {
+    opacity: 1;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+  }
 }
 </style>
