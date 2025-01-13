@@ -1,36 +1,49 @@
 <script setup>
-import { onBeforeMount, onBeforeUnmount, ref, watch } from 'vue'
+import { onBeforeMount, onBeforeUnmount, ref } from 'vue'
 import CardWrapper from './CardWrapper.vue'
-import Vue3Slider from 'vue3-slider'
+import LevelGauge from '../ui/LevelGauge.vue'
 
 const props = defineProps(['channelObject', 'isMic'])
 const emit = defineEmits(['setLevel', 'setMute'])
 
 let intervalId = undefined
 const tempLevel = ref(0)
-const dragging = ref(false)
 
 onBeforeMount(() => {
   tempLevel.value = props.channelObject.Level
 })
 
 onBeforeUnmount(() => clearInterval(intervalId))
-watch(props.channelObject, () => {
-  if (!dragging.value) {
-    tempLevel.value = props.channelObject.Level
-  }
-})
 
-const onDragStart = () => {
-  dragging.value = true
+const onVolUpStart = () => {
+  tempLevel.value = props.channelObject.Level + 3;
+  emit('setLevel', props.channelObject.Id, tempLevel.value)
+
   intervalId = setInterval(() => {
+    tempLevel.value += 3
     emit('setLevel', props.channelObject.Id, tempLevel.value)
   }, 100)
 }
 
-const onDragEnd = () => {
+const onVolUpEnd = () => {
   clearInterval(intervalId)
   tempLevel.value = props.channelObject.Level
+  intervalId = undefined
+}
+
+const onVolDownStart = () => {
+  tempLevel.value = props.channelObject.Level - 3;
+  emit('setLevel', props.channelObject.Id, tempLevel.value)
+  intervalId = setInterval(() => {
+    tempLevel.value -= 3
+    emit('setLevel', props.channelObject.Id, tempLevel.value)
+  }, 100)
+}
+
+const onVolDownEnd = () => {
+  clearInterval(intervalId)
+  tempLevel.value = props.channelObject.Level
+  intervalId = undefined
 }
 </script>
 
@@ -38,22 +51,26 @@ const onDragEnd = () => {
   <CardWrapper class="audio-channel-card">
     <div class="controls">
       <h2>{{ props.channelObject.Label }}</h2>
-      <Vue3Slider
-        v-model="tempLevel"
-        v-bind="tempLevel"
-        color="var(--text-color)"
-        trackColor="var(--card-background)"
-        width="50%"
-        alwaysShowHandle
-        :min="0"
-        :max="100"
-        :step="1"
-        :height="10"
-        :handleScale="2.5"
-        @drag-start="onDragStart"
-        @drag-end="onDragEnd"
-      />
-      <span>
+      <LevelGauge :level="props.channelObject?.Level" :isHorizontal="true" style="height:20px;width: 60%;" />
+      <span class="buttons">
+        <button
+          @mousedown="onVolDownStart"
+          @mouseleave="onVolDownEnd"
+          @mouseup="onVolDownEnd"
+          @touchstart="onVolDownStart"
+          @touchend="onVolDownEnd"
+        >
+          <i class="fa-solid fa-volume-low" />
+        </button>
+        <button
+          @mousedown="onVolUpStart"
+          @mouseleave="onVolUpEnd"
+          @mouseup="onVolUpEnd"
+          @touchstart="onVolUpStart"
+          @touchend="onVolUpEnd"
+        >
+          <i class="fa-solid fa-volume-high" />
+        </button>
         <button
           :class="{ active: props.channelObject.MuteState }"
           @click="emit('setMute', props.channelObject.Id, !channelObject.MuteState)"
@@ -69,7 +86,7 @@ const onDragEnd = () => {
 .audio-channel-card {
   display: flex;
   flex-direction: column;
-  width: 65%;
+  width: 90%;
   flex-direction: column;
   padding: 20px;
   gap: 20px;
@@ -89,7 +106,13 @@ h2 {
   width: 25%;
 }
 
+.buttons {
+  display: flex;
+  gap: 25px;
+  margin-left: 30px;
+}
 button {
+  width: 75px;
   padding: 20px;
 }
 </style>

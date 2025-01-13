@@ -25,7 +25,9 @@ const onVolUpStart = () => {
 
   if (!audioStore.programAudio) return
 
-  tempLevel = audioStore.programAudio.Level
+  tempLevel = audioStore.programAudio.Level + 3
+  audioStore.sendOutputLevel(audioStore.programAudio.Id, tempLevel)
+
   intervalId = setInterval(() => {
     tempLevel += 3
     audioStore.sendOutputLevel(audioStore.programAudio.Id, tempLevel)
@@ -43,7 +45,9 @@ const onVolDownStart = () => {
 
   if (!audioStore.programAudio) return
 
-  tempLevel = audioStore.programAudio.Level
+  tempLevel = audioStore.programAudio.Level - 3
+  audioStore.sendOutputLevel(audioStore.programAudio.Id, tempLevel)
+
   intervalId = setInterval(() => {
     tempLevel -= 3
     audioStore.sendOutputLevel(audioStore.programAudio.Id, tempLevel)

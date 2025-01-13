@@ -5,13 +5,12 @@ import { useAudioStore } from '@/stores/audioStore'
 import { useModalStore } from '@/stores/modalStore'
 import { translateIconTag } from '@/data/translators'
 import CardWrapper from '../cards/CardWrapper.vue'
-import Vue3Slider from 'vue3-slider'
+import LevelGauge from '../ui/LevelGauge.vue'
 
 const audioStore = useAudioStore()
 const modalStore = useModalStore()
-const tempLevel = ref(0)
-const dragging = ref(false)
 const audioChannel = ref(emptyChannel)
+const tempLevel = ref(0)
 let intervalId = undefined
 
 watch(modalStore.audioDestinationControlState, () => {
@@ -22,27 +21,41 @@ watch(modalStore.audioDestinationControlState, () => {
 
 const onModalClose = () => {
   modalStore.setAudioDestinationControlState(' ', false)
-}
-
-const onMuteToggle = () => {
-  audioStore.sendMuteOutput(audioChannel.value.Id, !audioChannel.value.MuteState)
-}
-
-const onDragStart = () => {
-  dragging.value = true
-  intervalId = setInterval(() => {
-    audioStore.sendOutputLevel(audioChannel.value.Id, tempLevel.value)
-  }, 100)
-}
-
-const onDragEnd = () => {
   clearInterval(intervalId)
-  tempLevel.value = audioChannel.value.Level
 }
 
 const onSourceSelected = (id) => {
-  audioStore.sendAudioRoute(id, audioChannel.value.Id);
+  audioStore.sendAudioRoute(id, audioChannel.value.Id)
 }
+
+const onVolUpStart = () => {
+  tempLevel.value = audioChannel.value.Level + 3
+  audioStore.sendOutputLevel(audioChannel.value.Id, tempLevel.value)
+
+  intervalId = setInterval(() => {
+    tempLevel.value += 3
+    audioStore.sendOutputLevel(audioChannel.value.Id, tempLevel.value)
+  }, 100)
+}
+const onVolUpStop = () => {
+  clearInterval(intervalId)
+  intervalId = undefined
+}
+
+const onVolDownStart = () => {
+  tempLevel.value = audioChannel.value.Level - 3
+  audioStore.sendOutputLevel(audioChannel.value.Id, tempLevel.value)
+
+  intervalId = setInterval(() => {
+    tempLevel.value -= 3
+    audioStore.sendOutputLevel(audioChannel.value.Id, tempLevel.value)
+  }, 100)
+}
+const onVolDownStop = () => {
+  clearInterval(intervalId)
+  intervalId = undefined
+}
+
 </script>
 
 <template>
@@ -64,26 +77,38 @@ const onSourceSelected = (id) => {
             {{ source.Label }}
           </button>
         </div>
-        <div class="level-control">
-          <Vue3Slider
-            v-model="tempLevel"
-            orientation="vertical"
-            :height="10"
-            width="100%"
-            v-bind="tempLevel"
-            color="var(--text-color)"
-            trackColor="var(--card-background)"
-            alwaysShowHandle
-            :min="0"
-            :max="100"
-            :step="1"
-            :handleScale="2.5"
-            @drag-start="onDragStart"
-            @drag-end="onDragEnd"
-          />
-          <button :class="{ active: audioChannel.MuteState }" @click="onMuteToggle">
-            <i class="fa-solid fa-microphone-slash" />
-          </button>
+        <div class="audio-modal-controls">
+          <div class="gauge-col">
+            <LevelGauge :level="audioChannel.Level" :isHorizontal="false" />
+          </div>
+          <div class="button-col">
+            <button
+              :class="{ active: volUpActive }"
+              @mousedown="onVolUpStart"
+              @mouseleave="onVolUpStop"
+              @mouseup="onVolDownStop"
+              @touchstart="onVolUpStart"
+              @touchend="onVolUpStop"
+            >
+              <i class="fa-solid fa-volume-high" />
+            </button>
+            <button
+              :class="{ active: volDownActive }"
+              @mousedown="onVolDownStart"
+              @mouseleave="onVolDownStop"
+              @mouseup="onVolDownStop"
+              @touchstart="onVolDownStart"
+              @touchend="onVolDownStop"
+            >
+              <i class="fa-solid fa-volume-low" />
+            </button>
+            <button
+              :class="{ active: audioChannel.MuteState }"
+              @click="audioStore.sendMuteOutput(audioChannel.Id, !audioChannel.MuteState)"
+            >
+              <i class="fa-solid fa-volume-mute" />
+            </button>
+          </div>
         </div>
       </div>
       <button @click="onModalClose" class="close-button">X</button>
@@ -120,7 +145,6 @@ const onSourceSelected = (id) => {
   display: flex;
   flex-grow: 1;
   align-items: space-between;
-  gap: 30px;
 }
 
 .source-list {
@@ -141,16 +165,27 @@ const onSourceSelected = (id) => {
   border-bottom: var(--card-border);
 }
 
-.level-control {
+.audio-modal-controls {
   display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding-right: 50px;
-  align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 50px;
+  flex-grow: 1;
+  padding: 20px;
 }
 
-.level-control button {
-  padding: 30px;
+.guage-col {
+  height: 100%;
+}
+
+.button-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.button-col button {
+  padding: 50px;
+  font-size: 2rem;
 }
 </style>
