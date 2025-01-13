@@ -78,10 +78,7 @@ export const useRootStore = defineStore('rootStore', {
       if (!result) {
         return
       }
-
-      console.log('updating rootStore state data. Menu:')
-      console.log(MainMenu)
-
+      
       this.isInUse = IsInUse
       this.roomName = RoomName
       this.helpNumber = HelpNumber

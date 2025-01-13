@@ -5,10 +5,6 @@ import eruda from 'eruda'
  * This should not be called in a production build.
  */
 export default function createErudaPlugin() {
-  eruda.init()
+  eruda.init({ defaults: { theme: 'Dark' } })
   eruda.scale(1.5)
-
-  let xPosition = window.innerWidth - 80
-  let yPosition = 20
-  eruda.position({ x: xPosition, y: yPosition })
 }

@@ -40,9 +40,6 @@ export default function createCrestronPlugin() {
 
   let dataBuffer = ''
   window.CrComLib.subscribeState(roomConfigHook.type, roomConfigHook.join, (data) => {
-    
-    console.log('roomInfoFeedback.subscribeState()', data)
-
     if (!data || data.length <= 0) return
 
     dataBuffer += data

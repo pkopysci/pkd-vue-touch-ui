@@ -39,6 +39,10 @@ const onDragEnd = () => {
   clearInterval(intervalId)
   tempLevel.value = audioChannel.value.Level
 }
+
+const onSourceSelected = (id) => {
+  audioStore.sendAudioRoute(id, audioChannel.value.Id);
+}
 </script>
 
 <template>
@@ -54,6 +58,7 @@ const onDragEnd = () => {
             :key="source.Id"
             class="source-button"
             :class="{ active: source.Id == audioChannel.RoutedInput }"
+            @click="onSourceSelected(source.Id)"
           >
             <i :class="translateIconTag(source.Icon)"></i>
             {{ source.Label }}

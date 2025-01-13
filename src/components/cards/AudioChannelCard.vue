@@ -53,12 +53,14 @@ const onDragEnd = () => {
         @drag-start="onDragStart"
         @drag-end="onDragEnd"
       />
-      <button
-        :class="{ active: props.channelObject.MuteState }"
-        @click="emit('setMute', props.channelObject.Id, !channelObject.MuteState)"
-      >
-        <i class="fa-solid fa-microphone-slash" />
-      </button>
+      <span>
+        <button
+          :class="{ active: props.channelObject.MuteState }"
+          @click="emit('setMute', props.channelObject.Id, !channelObject.MuteState)"
+        >
+          <i class="fa-solid fa-microphone-slash" />
+        </button>
+      </span>
     </div>
   </CardWrapper>
 </template>

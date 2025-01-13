@@ -12,8 +12,6 @@ import {
   sendDisplayInputSelect
 } from '@/plugins/crestronCom/commands/videoCommands'
 
-import { testDisplays, testVideoInputs, testVideDestinations } from '@/data/TestData'
-
 export const emptySource = {
   Id: 'evs01',
   Label: 'Empty Source',
@@ -51,15 +49,15 @@ export const useVideoStore = defineStore('videoStore', {
     /**
      * A collection of objects representing all controllable displays/projectors in the system.
      */
-    displays: testDisplays, //[],
+    displays: [],
     /**
      * A collection of objects representing selectable AV sources in the system.
      */
-    sources: testVideoInputs, //[],
+    sources: [],
     /**
      * A collection of objects representing selectable AV destinations in the system.
      */
-    destinations: testVideDestinations, //[],
+    destinations: [],
     /**
      * true = all video outputs are in the "freeze" state, false = normal video motion.
      */

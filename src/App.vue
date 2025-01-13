@@ -6,6 +6,7 @@ import { useSecurityStore } from './stores/securityStore'
 import { useVideoStore } from './stores/videoStore'
 import { useAudioStore } from './stores/audioStore'
 import { useVideoWallStore } from './stores/videoWallStore'
+import { useLightingStore } from './stores/lightingStore'
 import ActiveView from './views/ActiveView.vue'
 import StandbyView from './views/StandbyView.vue'
 import SystemNoticeModal from './components/modals/SystemNoticeModal.vue'
@@ -18,12 +19,14 @@ const securityStore = useSecurityStore()
 const videoStore = useVideoStore()
 const audioStore = useAudioStore()
 const videoWallStore = useVideoWallStore()
+const lightingStore = useLightingStore()
 
 const getData = () => {
   rootStore.requestConfigUpdate()
   videoStore.requestConfigUpdate()
   audioStore.requestConfigUpdate()
   videoWallStore.requestConfigUpdate()
+  lightingStore.requestConfigUpdate()
 }
 
 watch(rootStoreRefs.isOnline, () => {
