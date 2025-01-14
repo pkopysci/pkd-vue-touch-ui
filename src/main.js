@@ -8,7 +8,7 @@ import router from './router'
 import Toast from 'vue-toastification'
 import 'vue-toastification/dist/index.css'
 
-import createErudaPlugin from './plugins/eruda'
+//import createErudaPlugin from './plugins/eruda'
 import createCrestronPlugin from './plugins/crestronCom/responses/roomInfoFeedback'
 import createCrestronXpanelPlugin from './plugins/crestronCom/crestronXpanel'
 import createVideoControlPlugin from './plugins/crestronCom/responses/VideoInfoFeedback'
@@ -32,7 +32,7 @@ app.use(Toast, {
 app.mount('#app')
 
 // load touchscreen UI developer tools.
-createErudaPlugin()
+//createErudaPlugin()
 
 // Initialize & establish an XPanel connection with a target control system.
 createCrestronXpanelPlugin()

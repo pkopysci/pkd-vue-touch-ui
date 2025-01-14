@@ -12,6 +12,7 @@
 
   --text-color: #ecf7ff;
   --active-color: #4ed963;
+  --active-color-highlight: rgba(148, 189, 154, 0.15);
   --alert-color: #f6730c;
   --button-idle-color: #2b353d;
   --button-border-color: #555555;

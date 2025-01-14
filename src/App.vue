@@ -44,15 +44,15 @@ watch(rootStoreRefs.isOnline, () => {
     message="Please use the primary interface to adjust room settings."
   />
 
-  <!-- <SystemNoticeModal
+  <SystemNoticeModal
     v-if="!rootStore.isOnline"
     icon="fa-solid fa-link-slash"
     title="Control System Offline"
     :message="'Contact support at ' + rootStore.helpNumber + ' to resolve this issue.'"
-  /> -->
+  />
 
   <PasscodeModal v-if="securityStore.isSecure" v-show="securityStore.systemLocked"></PasscodeModal>
 
   <ActiveView v-if="rootStore.isInUse" />
-  <StandbyView v-else /> 
+  <StandbyView v-else />
 </template>

@@ -100,7 +100,7 @@ function onStartSession() {
   height: 50vw;
   width: 50vw;
   margin: auto;
-  background: rgba(148, 189, 154, 0.15);
+  background: var(--active-color-highlight);
   animation-name: ripple;
   animation-duration: 1s;
   animation-iteration-count: 1;
