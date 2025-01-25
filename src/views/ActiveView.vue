@@ -59,7 +59,7 @@ const onShutdownCancel = () => {
   />
   <div class="active-view">
     <MainNav />
-    <section>
+    <section class="main-content">
       <ActiveHeader />
       <RouterView></RouterView>
     </section>
@@ -74,7 +74,7 @@ const onShutdownCancel = () => {
   width: 100vw;
 }
 
-.active-view section {
+.active-view .main-content {
   display: flex;
   flex-direction: column;
   max-height: 100vh;

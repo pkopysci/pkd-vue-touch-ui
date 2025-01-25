@@ -10,7 +10,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "format": "prettier --write src/",
     "fixColor": "npx run-func AlphaFixer.js fixHexRgbaColorsInScss ./dist/assets/",
-    "archive": "ch5-cli archive -p pkd-vue-touch-ui-v%npm_package_version% -d dist -o tsw",
+    "archive": "ch5-cli archive -p pkd-vue-touch-ui-v -d dist -o tsw",
     "build-full": "npm run build && npm run fixColor && npm run archive"
   },
   "dependencies": {
