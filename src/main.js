@@ -11,7 +11,7 @@ import 'vue-toastification/dist/index.css'
 //import createErudaPlugin from './plugins/eruda'
 import createCrestronPlugin from './plugins/crestronCom/responses/roomInfoFeedback'
 import createCrestronXpanelPlugin from './plugins/crestronCom/crestronXpanel'
-// import createVideoControlPlugin from './plugins/crestronCom/responses/VideoInfoFeedback'
+import createVideoControlPlugin from './plugins/crestronCom/responses/VideoInfoFeedback'
 // import createAudioControlPlugin from './plugins/crestronCom/responses/AudioInfoFeedback'
 // import createSecurityControlPlugin from './plugins/crestronCom/responses/securityFeedback'
 // import createDeviceControlPlugin from './plugins/crestronCom/responses/deviceControlFeedback'
@@ -24,7 +24,7 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 app.use(Toast, {
-  transition: 'Vue-Toastification__bounce',
+  transition: 'Vue-Toastification__fade',
   maxToasts: 20,
   newestOnTop: true,
   timeout: 2000
@@ -39,7 +39,7 @@ createCrestronXpanelPlugin()
 
 // Build state control & initialize CrComLib.
 createCrestronPlugin()
-// createVideoControlPlugin()
+createVideoControlPlugin()
 // createAudioControlPlugin()
 // createDeviceControlPlugin()
 // createSecurityControlPlugin()

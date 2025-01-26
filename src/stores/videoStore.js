@@ -70,7 +70,7 @@ export const useVideoStore = defineStore('videoStore', {
      * A collection of objects representing video routing devices in the system. This will contain
      * make/model and online status.
      */
-    avrRouters: [{ Label: 'Default AVR' }]
+    avrRouters: []
   }),
   getters: {
     selectableSources: (state) => {
