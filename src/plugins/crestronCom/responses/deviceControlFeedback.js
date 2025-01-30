@@ -7,7 +7,7 @@ export default function createDeviceControlPlugin() {
 
   const actions = {
     CONFIG: (store, cmd) => {
-      store.updateDevices(cmd.Data)
+      store.updateDevices(cmd.Data.Devices)
     }
   }
   let dataBuffer = ''

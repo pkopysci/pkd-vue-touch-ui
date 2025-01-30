@@ -4,7 +4,7 @@ import { sendGet, sendPost, deviceControlHook } from '../api/apiHooks'
  * Send a query command the control system for all controllable inputs in the configuration.
  */
 export function sendGetConfig() {
-    sendGet("CONFIG",'',deviceControlHook)
+    sendGet("CONFIG",{},deviceControlHook)
 }
 
 /**

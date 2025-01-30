@@ -11,12 +11,12 @@ const updateFullConfig = (videoStore, cmd) => {
 const videoCommands = {
   CONFIG: updateFullConfig,
   ROUTE: (videoStore, cmd) => videoStore.updateVideoRoute(cmd.Data.DestId, cmd.Data.SrcId),
-  GLOBALFREEZE: (videoStore, cmd) => videoStore.updateGlobalVideoFreeze(cmd.Data),
-  GLOBALBLANK: (videoStore, cmd) => videoStore.updateGlobalVideoBlank(cmd.Data)
+  GLOBALFREEZE: (videoStore, cmd) => videoStore.updateGlobalVideoFreeze(cmd.Data.State),
+  GLOBALBLANK: (videoStore, cmd) => videoStore.updateGlobalVideoBlank(cmd.Data.State)
 }
 
 const displayCommands = {
-  CONFIG: (store, cmd) => store.updateDisplays(cmd.Data),
+  CONFIG: (store, cmd) => store.updateDisplays(cmd.Data.Displays),
   STATUS: (store, cmd) => store.updateDisplay(cmd.Data)
 }
 
@@ -40,7 +40,7 @@ export default function createVideoControlPlugin() {
       try {
         let cmd = JSON.parse(parsed.firstCommand)
         if (cmd.Command == 'ERROR') {
-          console.error(`videoInfoFeedback - error RX received: ${cmd.Data}`)
+          console.error(`videoInfoFeedback - error RX received: ${cmd.Data.Message}`)
         } else {
           videoCommands[cmd.Command](videoStore, cmd)
         }
@@ -61,7 +61,7 @@ export default function createVideoControlPlugin() {
       try {
         const cmd = JSON.parse(parsed.firstCommand)
         if (cmd.Command == 'ERROR') {
-          console.error(`displayInfoFeedback - error RX received: ${cmd.Data}`)
+          console.error(`displayInfoFeedback - error RX received: ${cmd.Data.Message}`)
         } else {
           displayCommands[cmd.Command](videoStore, cmd)
         }

@@ -48,7 +48,7 @@ export default function createAudioControlPlugin() {
       try {
         const cmd = JSON.parse(parsed.firstCommand)
         if (cmd.Command == 'ERROR') {
-          console.error(`AudioInfoFeedback - error RX received: ${cmd.Data}`)
+          console.error(`AudioInfoFeedback - error RX received: ${cmd.Data.Message}`)
         } else {
           commands[cmd.Command](audioStore, cmd)
         }

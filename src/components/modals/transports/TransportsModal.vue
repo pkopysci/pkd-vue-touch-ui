@@ -140,7 +140,7 @@ const setDvrState = (state) => {
             DVR
           </button>
 
-          <div v-if="device.SupportsColorButtons" class="color-buttons">
+          <div v-if="device.SupportsColors" class="color-buttons">
             <button
               @click="onSendTransport(irCommands.get('red'))"
               style="background-color: red"

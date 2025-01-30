@@ -4,7 +4,7 @@ import { parseResponse } from './dataParser'
 
 const rxHandlers = {
   CONFIG: (store, cmd) => {
-    store.updateConfig(cmd.Data)
+    store.updateConfig(cmd.Data.Lights)
   },
   SCENE: (store, cmd) => {
     store.updateSelectedScene(cmd.Data.SceneId)

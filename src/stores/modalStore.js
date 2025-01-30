@@ -60,8 +60,6 @@ export const useModalStore = defineStore('useModalStore', {
       ) {
         return
       }
-
-      console.log('modalStore.setSourceControlState(' + id + ', ' + isVisible + ')')
       this.sourceControlState.id = id
       this.sourceControlState.isVisible = isVisible
     },

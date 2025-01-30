@@ -6,6 +6,7 @@ const rxHandlers = {
   CODE: (store, cmd) => {
     store.updatePasscodeResult(cmd.Data.Result)
   },
+  SETSECURE: (store, cmd) => { store.updateIsSecure(cmd.Data.State) },
   TECHLOCK: (store, cmd) => {
     store.updateUiLockout(cmd.Data.Result)
   }
@@ -31,7 +32,7 @@ export default function createSecurityControlPlugin() {
       try {
         const cmd = JSON.parse(parsed.firstCommand)
         if (cmd.Command == 'ERROR') {
-          console.error(`securityFeedback - error RX received: ${cmd.Data}`)
+          console.error(`securityFeedback - error RX received: ${cmd.Data.Message}`)
         } else {
           rxHandlers[cmd.Command](securityStore, cmd)
         }

@@ -10,7 +10,7 @@ import {
  * @param {boolean} newState the video blank status for all outputs
  */
 export function sendGlobalBlank(newState) {
-  sendPost('GLOBALBLANK', newState, videoControlHook)
+  sendPost('GLOBALBLANK', { "State": newState }, videoControlHook)
 }
 
 /**
@@ -18,7 +18,7 @@ export function sendGlobalBlank(newState) {
  * @param {boolean} newState the video freeze status for all outputs
  */
 export function sendGlobalFreeze(newState) {
-  sendPost('GLOBALFREEZE', newState, videoControlHook)
+  sendPost('GLOBALFREEZE', { "State": newState }, videoControlHook)
 }
 
 /**
@@ -59,12 +59,12 @@ export function sendMatrixVideoRoute(destId, srcId) {
  * query for display and routing configuration.
  */
 export function sendVideoConfigQuery() {
-  sendGet('CONFIG', '', videoControlHook)
+  sendGet('CONFIG', {}, videoControlHook)
 }
 
 /**
  * Send a request to the control system to return all displays in the configuration.
  */
 export function sendDisplaysConfigQuery() {
-  sendGet('CONFIG', '', displaysChangeHook)
+  sendGet('CONFIG', {}, displaysChangeHook)
 }

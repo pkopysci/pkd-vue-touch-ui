@@ -19,7 +19,7 @@ const roomCommands = {
     store.updateStateData(cmd.Data)
   },
   USESTATE: (store, cmd) => {
-    store.updateUseStatusFeedback(cmd.Data)
+    store.updateUseStatusFeedback(cmd.Data.UseState)
   }
 }
 
@@ -47,10 +47,6 @@ export default function createCrestronPlugin() {
     dataBuffer = separated.remainingData
 
     if (separated.firstCommand) {
-
-      // TODO: Remove debuggin log
-      console.log(separated.firstCommand)
-
       try {
         let cmd = JSON.parse(separated.firstCommand)
         if (cmd.Command == 'ERROR') {

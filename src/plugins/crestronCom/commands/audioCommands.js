@@ -5,7 +5,7 @@ import { audioControlHook, sendGet, sendPost } from '@/plugins/crestronCom/api/a
  * configuration of the Av system.
  */
 export function sendAudioConfigQuery() {
-  sendGet('CONFIG', '', audioControlHook)
+  sendGet('CONFIG', {}, audioControlHook)
 }
 
 /**

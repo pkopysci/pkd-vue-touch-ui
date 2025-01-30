@@ -6,7 +6,7 @@ import { roomConfigHook, sendGet, sendPost } from '../api/apiHooks'
  * @param {boolean} newState true = set system to 'in use', false = set system to 'standby'.
 */
 export function setSytemUseState(newState) {
-  sendPost('USESTATE', newState, roomConfigHook)
+  sendPost('USESTATE', { "State": newState }, roomConfigHook)
 }
 
 /**
@@ -14,8 +14,5 @@ export function setSytemUseState(newState) {
  * menu items.
  */
 export function getConfig() {
-
-  console.log('systemStateCommands.getConfig()')
-
-  sendGet('CONFIG', '', roomConfigHook)
+  sendGet('CONFIG', {}, roomConfigHook)
 }

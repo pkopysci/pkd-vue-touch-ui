@@ -5,7 +5,7 @@ import { eventHook, sendGet, sendPost } from '@/plugins/crestronCom/api/apiHooks
  * configuration. The response will be handled by the custom event feedback plugin.
  */
 export function sendGetCustomEventConfig() {
-  sendGet('CONFIG', '', eventHook)
+  sendGet('CONFIG', {}, eventHook)
 }
 
 /**

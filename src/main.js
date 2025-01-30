@@ -12,13 +12,13 @@ import 'vue-toastification/dist/index.css'
 import createCrestronPlugin from './plugins/crestronCom/responses/roomInfoFeedback'
 import createCrestronXpanelPlugin from './plugins/crestronCom/crestronXpanel'
 import createVideoControlPlugin from './plugins/crestronCom/responses/VideoInfoFeedback'
-// import createAudioControlPlugin from './plugins/crestronCom/responses/AudioInfoFeedback'
-// import createSecurityControlPlugin from './plugins/crestronCom/responses/securityFeedback'
-// import createDeviceControlPlugin from './plugins/crestronCom/responses/deviceControlFeedback'
-// import createLightingControlPlugin from './plugins/crestronCom/responses/lightingFeedback'
-// import createErrorPlugin from './plugins/crestronCom/responses/errorResponses'
-// import createCustomEventPlugin from './plugins/crestronCom/responses/CustomEventFeedback'
-// import createVideoWallPlugin from './plugins/crestronCom/responses/VideoWallFeedback'
+import createAudioControlPlugin from './plugins/crestronCom/responses/AudioInfoFeedback'
+import createSecurityControlPlugin from './plugins/crestronCom/responses/securityFeedback'
+import createDeviceControlPlugin from './plugins/crestronCom/responses/deviceControlFeedback'
+import createLightingControlPlugin from './plugins/crestronCom/responses/lightingFeedback'
+import createErrorPlugin from './plugins/crestronCom/responses/errorResponses'
+import createCustomEventPlugin from './plugins/crestronCom/responses/CustomEventFeedback'
+import createVideoWallPlugin from './plugins/crestronCom/responses/VideoWallFeedback'
 
 const app = createApp(App)
 app.use(createPinia())
@@ -40,10 +40,10 @@ createCrestronXpanelPlugin()
 // Build state control & initialize CrComLib.
 createCrestronPlugin()
 createVideoControlPlugin()
-// createAudioControlPlugin()
-// createDeviceControlPlugin()
-// createSecurityControlPlugin()
-// createLightingControlPlugin()
-// createCustomEventPlugin()
-// createErrorPlugin()
-// createVideoWallPlugin()
+createAudioControlPlugin()
+createDeviceControlPlugin()
+createSecurityControlPlugin()
+createLightingControlPlugin()
+createCustomEventPlugin()
+createErrorPlugin()
+createVideoWallPlugin()

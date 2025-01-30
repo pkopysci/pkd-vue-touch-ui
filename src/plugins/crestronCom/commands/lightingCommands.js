@@ -4,7 +4,7 @@ import { lightingControlHook, sendGet, sendPost } from '../api/apiHooks'
  * Send a request to the control system for the full lighting system configuration.
  */
 export function sendLightingCongifQuery() {
-  sendGet('CONFIG', '', lightingControlHook)
+  sendGet('CONFIG', {}, lightingControlHook)
 }
 
 /**
