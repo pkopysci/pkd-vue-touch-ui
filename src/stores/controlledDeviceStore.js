@@ -39,6 +39,10 @@ export const useControlledDeviceStore = defineStore('controlledDeviceStore', {
      * @param {Array<object>} newDevices A collection of all controllable inputs/transport devices accessible via the UI.
      */
     updateDevices(newDevices) {
+
+      console.log('controlledDeviceStore.updateDevices()')
+      console.log(newDevices)
+
       if (!checkDefined(newDevices, 'newDevices', 'controlledDeviceStore.updateDevices')) return
       this.devices = newDevices
     },

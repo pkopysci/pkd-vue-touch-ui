@@ -40,9 +40,6 @@ export const videoWallHook = { type: 's', join: '10' }
  * @param {object} hook - The hook object that defines the type and join for the command.
  */
 export const trySend = (commandObject, hook) => {
-
-  console.debug('apiHooks.trySend(' + JSON.stringify(commandObject) + ')', hook)
-
   try {
     let cmd = JSON.stringify(commandObject) + 'EOF';
     window.CrComLib.publishEvent(hook.type, hook.join, cmd)

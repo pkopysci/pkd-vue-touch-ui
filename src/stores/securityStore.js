@@ -64,7 +64,7 @@ export const useSecurityStore = defineStore('securityStore', () => {
    * This will set the system to a locked state after TIMEOUT_LEN milliseconds if the user does not
    * dismiss the lockout.
    */
-  function resetTimer() {
+  function resetTimer() {    
     if (timerId.value) {
       clearTimeout(timerId.value)
       timerId.value = setTimeout(() => {

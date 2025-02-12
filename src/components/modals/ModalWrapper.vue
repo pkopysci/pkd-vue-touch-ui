@@ -1,6 +1,9 @@
 <script setup>
+import { useSecurityStore } from '@/stores/securityStore';
 defineProps(['level', 'style'])
+const securityStore = useSecurityStore()
 </script>
+
 <template>
   <div
     class="modal-backdrop fade-in"
@@ -8,6 +11,7 @@ defineProps(['level', 'style'])
     @click="
       ($event) => {
         $event.stopPropagation()
+        securityStore.resetTimer()
       }
     "
   >

@@ -22,7 +22,7 @@ export default function createDeviceControlPlugin() {
       try {
         const cmd = JSON.parse(parsed.firstCommand)
         if (cmd.Command == 'ERROR') {
-          console.error(`deviceControlFeedback - error RX received: ${cmd.Data}`)
+          console.error(`deviceControlFeedback - error RX received: ${cmd.Data.Message}`)
         }
         else {
           actions[cmd.Command](deviceStore, cmd)

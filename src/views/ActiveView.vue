@@ -3,6 +3,7 @@ import { ref, onMounted } from 'vue'
 import { RouterView } from 'vue-router'
 import { useModalStore } from '@/stores/modalStore'
 import { useRootStore } from '@/stores/rootStore'
+import { useSecurityStore } from '@/stores/securityStore'
 import MainNav from '@/components/ui/MainNav.vue'
 import SystemInfoModal from '@/components/modals/SystemInfoModal.vue'
 import SystemErrorsModal from '@/components/modals/SystemErrorsModal.vue'
@@ -16,6 +17,7 @@ import { emptyChannel, useAudioStore } from '@/stores/audioStore'
 const modalStore = useModalStore()
 const rootStore = useRootStore()
 const audioStore = useAudioStore()
+const securityStore = useSecurityStore()
 const loading = ref(true)
 
 onMounted(() => {
@@ -57,7 +59,7 @@ const onShutdownCancel = () => {
     :audioChannel="audioStore.programAudio ? audioStore.programAudio : emptyChannel"
     @closeModal="modalStore.setProgramAudioVisibility(false)"
   />
-  <div class="active-view">
+  <div class="active-view" @click="securityStore.resetTimer">
     <MainNav />
     <section class="main-content">
       <ActiveHeader />

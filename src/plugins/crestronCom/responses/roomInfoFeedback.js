@@ -50,7 +50,7 @@ export default function createCrestronPlugin() {
       try {
         let cmd = JSON.parse(separated.firstCommand)
         if (cmd.Command == 'ERROR') {
-          console.error(`roomInfoFeedback - error RX received for ${cmd.Command}: ${cmd.Data}`)
+          console.error(`roomInfoFeedback - error RX received for ${cmd.Command}: ${cmd.Data.Message}`)
         } else {
           roomCommands[cmd.Command](rootStore, cmd)
         }
