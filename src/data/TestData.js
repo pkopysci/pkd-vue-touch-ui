@@ -493,10 +493,10 @@ export const testVideoWallLayouts = [
     Width: 2,
     Height: 2,
     Cells: [
-      { Id: 'vw01d01', Xposition: 1, Yposition: 1, SourceId: 'vs01' },
-      { Id: 'vw01d02', Xposition: 2, Yposition: 1, SourceId: 'vs02' },
-      { Id: 'vw01d03', Xposition: 1, Yposition: 2, SourceId: 'vs03' },
-      { Id: 'vw01d04', Xposition: 2, Yposition: 2, SourceId: 'vs04' }
+      { Id: 'vw01d01', XPosition: 1, YPosition: 1, SourceId: 'vs01' },
+      { Id: 'vw01d02', XPosition: 2, YPosition: 1, SourceId: 'vs02' },
+      { Id: 'vw01d03', XPosition: 1, YPosition: 2, SourceId: 'vs03' },
+      { Id: 'vw01d04', XPosition: 2, YPosition: 2, SourceId: 'vs04' }
     ]
   },
   {
@@ -505,14 +505,14 @@ export const testVideoWallLayouts = [
     Width: 4,
     Height: 2,
     Cells: [
-      { Id: 'vw02d01', Xposition: 1, Yposition: 1, SourceId: 'vs01' },
-      { Id: 'vw02d02', Xposition: 2, Yposition: 1, SourceId: 'vs01' },
-      { Id: 'vw02d03', Xposition: 3, Yposition: 1, SourceId: 'vs01' },
-      { Id: 'vw02d04', Xposition: 4, Yposition: 1, SourceId: 'vs01' },
-      { Id: 'vw02d05', Xposition: 1, Yposition: 2, SourceId: 'vs01' },
-      { Id: 'vw02d06', Xposition: 2, Yposition: 2, SourceId: 'vs01' },
-      { Id: 'vw02d07', Xposition: 3, Yposition: 2, SourceId: 'vs01' },
-      { Id: 'vw02d08', Xposition: 4, Yposition: 2, SourceId: 'vs01' }
+      { Id: 'vw02d01', XPosition: 1, YPosition: 1, SourceId: 'vs01' },
+      { Id: 'vw02d02', XPosition: 2, YPosition: 1, SourceId: 'vs01' },
+      { Id: 'vw02d03', XPosition: 3, YPosition: 1, SourceId: 'vs01' },
+      { Id: 'vw02d04', XPosition: 4, YPosition: 1, SourceId: 'vs01' },
+      { Id: 'vw02d05', XPosition: 1, YPosition: 2, SourceId: 'vs01' },
+      { Id: 'vw02d06', XPosition: 2, YPosition: 2, SourceId: 'vs01' },
+      { Id: 'vw02d07', XPosition: 3, YPosition: 2, SourceId: 'vs01' },
+      { Id: 'vw02d08', XPosition: 4, YPosition: 2, SourceId: 'vs01' }
     ]
   },
   {
@@ -521,8 +521,8 @@ export const testVideoWallLayouts = [
     Width: 2,
     Height: 1,
     Cells: [
-      { Id: 'vw03d01', Xposition: 1, Yposition: 1, SourceId: 'vs01' },
-      { Id: 'vw03d02', Xposition: 2, Yposition: 1, SourceId: 'vs01' }
+      { Id: 'vw03d01', XPosition: 1, YPosition: 1, SourceId: 'vs01' },
+      { Id: 'vw03d02', XPosition: 2, YPosition: 1, SourceId: 'vs01' }
     ]
   },
   {
@@ -530,6 +530,6 @@ export const testVideoWallLayouts = [
     Label: 'Full Screen',
     Width: 1,
     Height: 1,
-    Cells: [{ Id: 'vw04d01', Xposition: 1, Yposition: 1, SourceId: 'vs01' }]
+    Cells: [{ Id: 'vw04d01', XPosition: 1, YPosition: 1, SourceId: 'vs01' }]
   },
 ]

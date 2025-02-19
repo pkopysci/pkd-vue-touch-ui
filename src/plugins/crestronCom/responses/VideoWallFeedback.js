@@ -3,9 +3,16 @@ import { videoWallHook } from '../api/apiHooks'
 import { parseResponse } from './dataParser'
 
 const commands = {
-    CONFIG: (store,cmd) => store.updateLayouts(cmd.Data),
-    ROUTE: (store, cmd) => store.updateCellRoute(cmd.Data.LayoutId, cmd.Data.CellId, cmd.Data.DestId),
-    LAYOUT: (store, cmd) => store.updateSelectedLayout(cmd.Data.LayoutId),
+    CONFIG: (store, cmd) => {
+        if (cmd.Data.Controllers.length <= 0) {
+            console.error('VideoWallFeedback - no controllers found')
+            return
+        }
+        store.updateConfig(cmd.Data.Controllers[0].Layouts, cmd.Data.Sources, cmd.Data.Controllers[0].Id)
+    },
+    ROUTE: (store, cmd) => console.log("TODO: VideoWallFeedback - ROUTE"),
+    LAYOUT: (store, cmd) => store.updateSelectedLayout(cmd.Data.ControlId, cmd.Data.LayoutId),
+    CONNECTION: (store, cmd) => console.log("TODO: VideoWallFeedback - CONNECTION"),
 }
 
 /**

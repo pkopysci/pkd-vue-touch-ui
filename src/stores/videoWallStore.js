@@ -5,7 +5,7 @@ import {
   sendVideoWallLayoutSelect,
   sendVideoWallCellRouteRequest
 } from '@/plugins/crestronCom/commands/videoWallCommands'
-import { testVideoWallLayouts } from '@/data/TestData'
+
 
 /**
  * A default/empty layout object used when a specific layout cannot be found.
@@ -30,16 +30,29 @@ export const EmptyCell = {
   SourceId: ''
 }
 
+/**
+ * A store for all video wall related data. This only supports one video wall controller at a time.
+ */
 export const useVideoWallStore = defineStore('videoWallStore', () => {
   /**
    * The list of available layouts that can be selected.
    */
-  const layouts = ref(testVideoWallLayouts) //ref([EmptyLayout])
+  const layouts = ref([EmptyLayout])
+
+  /**
+   * The list of routable video wall sources.
+   */
+  const sources = ref([])
 
   /**
    * The currently selected layout on the wall controller.
    */
-  const selectedLayout = ref(testVideoWallLayouts[0])
+  const selectedLayout = ref(EmptyLayout)
+
+  /**
+   * The ID of the first wall controller in the collection as of the last config update.
+   */
+  const controllerId = ref('')
 
   /**
    * Requests the current video wall configuration from the control system.
@@ -55,8 +68,10 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    *
    * @param  newLayouts - The new list of available layouts.
    */
-  function updateLayouts(newLayouts) {
+  function updateConfig(newLayouts, newSources, wallControlId) {
     layouts.value = newLayouts
+    sources.value = newSources
+    controllerId.value = wallControlId
   }
 
   /**
@@ -66,7 +81,8 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    *
    * @param  layoutId - The id of the layout that should be selected.
    */
-  function updateSelectedLayout(layoutId) {
+  function updateSelectedLayout(controlId, layoutId) {
+    if (controlId != controllerId.value) return
     let found = layouts.value.find((x) => x.Id == layoutId)
     selectedLayout.value = found ? found : EmptyLayout
   }
@@ -118,7 +134,7 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    * @param {string} layoutId - The id of the layout to select. If the layout does not exist, nothing is done.
    */
   function sendLayoutSelect(layoutId) {
-    sendVideoWallLayoutSelect(layoutId)
+    sendVideoWallLayoutSelect(controllerId.value, layoutId)
   }
 
   /**
@@ -134,9 +150,11 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
 
   return {
     layouts,
+    sources,
     selectedLayout,
+    controllerId,
     requestConfigUpdate,
-    updateLayouts,
+    updateConfig,
     updateSelectedLayout,
     updateCellRoute,
     sendLayoutSelect,

@@ -5,13 +5,13 @@ import {
 } from '@/plugins/crestronCom/api/apiHooks'
 
 export function sendVideoWallConfigQuery() {
-    sendGet('CONFIG', '', videoWallHook)
+    sendGet('CONFIG', {}, videoWallHook)
 }
 
-export function sendVideoWallLayoutSelect(layoutId) {
-    sendPost('LAYOUT', { LayoutId: layoutId }, videoWallHook)
+export function sendVideoWallLayoutSelect(controlId, layoutId) {
+    sendPost('LAYOUT', { ControlId: controlId, LayoutId: layoutId }, videoWallHook)
 }
 
-export function sendVideoWallCellRouteRequest(layoutId, cellId, sourceId) {
-    sendPost('ROUTE', { LayoutId: layoutId, CellId: cellId, SourceId: sourceId }, videoWallHook)
+export function sendVideoWallCellRouteRequest(controlId, cellId, sourceId) {
+    console.log("TODO: sendVideoWallCellRouteRequest()")
 }

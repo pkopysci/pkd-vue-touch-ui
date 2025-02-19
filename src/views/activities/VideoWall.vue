@@ -43,8 +43,8 @@ const onRouteRequested = (sourceId, destinationId) => {
     <div
       class="cells"
       :style="{
-        gridTemplateRows: videoWallStore.selectedLayout.Height,
-        gridTemplateColumns: videoWallStore.selectedLayout.Width
+        gridTemplateRows: 'repeat(' + videoWallStore.selectedLayout.Height + ', 1fr)',
+        gridTemplateColumns: 'repeat(' + videoWallStore.selectedLayout.Width + ', 1fr)'
       }"
     >
       <button
@@ -52,10 +52,10 @@ const onRouteRequested = (sourceId, destinationId) => {
         class="cell"
         :key="cell.Id"
         :style="{
-          gridRowStart: cell.Yposition,
-          gridRowEnd: cell.Yposition,
-          gridColumnStart: cell.Xposition,
-          gridColumnEnd: cell.Xposition
+          gridRowStart: cell.YPosition,
+          gridRowEnd: cell.YPosition,
+          gridColumnStart: cell.XPosition,
+          gridColumnEnd: cell.XPosition
         }"
         @click="onWindowSelected(cell)"
       >

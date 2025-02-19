@@ -38,10 +38,10 @@ const onLayoutSelect = (layoutId) => {
           :key="cell.Id"
           class="cell"
           :style="{
-            gridRowStart: cell.Yposition,
-            gridRowEnd: cell.Yposition,
-            gridColumnStart: cell.Xposition,
-            gridColumnEnd: cell.Xposition
+            gridRowStart: cell.YPosition,
+            gridRowEnd: cell.YPosition,
+            gridColumnStart: cell.XPosition,
+            gridColumnEnd: cell.XPosition
           }"
         ></div>
     </span>
