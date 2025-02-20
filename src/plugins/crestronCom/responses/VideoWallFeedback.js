@@ -10,7 +10,7 @@ const commands = {
         }
         store.updateConfig(cmd.Data.Controllers[0].Layouts, cmd.Data.Sources, cmd.Data.Controllers[0].Id)
     },
-    ROUTE: (store, cmd) => console.log("TODO: VideoWallFeedback - ROUTE"),
+    ROUTE: (store, cmd) => store.updateCellRoute(cmd.Data.CellId, cmd.Data.SourceId),
     LAYOUT: (store, cmd) => store.updateSelectedLayout(cmd.Data.ControlId, cmd.Data.LayoutId),
     CONNECTION: (store, cmd) => console.log("TODO: VideoWallFeedback - CONNECTION"),
 }
@@ -38,7 +38,7 @@ export default function createVideoWallPlugin() {
             try {
                 let cmd = JSON.parse(parsed.firstCommand)
                 if (cmd.Command == 'ERROR') {
-                    console.error(`videoWallFeedback - error RX received: ${cmd.Data}`)
+                    console.error(`videoWallFeedback - error RX received for ${cmd.Command}: ${cmd.Data.Message}`)
                 } else {
                     commands[cmd.Command](videoWallStore, cmd)
                 }

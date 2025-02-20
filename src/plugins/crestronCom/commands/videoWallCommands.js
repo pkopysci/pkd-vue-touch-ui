@@ -13,5 +13,5 @@ export function sendVideoWallLayoutSelect(controlId, layoutId) {
 }
 
 export function sendVideoWallCellRouteRequest(controlId, cellId, sourceId) {
-    console.log("TODO: sendVideoWallCellRouteRequest()")
+    sendPost('ROUTE', { ControlId: controlId, CellId: cellId, SourceId: sourceId }, videoWallHook)
 }

@@ -69,6 +69,9 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    * @param  newLayouts - The new list of available layouts.
    */
   function updateConfig(newLayouts, newSources, wallControlId) {
+    
+    console.log(newLayouts)
+    
     layouts.value = newLayouts
     sources.value = newSources
     controllerId.value = wallControlId
@@ -88,39 +91,21 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
   }
 
   /**
-   * Updates the currently routed source of the cell with the given id in the target layout.
+   * Updates the currently routed source of the cell with the given id in the active layout.
    * If the layout or cell does not exist, the method does nothing and logs an error to the console.
    *
-   * @param {string} layoutid - The id of the layout to update.
    * @param {string} cellId - The id of the cell to update.
    * @param {string} sourceId - The id of the source currently routed to the cell.
    */
-  function updateCellRoute(layoutid, cellId, sourceId) {
-    let found = layouts.value.find((x) => x.Id == layoutid)
-    if (!found) {
-      console.error(
-        'VideoWallStore.updateCellRoute(' +
-          layoutid +
-          ', ' +
-          cellId +
-          ', ' +
-          sourceId +
-          ') - no matching layout found.'
-      )
-      return
-    }
+  function updateCellRoute(cellId, sourceId) {
+   if (!selectedLayout.value) {
+    console.error("VideoWallStore.updateCellRoute() - no layout selected")
+    return
+   }
 
-    let cell = found.Cells.find((x) => x.Id == cellId)
+    let cell = selectedLayout.value.Cells.find((x) => x.Id == cellId)
     if (!cell) {
-      console.error(
-        'VideoWallStore.updateCellRoute(' +
-          layoutid +
-          ', ' +
-          cellId +
-          ', ' +
-          sourceId +
-          ') - no matching cell found.'
-      )
+      console.error(`VideoWallStore.updateCellRoute() - no cell found with id ${cellId}`)
       return
     }
 
@@ -145,7 +130,7 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    * @param {string} sourceId - The id of the source to route to the cell.
    */
   function sendCellRoute(sourceId, cellId) {
-   sendVideoWallCellRouteRequest(selectedLayout.value.Id, cellId, sourceId)
+   sendVideoWallCellRouteRequest(controllerId.value, cellId, sourceId)
   }
 
   return {
