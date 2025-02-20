@@ -2,11 +2,10 @@
 import { ref } from 'vue'
 import { useVideoWallStore } from '@/stores/videoWallStore'
 import { useModalStore } from '@/stores/modalStore'
-import { emptySource, useVideoStore } from '@/stores/videoStore'
+import { emptySource } from '@/stores/videoStore'
 import WallLayoutModal from '@/components/modals/WallLayoutModal.vue'
 import SourceListModal from '@/components/modals/SourceListModal.vue'
 
-const videoStore = useVideoStore()
 const videoWallStore = useVideoWallStore()
 const modalStore = useModalStore()
 const windowSelected = ref(undefined)
@@ -16,7 +15,7 @@ const showLayoutsModal = () => {
 }
 
 const findSource = (id) => {
-  let source = videoStore.sources.find((x) => x.Id == id)
+  let source = videoWallStore.sources.find((x) => x.Id == id)
   return source ? source : emptySource
 }
 
@@ -33,7 +32,7 @@ const onRouteRequested = (sourceId, destinationId) => {
 <template>
   <SourceListModal
     v-show="modalStore.sourceListVisible"
-    :sourceList="videoStore.sources"
+    :sourceList="videoWallStore.sources"
     :destinationId="windowSelected?.Id"
     :selectedId="windowSelected?.selectedId"
     @onSourceSelect="onRouteRequested"

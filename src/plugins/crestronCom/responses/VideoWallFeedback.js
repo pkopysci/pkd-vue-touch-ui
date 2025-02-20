@@ -8,7 +8,7 @@ const commands = {
             console.error('VideoWallFeedback - no controllers found')
             return
         }
-        store.updateConfig(cmd.Data.Controllers[0].Layouts, cmd.Data.Sources, cmd.Data.Controllers[0].Id)
+        store.updateConfig(cmd.Data.Controllers[0].Layouts, cmd.Data.Controllers[0].Sources, cmd.Data.Controllers[0].Id)
     },
     ROUTE: (store, cmd) => store.updateCellRoute(cmd.Data.CellId, cmd.Data.SourceId),
     LAYOUT: (store, cmd) => store.updateSelectedLayout(cmd.Data.ControlId, cmd.Data.LayoutId),

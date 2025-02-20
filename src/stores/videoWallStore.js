@@ -69,9 +69,7 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    * @param  newLayouts - The new list of available layouts.
    */
   function updateConfig(newLayouts, newSources, wallControlId) {
-    
-    console.log(newLayouts)
-    
+
     layouts.value = newLayouts
     sources.value = newSources
     controllerId.value = wallControlId
