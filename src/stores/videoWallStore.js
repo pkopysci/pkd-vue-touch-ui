@@ -34,6 +34,7 @@ export const EmptyCell = {
  * A store for all video wall related data. This only supports one video wall controller at a time.
  */
 export const useVideoWallStore = defineStore('videoWallStore', () => {
+
   /**
    * The list of available layouts that can be selected.
    */
@@ -61,6 +62,15 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    */
   function requestConfigUpdate() {
     sendVideoWallConfigQuery()
+  }
+
+  /**
+   * 
+   * @param {string} deviceId The id of the video wall controller that is being updated.
+   * @param {boolean} isOnline true = the device is online, false = device is offline.
+   */
+  function updateDeviceConnectionStatus(deviceId, isOnline) {
+    if (deviceId != controllerId.value) return
   }
 
   /**
@@ -141,6 +151,7 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
     updateSelectedLayout,
     updateCellRoute,
     sendLayoutSelect,
-    sendCellRoute
+    sendCellRoute,
+    updateDeviceConnectionStatus
   }
 })

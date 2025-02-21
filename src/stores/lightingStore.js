@@ -81,6 +81,13 @@ export const useLightingStore = defineStore('lightingStore', {
       this.scenes.forEach((x) => (x.Set = x.Id == sceneId))
     },
     /**
+     * @param {string} controlId The id of the controller to update
+     * @param {boolean} isOnline true = online, false = offline
+     */
+    updateLightingControlConnectionStatus(controlId, isOnline) {
+      console.log(`TODO: lightingStore.updateLightingControlConnectionStatus(${controlId}, ${isOnline})`)
+    },
+    /**
      * Query the control for the current lighting configuration.
      */
     requestConfigUpdate() {

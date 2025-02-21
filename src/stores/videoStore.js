@@ -167,6 +167,11 @@ export const useVideoStore = defineStore('videoStore', {
       }
 
       this.displays[idx] = display
+      if (display.IsOnline) {
+        console.log('TODO: videoStore.UpdateDisplay() - display ' + display.Id + ' is now online')
+      } else {
+        console.log('TODO: videoStore.UpdateDisplay() - display ' + display.Id + ' is now offline')
+      }
     },
     /**
      * update the store with whether or not all video outputs are blanked

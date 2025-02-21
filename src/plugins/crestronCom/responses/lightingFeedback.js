@@ -11,6 +11,9 @@ const rxHandlers = {
   },
   LOAD: (store, cmd) => {
     store.updateLightingZoneLoad(cmd.Data.ZoneId, cmd.Data.Load)
+  },
+  STATUS: (store, cmd) => {
+    store.updateLightingControlConnectionStatus(cmd.Data.ControlId, cmd.Data.IsOnline)
   }
 }
 

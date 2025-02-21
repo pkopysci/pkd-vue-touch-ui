@@ -12,7 +12,7 @@ const commands = {
     },
     ROUTE: (store, cmd) => store.updateCellRoute(cmd.Data.CellId, cmd.Data.SourceId),
     LAYOUT: (store, cmd) => store.updateSelectedLayout(cmd.Data.ControlId, cmd.Data.LayoutId),
-    CONNECTION: (store, cmd) => console.log("TODO: VideoWallFeedback - CONNECTION"),
+    CONNECTION: (store, cmd) => store.updateDeviceConnectionStatus(cmd.Data.ControlId, cmd.Data.OnlineStatus),
 }
 
 /**
