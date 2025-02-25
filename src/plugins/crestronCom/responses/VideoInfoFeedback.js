@@ -12,7 +12,8 @@ const videoCommands = {
   CONFIG: updateFullConfig,
   ROUTE: (videoStore, cmd) => videoStore.updateVideoRoute(cmd.Data.DestId, cmd.Data.SrcId),
   GLOBALFREEZE: (videoStore, cmd) => videoStore.updateGlobalVideoFreeze(cmd.Data.State),
-  GLOBALBLANK: (videoStore, cmd) => videoStore.updateGlobalVideoBlank(cmd.Data.State)
+  GLOBALBLANK: (videoStore, cmd) => videoStore.updateGlobalVideoBlank(cmd.Data.State),
+  STATUS: (store, cmd) => store.updateAvrDevice(cmd.Data.Avr)
 }
 
 const displayCommands = {

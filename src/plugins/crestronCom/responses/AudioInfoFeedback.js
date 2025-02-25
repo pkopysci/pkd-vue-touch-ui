@@ -31,6 +31,9 @@ const commands = {
   },
   ROUTE: (store, cmd) => {
     store.updateAudioRoute(cmd.Data.OutId, cmd.Data.InId)
+  },
+  STATUS: (store, cmd) => {
+    
   }
 }
 

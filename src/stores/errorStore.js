@@ -21,6 +21,12 @@ export const useErrorStore = defineStore('errorStore', {
     updateErrors(newErrors)
     {
       this.errorsList = newErrors
+    },
+    addError(errId, errMsg) {
+      this.errorsList.push({Errorid: errId, Error: errMsg})
+    },
+    removeError(errId) {
+      this.errorsList = this.errorsList.filter(x => x.Errorid != errId)
     }
   }
 })

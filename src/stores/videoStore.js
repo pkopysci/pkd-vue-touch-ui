@@ -141,7 +141,7 @@ export const useVideoStore = defineStore('videoStore', {
     updateVideoRoute(destId, srcId) {
       let index = this.destinations.findIndex((x) => x.Id == destId)
       if (this.destinations.length == 0) return
-      
+
       if (index > -1) {
         this.destinations[index].CurrentSourceId = srcId
       } else {
@@ -198,6 +198,20 @@ export const useVideoStore = defineStore('videoStore', {
 
       if (dataObject) {
         this.avrInfo = dataObject
+      }
+    },
+    updateAvrDevice(avr) {
+      let idx = this.avrInfo.findIndex((x) => x.Id == avr.Id)
+      if (idx < 0) {
+        console.error('videoStore.updateAvrConnectionStats() - no AVR found with ID ' + avr.Id)
+        return
+      }
+
+      this.avrInfo[idx] = avr
+      if (avr.IsOnline) {
+        console.log(`TODO: videoStore.updateAvrConnectionStats() - AVR ${avr.Id} is now online`)
+      } else {
+        console.log(`TODO: videoStore.updateAvrConnectionStats() - AVR ${avr.Id} is now offline`)
       }
     },
     /**
