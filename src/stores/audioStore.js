@@ -10,6 +10,7 @@ import {
     sendMicrophoneZoneEnable,
     sendMatrixAudioRoute
 } from '@/plugins/crestronCom/commands/audioCommands'
+import {useErrorStore} from "@/stores/errorStore.js";
 
 export const emptyChannel = {
     Id: 'emptyChannel',
@@ -24,6 +25,7 @@ export const emptyChannel = {
 }
 
 export const useAudioStore = defineStore('audioStore', () => {
+    const errorStore = useErrorStore()
     
     const inputs = ref([])
     const outputs = ref([])
@@ -92,9 +94,9 @@ export const useAudioStore = defineStore('audioStore', () => {
 
         audioDevices.value[idx] = newDevice
         if(newDevice.IsOnline) {
-            console.log(`TODO: audioStore.updateAudioDevice() - device ${newDevice.Id} is now online`)
+            errorStore.removeError(newDevice.Id)
         } else {
-            console.log(`TODO: audioStore.updateAudioDevice() - device ${newDevice.Id} is now offline`)
+            errorStore.addError(newDevice.Id, `${newDevice.Label} is offline.`)
         }
     }
 

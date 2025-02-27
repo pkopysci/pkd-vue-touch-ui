@@ -12,6 +12,7 @@ import {
   sendDisplayInputSelect
 } from '@/plugins/crestronCom/commands/videoCommands'
 import {computed, ref} from "vue";
+import {useErrorStore} from "@/stores/errorStore.js";
 
 export const emptySource = {
   Id: 'evs01',
@@ -47,6 +48,7 @@ export const emptyDisplay = {
  */
 export const useVideoStore = defineStore('videoStore', () => {
 
+  const errorStore = useErrorStore()
   const rootStore = useRootStore()
   
   /**
@@ -181,9 +183,9 @@ export const useVideoStore = defineStore('videoStore', () => {
 
     displays.value[idx] = display
     if (display.IsOnline) {
-      console.log('TODO: videoStore.UpdateDisplay() - display ' + display.Id + ' is now online')
+      errorStore.removeError(display.Id)
     } else {
-      console.log('TODO: videoStore.UpdateDisplay() - display ' + display.Id + ' is now offline')
+      errorStore.addError(display.Id, `Display ${display.Label} is offline.`)
     }
   }
   
@@ -226,9 +228,9 @@ export const useVideoStore = defineStore('videoStore', () => {
 
     avrRouters.value[idx] = avr
     if (avr.IsOnline) {
-      console.log(`TODO: videoStore.updateAvrConnectionStats() - AVR ${avr.Id} is now online`)
+      errorStore.removeError(avr.Id)
     } else {
-      console.log(`TODO: videoStore.updateAvrConnectionStats() - AVR ${avr.Id} is now offline`)
+      errorStore.addError(avr.id, `AVR ${avr.Label} is offline.`)
     }
   }
   
@@ -341,6 +343,7 @@ export const useVideoStore = defineStore('videoStore', () => {
     sendGlobalVideoBlank,
     sendSingleDisplayPower,
     sendDisplayScreenControl,
+    sendDisplayInputChange,
     sendVideoRoute,
     sendGlobalVideoFreeze,
     sendRouteToAll,

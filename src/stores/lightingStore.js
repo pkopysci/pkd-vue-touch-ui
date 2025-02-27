@@ -7,8 +7,10 @@ import {
   sendSelectedSceneQuery
 } from '@/plugins/crestronCom/commands/lightingCommands'
 import {ref} from "vue";
+import {useErrorStore} from "@/stores/errorStore.js";
 
 export const useLightingStore = defineStore('lightingStore', () => {
+  const errorStore = useErrorStore()
   
   const zones = ref([])
   const scenes = ref([])
@@ -59,7 +61,11 @@ export const useLightingStore = defineStore('lightingStore', () => {
    * @param {boolean} isOnline true = online, false = offline
    */
   function updateLightingControlConnectionStatus(controlId, isOnline) {
-    console.log(`TODO: lightingStore.updateLightingControlConnectionStatus(${controlId}, ${isOnline})`)
+    if (isOnline) {
+      errorStore.removeError(controlId)
+    } else {
+      errorStore.addError(controlId, "Lighting controller is offline.")
+    }
   }
   
   /**

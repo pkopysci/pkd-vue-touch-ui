@@ -42,5 +42,6 @@ export const useErrorStore = defineStore('errorStore', () => {
     updateErrors,
     queryAllErrors,
     removeError,
+    addError,
   }
 })

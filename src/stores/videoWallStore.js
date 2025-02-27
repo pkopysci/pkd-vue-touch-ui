@@ -5,6 +5,7 @@ import {
   sendVideoWallLayoutSelect,
   sendVideoWallCellRouteRequest
 } from '@/plugins/crestronCom/commands/videoWallCommands'
+import {useErrorStore} from "@/stores/errorStore.js";
 
 
 /**
@@ -35,6 +36,8 @@ export const EmptyCell = {
  */
 export const useVideoWallStore = defineStore('videoWallStore', () => {
 
+  const errorStore = useErrorStore()
+  
   /**
    * The list of available layouts that can be selected.
    */
@@ -72,7 +75,11 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
   function updateDeviceConnectionStatus(deviceId, isOnline) {
     if (deviceId !== controllerId.value) return
     
-    console.log(`TODO: videoWallStore.updateDeviceConnectionStatus`)
+    if (isOnline) {
+      errorStore.removeError(deviceId)
+    } else {
+      errorStore.addError(deviceId, "Video wall controller is offline.")
+    }
   }
 
   /**
