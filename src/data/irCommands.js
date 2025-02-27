@@ -75,7 +75,7 @@ export const irCommands = (function () {
   }
   return {
     get: function (cmd) {
-      if (!cmd || typeof(cmd) != 'string' || cmd.length == 0) {
+      if (!cmd || typeof(cmd) != 'string' || cmd.length === 0) {
         return ''
       }
 

@@ -8,8 +8,10 @@ import {
 export const useCustomEventStore = defineStore('customEventStore', () => {
   const customEvents = ref([])
 
-  const activeEvents = computed(() => customEvents.value.filter((x) => x.State))
-  const inactiveEvents = computed(() => customEvents.value.filter((x) => !x.State))
+  const activeEvents = computed(() => 
+      customEvents.value.length > 0 ? customEvents.value.filter((x) => x.State) : [])
+  const inactiveEvents = computed(() => 
+      customEvents.value.length > 0 ? customEvents.value.filter((x) => !x.State) : [])
 
   /**
    * Replaces the current list of custom events with the provided list of custom events
@@ -25,7 +27,7 @@ export const useCustomEventStore = defineStore('customEventStore', () => {
    * @param {boolean} state - The new state of the custom event
    */
   function updateCustomEvent(id, state) {
-    let found = customEvents.value.find((x) => x.Id == id)
+    let found = customEvents.value.find((x) => x.Id === id)
     if (found) {
       found.State = state
     } else {
@@ -39,7 +41,7 @@ export const useCustomEventStore = defineStore('customEventStore', () => {
    * @returns {CustomEvent} The custom event with the provided ID, or a default event object if no matching ID is found.
    */
   function getCustomEvent(id) {
-    let found = customEvents.value.find((x) => x.Id == id)
+    let found = customEvents.value.find((x) => x.Id === id)
     return found ? found : { id: '', state: false }
   }
 
@@ -49,7 +51,7 @@ export const useCustomEventStore = defineStore('customEventStore', () => {
    * @param {boolean} state - The new state of the custom event
    */
   function sendEventChange(id, state) {
-    let found = customEvents.value.find((x) => x.Id == id)
+    let found = customEvents.value.find((x) => x.Id === id)
     if (found) {
       sendChangeCustomEventState(found.Id, state)
     } else {
@@ -59,7 +61,7 @@ export const useCustomEventStore = defineStore('customEventStore', () => {
 
   /**
    * Sends a request to the control system to retrieve the current custom event
-   * configuration..
+   * configuration.
    */
   function sendGetConfig() {
     sendGetCustomEventConfig()

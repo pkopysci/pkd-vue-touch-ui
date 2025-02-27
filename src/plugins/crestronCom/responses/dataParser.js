@@ -4,7 +4,7 @@ export function parseResponse(data) {
   }
 
   let eofIdx = data.indexOf('EOF')
-  if (eofIdx == -1) {
+  if (eofIdx === -1) {
     return { firstCommand: '', remainingData: data }
   }
 

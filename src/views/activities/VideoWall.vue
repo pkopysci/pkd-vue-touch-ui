@@ -15,7 +15,7 @@ const showLayoutsModal = () => {
 }
 
 const findSource = (id) => {
-  let source = videoWallStore.sources.find((x) => x.Id == id)
+  let source = videoWallStore.sources.find((x) => x.Id === id)
   return source ? source : emptySource
 }
 
@@ -34,7 +34,7 @@ const onRouteRequested = (sourceId, destinationId) => {
     v-show="modalStore.sourceListVisible"
     :sourceList="videoWallStore.sources"
     :destinationId="windowSelected?.Id"
-    :selectedId="windowSelected?.selectedId"
+    :selectedId="windowSelected ? windowSelected.selectedId : ''"
     @onSourceSelect="onRouteRequested"
   />
   <WallLayoutModal v-show="modalStore.videoWallLayoutsVisible" />

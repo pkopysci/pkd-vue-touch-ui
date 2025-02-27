@@ -41,7 +41,7 @@ const onShutdownCancel = () => {
     <LoadingModal :text="'Starting up...'" v-show="loading" />
   </Transition>
   <ConfirmationModal
-    v-show="modalStore.shutownConfirmationVisible"
+    v-show="modalStore.shutdownConfirmationVisible"
     title="End this session?"
     message="This will turn off the system and enter standby mode."
     confirmText="End Session"
@@ -49,11 +49,12 @@ const onShutdownCancel = () => {
     @confirm="onShutdownConfirm"
     @cancel="onShutdownCancel"
   />
+ 
   <SystemInfoModal v-show="modalStore.helpVisible" />
   <SystemErrorsModal v-show="modalStore.errorListVisible" />
   <TransportsModal v-if="modalStore.sourceControlState.isVisible" />
   <AudioChannelModal
-    v-show="modalStore.pgmAudiovisible"
+    v-show="modalStore.pgmAudioVisible"
     width="40vw"
     :showCloseButton="true"
     :audioChannel="audioStore.programAudio ? audioStore.programAudio : emptyChannel"

@@ -21,7 +21,7 @@ export default function createCrestronXpanelPlugin() {
   const httpQuery = window.location.search
   const urlParams = new URLSearchParams(httpQuery)
 
-  WebXPanelConfigParams.host = urlParams.has('host') ? urlParams.get('host') : '10.16.6.10'
+  WebXPanelConfigParams.host = urlParams.has('host') ? urlParams.get('host') : '192.168.1.3'
   WebXPanelConfigParams.ipId = urlParams.has('ipid') ? urlParams.get('ipid') : '3'
   WebXPanelConfigParams.roomId = urlParams.has('roomid') ? urlParams.get('roomid') : ''
 

@@ -31,7 +31,7 @@ export default function createSecurityControlPlugin() {
     if (parsed.firstCommand) {
       try {
         const cmd = JSON.parse(parsed.firstCommand)
-        if (cmd.Command == 'ERROR') {
+        if (cmd.Command === 'ERROR') {
           console.error(`securityFeedback - error RX received: ${cmd.Data.Message}`)
         } else {
           rxHandlers[cmd.Command](securityStore, cmd)

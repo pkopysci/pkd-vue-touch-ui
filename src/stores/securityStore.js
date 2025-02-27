@@ -27,7 +27,7 @@ export const useSecurityStore = defineStore('securityStore', () => {
   }
 
   /**
-   * Completely lock the UI and prevent any controls. This is different than displaying the passcode modal and will
+   * Completely lock the UI and prevent any controls. This is different from displaying the passcode modal and will
    * completely block any user interaction.
    * @param {boolean} isLocked true = UI lockout modal is displayed, false = allow use.
    */

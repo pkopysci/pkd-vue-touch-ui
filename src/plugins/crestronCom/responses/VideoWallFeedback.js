@@ -37,7 +37,7 @@ export default function createVideoWallPlugin() {
         if (parsed.firstCommand) {
             try {
                 let cmd = JSON.parse(parsed.firstCommand)
-                if (cmd.Command == 'ERROR') {
+                if (cmd.Command === 'ERROR') {
                     console.error(`videoWallFeedback - error RX received for ${cmd.Command}: ${cmd.Data.Message}`)
                 } else {
                     commands[cmd.Command](videoWallStore, cmd)

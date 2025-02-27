@@ -11,7 +11,7 @@ import {
  * A default/empty layout object used when a specific layout cannot be found.
  */
 export const EmptyLayout = {
-  Id: 'emptylayout',
+  Id: 'emptyLayout',
   Label: 'Empty Layout',
   Width: 0,
   Height: 0,
@@ -22,7 +22,7 @@ export const EmptyLayout = {
  * A default/empty cell object used when a specific cell cannot be found.
  */
 export const EmptyCell = {
-  Id: 'emptycell',
+  Id: 'emptyCell',
   XStart: 0,
   XEnd: 0,
   YStart: 0,
@@ -70,13 +70,17 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    * @param {boolean} isOnline true = the device is online, false = device is offline.
    */
   function updateDeviceConnectionStatus(deviceId, isOnline) {
-    if (deviceId != controllerId.value) return
+    if (deviceId !== controllerId.value) return
+    
+    console.log(`TODO: videoWallStore.updateDeviceConnectionStatus`)
   }
 
   /**
    * Updates the list of available layouts in the store.
    *
-   * @param  newLayouts - The new list of available layouts.
+   * @param {array<Object>}newLayouts The new list of available layouts.
+   * @param {array<Object>} newSources The new list of routable sources objects.
+   * @param {string} wallControlId The id of the primary wall controller that hosts the layouts.
    */
   function updateConfig(newLayouts, newSources, wallControlId) {
 
@@ -90,11 +94,12 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    * If the layout specified by the given id does not exist, the currently selected layout is
    * set to the EmptyLayout.
    *
-   * @param  layoutId - The id of the layout that should be selected.
+   * @param {string} controlId the id of the video wall control object being updated.
+   * @param {string} layoutId - The id of the layout that should be selected.
    */
   function updateSelectedLayout(controlId, layoutId) {
-    if (controlId != controllerId.value) return
-    let found = layouts.value.find((x) => x.Id == layoutId)
+    if (controlId !== controllerId.value) return
+    let found = layouts.value.find((x) => x.Id === layoutId)
     selectedLayout.value = found ? found : EmptyLayout
   }
 
@@ -111,7 +116,7 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
     return
    }
 
-    let cell = selectedLayout.value.Cells.find((x) => x.Id == cellId)
+    let cell = selectedLayout.value.Cells.find((x) => x.Id === cellId)
     if (!cell) {
       console.error(`VideoWallStore.updateCellRoute() - no cell found with id ${cellId}`)
       return

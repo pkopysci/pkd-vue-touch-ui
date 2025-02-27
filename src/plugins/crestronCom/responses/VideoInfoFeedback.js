@@ -40,7 +40,7 @@ export default function createVideoControlPlugin() {
     if (parsed.firstCommand) {
       try {
         let cmd = JSON.parse(parsed.firstCommand)
-        if (cmd.Command == 'ERROR') {
+        if (cmd.Command === 'ERROR') {
           console.error(`videoInfoFeedback - error RX received: ${cmd.Data.Message}`)
         } else {
           videoCommands[cmd.Command](videoStore, cmd)
@@ -61,7 +61,7 @@ export default function createVideoControlPlugin() {
     if (parsed.firstCommand) {
       try {
         const cmd = JSON.parse(parsed.firstCommand)
-        if (cmd.Command == 'ERROR') {
+        if (cmd.Command === 'ERROR') {
           console.error(`displayInfoFeedback - error RX received: ${cmd.Data.Message}`)
         } else {
           displayCommands[cmd.Command](videoStore, cmd)

@@ -32,7 +32,7 @@ const onVideoFreezeToggle = () => {
 }
 
 const onDeviceControlSelect = (devId) => {
-  let device = videoStore.sources.find((x) => x.Id == devId)
+  let device = videoStore.sources.find((x) => x.Id === devId)
   if (device) {
     modalStore.setSourceControlState(device.Control, true)
   }
@@ -52,7 +52,7 @@ const populateSources = () => {
 onBeforeMount(() => {
   populateSources()
   if (!videoStore.destinations || videoStore.destinations.length < 1) {
-    selectedId.value = emptyDestination
+    selectedId.value = emptyDestination.CurrentSourceId
   } else {
     selectedId.value = videoStore.destinations[0].CurrentSourceId
   }

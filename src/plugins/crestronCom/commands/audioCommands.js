@@ -25,7 +25,7 @@ export function sendAudioInputLevel(channelId, level) {
 }
 
 /**
- * @param {string} channelIds The unique ID of channel to adjust
+ * @param {string} channelId The unique ID of channel to adjust
  * @param {number} level 0-100 level representing the audio volume.
  */
 export function sendMicrophoneLevel(channelId, level) {
@@ -67,7 +67,7 @@ export function sendMatrixAudioRoute(outputId, inputId) {
 /**
  * @param {string} inputId The unique ID of the audio input to enable or disable.
  * @param {string} zoneId The unique ID of the audio zone that will be changed to allow the target input
- * @param {string} enable True = enable the input in the output zone, false = disable the audio input for that zone.
+ * @param {boolean} enable True = enable the input in the output zone, false = disable the audio input for that zone.
  */
 export function sendMicrophoneZoneEnable(inputId, zoneId, enable) {
   sendPost('ZONE', { InId: inputId, ZoneId: zoneId, Enabled: enable }, audioControlHook)

@@ -31,10 +31,10 @@ const onSceneChanged = (controlId, sceneId) => {
 <template>
   <div class="basic-lighting fade-in" :class="{ 'vertical-center': !showMenu }">
     <div v-if="showMenu" class="lighting-menu">
-      <button :class="scenesSelected ? 'active' : ''" :onclick="() => onMenuSelected(true)">
+      <button :class="scenesSelected ? 'active' : ''" @click="() => onMenuSelected(true)">
         Scenes
       </button>
-      <button :class="!scenesSelected ? 'active' : ''" :onClick="() => onMenuSelected(false)">
+      <button :class="!scenesSelected ? 'active' : ''" @click="() => onMenuSelected(false)">
         Zones
       </button>
     </div>
@@ -64,7 +64,7 @@ const onSceneChanged = (controlId, sceneId) => {
 <style scoped>
 .basic-lighting {
   height: 80vh;
-  padding: 0px;
+  padding: 0;
   gap: 20px;
   display: flex;
   flex-direction: column;

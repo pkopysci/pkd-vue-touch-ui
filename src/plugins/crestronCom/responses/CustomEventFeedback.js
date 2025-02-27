@@ -32,7 +32,7 @@ export default function createCustomEventPlugin() {
     if (parsed.firstCommand) {
       try {
         const cmd = JSON.parse(parsed.firstCommand)
-        if (cmd.Command == 'ERROR') {
+        if (cmd.Command === 'ERROR') {
           console.error(`customEventFeedback - error RX received: ${cmd.Data}`)
         } else {
           rxHandlers[cmd.Command](customEventStore, cmd)

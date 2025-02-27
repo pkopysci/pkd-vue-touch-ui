@@ -56,7 +56,8 @@ const icons = [
   { id: 'computer', css: 'fa-solid fa-computer' },
 ]
 
-/**Convert a config response icon keyword to the custom fon CSS class for that icon
+/**
+ * Convert a config response icon keyword to the custom fon CSS class for that icon
  * @param {string} tag The keyword associated with the icon. See GCU Av Framework documentation on Confluence for valid values.
  */
 export const translateIconTag = (tag) => {

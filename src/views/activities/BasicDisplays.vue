@@ -5,11 +5,16 @@ import DisplayControlCard from '@/components/cards/DisplayControlCard.vue'
 const videoStore = useVideoStore()
 
 const onPowerChange = (id, state) => {
-  videoStore.sendDisplayPower(id, state)
+  try {
+    videoStore.sendSingleDisplayPower(id, state)
+  }
+  catch (error) {
+    console.error(error)
+  }
 }
 
 const onScreenChange = (id, state) => {
-  videoStore.sendScreenControl(id, state)
+  videoStore.sendDisplayScreenControl(id, state)
 }
 </script>
 

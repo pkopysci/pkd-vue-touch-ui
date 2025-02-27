@@ -18,7 +18,7 @@ const showKeypad = ref(false)
 const showDvrModal = ref(false)
 
 onBeforeMount(() => {
-  let found = devControlStore.devices.find((x) => x.Id == modalStore.sourceControlState.id)
+  let found = devControlStore.devices.find((x) => x.Id === modalStore.sourceControlState.id)
   device.value = found ? found : emptyDevice
 })
 
@@ -28,11 +28,11 @@ onBeforeUnmount(() => {
 })
 
 const onSendTransport = (transport) => {
-  devControlStore.sendTransportCommand(device.value.Id, transport)
+  devControlStore.sendDeviceTransportCommand(device.value.Id, transport)
 }
 
 const onSendFavorite = (favId) => {
-  devControlStore.sendFavoriteCommand(device.value.Id, favId)
+  devControlStore.sendDeviceFavoriteCommand(device.value.Id, favId)
 }
 
 const setKeypadState = (state) => {

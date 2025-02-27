@@ -5,16 +5,16 @@ import AudioDestinationCard from '@/components/cards/AudioDestinationCard.vue';
 import AudioDestinationModal from '@/components/modals/AudioDestinationModal.vue';
 
 const audioStore = useAudioStore();
-const modalstore = useModalStore();
+const modalStore = useModalStore();
 
 const onDestinationSelected = (id) => {
-    modalstore.setAudioDestinationControlState(id, true);
+    modalStore.setAudioDestinationControlState(id, true);
 }
 
 </script>
 
 <template>
-    <AudioDestinationModal v-show="modalstore.audioDestinationControlState.isVisible"/>
+    <AudioDestinationModal v-show="modalStore.audioDestinationControlState.isVisible"/>
     <div class="audio-matrix fade-in vertical-activity">
         <AudioDestinationCard v-for="dest in audioStore.outputs" :key="dest.Id" :dataObject="dest"
             @control-selected="onDestinationSelected" />

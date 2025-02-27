@@ -28,8 +28,8 @@ const onDone = () => {
           <p v-if="videoStore.avrRouters.length > 0">
             <span>AV Router:</span> {{ videoStore.avrRouters[0].Label }}
           </p>
-          <p v-if="audioStore.dspInfo.length > 0">
-            <span>Audio DSP:</span> {{ audioStore.dspInfo[0].Model }}
+          <p v-if="audioStore.audioDevices.length > 0">
+            <span>Audio DSP:</span> {{ audioStore.audioDevices[0].Model }}
           </p>
           <h2 v-if="videoStore.displays.length > 0">Displays:</h2>
           <div class="table-header" v-if="videoStore.displays.length > 0">
@@ -124,10 +124,5 @@ h2,
 h3 {
   font-weight: bold;
   font-size: 1.6rem;
-}
-
-.done-button {
-  width: 10rem;
-  height: 5rem;
 }
 </style>

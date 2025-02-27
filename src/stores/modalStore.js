@@ -1,74 +1,80 @@
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
 import { checkString, checkBoolean } from '@/data/validators'
 
 /**
  * state management for modal visibility.
  */
-export const useModalStore = defineStore('useModalStore', {
-  state: () => ({
-    errorListVisible: false,
-    shutownConfirmationVisible: false,
-    helpVisible: false,
-    pgmAudiovisible: false,
-    videoWallLayoutsVisible: false,
-    sourceListVisible: false,
-    sourceControlState: { id: '', isVisible: false },
-    audioChannelControlState: { id: '', isVisible: false },
-    videoDestinationControlState: { id: '', isVisible: false },
-    audioDestinationControlState: { id: '', isVisible: false }
-  }),
-  actions: {
+export const useModalStore = defineStore('useModalStore', () => {
+  
+  const errorListVisible = ref(false)
+  const shutdownConfirmationVisible = ref(false)
+  const helpVisible = ref(false)
+  const pgmAudioVisible = ref(false)
+  const videoWallLayoutsVisible = ref(false)
+  const sourceListVisible = ref(false)
+  const sourceControlState = ref({id: '', isVisible: false})
+  const audioChannelControlState = ref( {id: '', isVisible: false })
+  const videoDestinationControlState = ref({ id: '', isVisible: false })
+  const audioDestinationControlState = ref({ id: '', isVisible: false })
+
+
     /**
      * @param {boolean} isVisible True = show modal, false = hide modal
      */
-    setErrorListVisibility(isVisible) {
+    function setErrorListVisibility(isVisible) {
       if (!checkBoolean(isVisible, 'isVisible', 'modalStore.setErrorListVisibility')) return
-      this.errorListVisible = isVisible
-    },
+      errorListVisible.value = isVisible
+    }
+
     /**
      * @param {boolean} isVisible True = show modal, false = hide modal
      */
-    setShutdownConfirmationVisibility(isVisible) {
+    function setShutdownConfirmationVisibility(isVisible) {
       if (!checkBoolean(isVisible, 'isVisible', 'modalStore.setShutdownConfirmationVisibility'))
         return
-      this.shutownConfirmationVisible = isVisible
-    },
+      shutdownConfirmationVisible.value = isVisible
+    }
+
     /**
      * @param {boolean} isVisible True = show modal, false = hide modal
      */
-    setHelpVisibility(isVisible) {
+    function setHelpVisibility(isVisible) {
       if (!checkBoolean(isVisible, 'isVisible', 'modalStore.setHelpVisibility')) return
-      this.helpVisible = isVisible
-    },
+      helpVisible.value = isVisible
+    }
+
     /**
      * Set the visibility of the video wall layout modal.
      * @param {boolean} isVisible - True to show the modal, false to hide it.
      */
-    setVideoWallLayoutVisibility(isVisible) {
+    function setVideoWallLayoutVisibility(isVisible) {
       if (!checkBoolean(isVisible, 'isVisible', 'modalStore.setVideoWallLayoutVisibility')) return
-      this.videoWallLayoutsVisible = isVisible
-    },
+      videoWallLayoutsVisible.value = isVisible
+    }
+
     /**
      * show or hide a device control modal on the UI.
      * @param {string} id the unique ID of the device to control
      * @param {boolean} isVisible true = show modal, false = hide modal.
      */
-    setSourceControlState(id, isVisible) {
+    function setSourceControlState(id, isVisible) {
       if (
         !checkString(id, 'id', 'modalStore.setSourceControlState') ||
         !checkBoolean(isVisible, 'isVisible', 'modalStore.setSourceControlState')
       ) {
         return
       }
-      this.sourceControlState.id = id
-      this.sourceControlState.isVisible = isVisible
-    },
+      sourceControlState.value.id = id
+      sourceControlState.value.isVisible = isVisible
+    }
+
     /**
      * Update the stored status of the audio channel control modal.
      * @param {string} id the unique ID of the device to control
      * @param {boolean} isVisible true = show modal, false = hide modal.
      */
-    setAudioChannelControlState(id, isVisible) {
+    function setAudioChannelControlState(id, isVisible) {
       if (
         !checkString(id, 'id', 'modalStore.setAudioChannelControlState') ||
         !checkBoolean(isVisible, 'isVisible', 'modalStore.setAudioChannelControlState')
@@ -76,23 +82,25 @@ export const useModalStore = defineStore('useModalStore', {
         return
       }
 
-      this.audioChannelControlState.id = id
-      this.audioChannelControlState.isVisible = isVisible
-    },
+      audioChannelControlState.value.id = id
+      audioChannelControlState.value.isVisible = isVisible
+    }
+
     /**
      * Set the visibility of the program audio modal.
      * @param {boolean} isVisible true = show modal, false = hide modal
      */
-    setProgramAudioVisibility(isVisible) {
+    function setProgramAudioVisibility(isVisible) {
       if (!checkBoolean(isVisible, 'isVisible', 'modalStore.setProgramAudioVisibility')) return
-      this.pgmAudiovisible = isVisible
-    },
+      pgmAudioVisible.value = isVisible
+    }
+
     /**
      * Set the visibility of a video destination control modal.
      * @param {string} id The unique ID of the video destination to control.
      * @param {boolean} isVisible true = show modal, false = hide modal.
      */
-    setVideoDestinationControlState(id, isVisible) {
+    function setVideoDestinationControlState(id, isVisible) {
       if (
         !checkString(id, 'id', 'modalStore.setVideoDestinationControlState') ||
         !checkBoolean(isVisible, 'isVisible', 'modalStore.setVideoDestinationControlState')
@@ -100,15 +108,16 @@ export const useModalStore = defineStore('useModalStore', {
         return
       }
 
-      this.videoDestinationControlState.id = id
-      this.videoDestinationControlState.isVisible = isVisible
-    },
+      videoDestinationControlState.value.id = id
+      videoDestinationControlState.value.isVisible = isVisible
+    }
+
     /**
      * Set the visibility of an audio destination control modal.
      * @param {string} id The unique ID of the audio destination to control.
      * @param {boolean} isVisible true = show modal, false = hide modal.
      */
-    setAudioDestinationControlState(id, isVisible) {
+    function setAudioDestinationControlState(id, isVisible) {
       if (
         !checkString(id, 'id', 'modalStore.setAudioDestinationControlState') ||
         !checkBoolean(isVisible, 'isVisible', 'modalStore.setAudioDestinationControlState')
@@ -116,12 +125,35 @@ export const useModalStore = defineStore('useModalStore', {
         return
       }
 
-      this.audioDestinationControlState.id = id
-      this.audioDestinationControlState.isVisible = isVisible
-    },
-    setSourceListVisibility(isVisible) {
-      if (!checkBoolean(isVisible, 'isVisible', 'modalStore.setSourceListVisibility')) return
-      this.sourceListVisible = isVisible
+      audioDestinationControlState.value.id = id
+      audioDestinationControlState.value.isVisible = isVisible
     }
-  }
+
+    function setSourceListVisibility(isVisible) {
+      if (!checkBoolean(isVisible, 'isVisible', 'modalStore.setSourceListVisibility')) return
+      sourceListVisible.value = isVisible
+    }
+
+    return {
+      errorListVisible,
+      shutdownConfirmationVisible,
+      helpVisible,
+      pgmAudioVisible,
+      videoWallLayoutsVisible,
+      sourceListVisible,
+      sourceControlState,
+      audioChannelControlState,
+      videoDestinationControlState,
+      audioDestinationControlState,
+      setErrorListVisibility,
+      setShutdownConfirmationVisibility,
+      setHelpVisibility,
+      setVideoWallLayoutVisibility,
+      setSourceControlState,
+      setAudioChannelControlState,
+      setProgramAudioVisibility,
+      setVideoDestinationControlState,
+      setAudioDestinationControlState,
+      setSourceListVisibility
+    }
 })

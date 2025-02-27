@@ -9,18 +9,18 @@ const commands = {
     store.updateDspInfo(cmd.Data.Dsp)
   },
   LEVEL: (store, cmd) => {
-    if (cmd.Data.Io == 'INPUT') {
+    if (cmd.Data.Io === 'INPUT') {
       store.updateAudioInputLevel(cmd.Data.Id, cmd.Data.Level)
-    } else if (cmd.Data.Io == 'OUTPUT') {
+    } else if (cmd.Data.Io === 'OUTPUT') {
       store.updateAudioOutputLevel(cmd.Data.Id, cmd.Data.Level)
     } else {
       console.error('AudioInfoFeedback - unknown level IO received: ' + cmd.Data.Io)
     }
   },
   MUTE: (store, cmd) => {
-    if (cmd.Data.Io == 'INPUT') {
+    if (cmd.Data.Io === 'INPUT') {
       store.updateAudioInputMute(cmd.Data.Id, cmd.Data.Mute)
-    } else if (cmd.Data.Io == 'OUTPUT') {
+    } else if (cmd.Data.Io === 'OUTPUT') {
       store.updateAudioOutputMute(cmd.Data.Id, cmd.Data.Mute)
     } else {
       console.error('AudioInfoFeedback - unknown mute IO received: ' + cmd.Data.Io)
@@ -33,7 +33,7 @@ const commands = {
     store.updateAudioRoute(cmd.Data.OutId, cmd.Data.InId)
   },
   STATUS: (store, cmd) => {
-    
+    store.updateAudioDevice(cmd.Data.AudioDevice)
   }
 }
 
@@ -50,7 +50,7 @@ export default function createAudioControlPlugin() {
     if (parsed.firstCommand) {
       try {
         const cmd = JSON.parse(parsed.firstCommand)
-        if (cmd.Command == 'ERROR') {
+        if (cmd.Command === 'ERROR') {
           console.error(`AudioInfoFeedback - error RX received: ${cmd.Data.Message}`)
         } else {
           commands[cmd.Command](audioStore, cmd)

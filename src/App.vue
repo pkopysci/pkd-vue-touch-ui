@@ -46,7 +46,7 @@ watch(rootStoreRefs.isOnline, () => {
     title="System Locked"
     message="Please use the primary interface to adjust room settings."
   />
-
+  
   <SystemNoticeModal
     v-if="!rootStore.isOnline"
     icon="fa-solid fa-link-slash"
@@ -55,7 +55,7 @@ watch(rootStoreRefs.isOnline, () => {
   />
 
   <PasscodeModal v-if="securityStore.isSecure" v-show="securityStore.systemLocked"></PasscodeModal>
-
+  
   <ActiveView v-if="rootStore.isInUse" />
   <StandbyView v-else />
 </template>

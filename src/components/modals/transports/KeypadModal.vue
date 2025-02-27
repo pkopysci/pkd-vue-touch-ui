@@ -20,8 +20,8 @@ const wrapperStyle = {
   gap: '20px'
 }
 
-const onKeypadyEnter = (entry) => {
-  deviceStore.sendChannelCommand(props.deviceId, entry)
+const onKeypadEnter = (entry) => {
+  deviceStore.sendDeviceChannelCommand(props.deviceId, entry)
   toast.success('Dialing ' + entry + '...')
 }
 </script>
@@ -32,7 +32,7 @@ const onKeypadyEnter = (entry) => {
       :show-enter="true"
       :show-entry-field="true"
       :show-dash="true"
-      @enterWithEntrySelected="onKeypadyEnter"
+      @enterWithEntrySelected="onKeypadEnter"
     ></NumberPad>
     <button class="done-button" @click="$emit('onClose')">close</button>
   </ModalWrapper>
