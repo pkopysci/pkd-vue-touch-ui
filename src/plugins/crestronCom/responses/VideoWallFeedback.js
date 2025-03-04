@@ -4,10 +4,7 @@ import { parseResponse } from './dataParser'
 
 const commands = {
     CONFIG: (store, cmd) => {
-        if (cmd.Data.Controllers.length <= 0) {
-            console.error('VideoWallFeedback - no controllers found')
-            return
-        }
+        if (cmd.Data.Controllers.length <= 0) return
         store.updateConfig(cmd.Data.Controllers[0].Layouts, cmd.Data.Controllers[0].Sources, cmd.Data.Controllers[0].Id)
     },
     ROUTE: (store, cmd) => store.updateCellRoute(cmd.Data.CellId, cmd.Data.SourceId),

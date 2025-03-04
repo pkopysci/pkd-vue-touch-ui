@@ -78,7 +78,12 @@ export const useAudioStore = defineStore('audioStore', () => {
      */
     function updateDspInfo(dataObject) {
         if (!checkDefined(dataObject, 'dataObject', 'audioStore.updateDspInfo')) return
-        audioDevices.value = dataObject
+        audioDevices.value = dataObject        
+        audioDevices.value.forEach((item) => {
+            if (!item.IsOnline) {
+                errorStore.addError(item.Id, `${item.Label} is offline.`)
+            }
+        })
     }
 
     /**
@@ -86,7 +91,7 @@ export const useAudioStore = defineStore('audioStore', () => {
      * @param {object} newDevice The data object that will replace one in the current collection if found.
      */
     function updateAudioDevice(newDevice) {
-        let idx = audioDevices.value.findIndex((x) => x.Id === newDevice.Id)
+        let idx = audioDevices.value.indexOf((x) => x.Id === newDevice.Id)
         if (idx > -1) {
             console.error`audioStore.updateAudioDevice() - no device found with ID ${newDevice.Id}`
             return

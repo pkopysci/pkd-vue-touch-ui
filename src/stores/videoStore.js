@@ -169,6 +169,12 @@ export const useVideoStore = defineStore('videoStore', () => {
   function updateDisplays(newDisplays) {
     if (!checkDefined(newDisplays, 'newDisplays', 'videoStore.updateDisplays')) return false
     displays.value = newDisplays
+    
+    displays.value.forEach(item => {
+      if (!item.IsOnline) {
+        errorStore.addError(item.Id, `${item.Label} is offline.`)
+      }
+    })
   }
   
   function updateDisplay(display) {
@@ -214,9 +220,11 @@ export const useVideoStore = defineStore('videoStore', () => {
   function updateAvrInfo(dataObject) {
     if (!checkDefined(dataObject, 'dataObject', 'videoStore.updateAvrInfo')) return false
 
-    if (dataObject) {
-      avrRouters.value = dataObject
-    }
+    if (!dataObject) return
+    avrRouters.value = dataObject
+    avrRouters.value.forEach(item => {
+      if (!item.IsOnline) { errorStore.addError(item.Id, `${item.Label} is offline.`) }
+    })
   }
   
   function updateAvrDevice(avr) {
@@ -225,12 +233,12 @@ export const useVideoStore = defineStore('videoStore', () => {
       console.error('videoStore.updateAvrConnectionStats() - no AVR found with ID ' + avr.Id)
       return
     }
-
+    
     avrRouters.value[idx] = avr
     if (avr.IsOnline) {
       errorStore.removeError(avr.Id)
     } else {
-      errorStore.addError(avr.id, `AVR ${avr.Label} is offline.`)
+      errorStore.addError(avr.Id, `AVR ${avr.Label} is offline.`)
     }
   }
   

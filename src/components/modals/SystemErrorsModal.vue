@@ -21,7 +21,7 @@ const onDone = () => {
         <span>Support Contact: {{ rootStore.helpNumber }}</span>
       </div>
       <ul>
-        <li v-for="error in errorStore.errorsList" :key="error">{{ error }}</li>
+        <li v-for="error in errorStore.errorsList" :key="error.errorId">{{ error.errorMessage }}</li>
       </ul>
       <button class="close-button" @click="onDone()">X</button>
     </div>
