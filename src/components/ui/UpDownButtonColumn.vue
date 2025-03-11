@@ -1,5 +1,5 @@
 <script setup>
-defineProps(['topButtonText', 'buttonsLabel'])
+defineProps(['topButtonText', 'buttonsLabel', 'hideTopButton'])
 const emit = defineEmits([
   'upPressed',
   'upReleased',
@@ -27,7 +27,7 @@ const onDownRelease = () => {
 
 <template>
   <div class="updown-column">
-    <button @click="$emit('topButtonPresssed')">{{ topButtonText }}</button>
+    <button v-if="!hideTopButton" @click="$emit('topButtonPresssed')">{{ topButtonText }}</button>
     <button
       @touchstart="onUpPress"
       @touchend="onUpRelease"

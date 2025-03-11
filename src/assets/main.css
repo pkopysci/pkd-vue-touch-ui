@@ -24,6 +24,10 @@
   --modal-backdrop-color: rgba(0, 0, 0, 0.5);
 }
 
+/*----------------------------------------
+/* Standardized headers & texts
+*----------------------------------------*/
+
 html {
   font-family: 'Lato';
   font-weight: 300;
@@ -52,6 +56,10 @@ h3 {
 a {
   color: var(--text-color);
 }
+
+/*----------------------------------------
+/* Interactive Elements
+*----------------------------------------*/
 
 button {
   font-size: 1.5rem;
@@ -84,6 +92,15 @@ button:active {
   font-size: 2em !important;
 }
 
+
+#app {
+  height: 100vh;
+}
+
+/*----------------------------------------
+* animations
+*----------------------------------------*/
+
 .fade-in {
   animation: fadeIn 0.5s;
 }
@@ -96,10 +113,6 @@ button:active {
   }
 }
 
-#app {
-  height: 100vh;
-}
-
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.25s ease;
@@ -110,8 +123,39 @@ button:active {
   opacity: 0;
 }
 
+/*----------------------------------------
+* Layout styles
+*----------------------------------------*/
+.pad-10 {
+  padding: 10px;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col { 
+  flex-direction: column;
+}
+
 .flex-grow {
   flex-grow: 1;
+}
+
+.fill-horiz {
+  width: 100%;
+}
+
+.fill-vert {
+  height: 100%;
+}
+
+.horizontal-center {
+  justify-content: center;
+}
+
+.vertical-center {
+  align-items: center;
 }
 
 .alert {

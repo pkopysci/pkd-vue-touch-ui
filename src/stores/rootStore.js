@@ -5,6 +5,7 @@ import { checkString, checkBoolean, checkDefined } from '@/data/validators'
 import { useSecurityStore } from './securityStore'
 import { setSytemUseState } from '../plugins/crestronCom/commands/systemStateCommands'
 
+
 /**
  * Base state management for general room information. State object:
  * { isOnline, isInUse, roomName, helpNumber, roomType, isSecure, isTech, mainMenu[{id, label, icon, control, source}]}
@@ -30,7 +31,7 @@ export const useRootStore = defineStore('rootStore', () => {
   
   /** true = UI should allow advanced tech elements, false = normal options only */
   const isTech = ref(false)
-  
+
   /** The tag of the activity that will be shown during startup. */
   const defaultActivity = ref('av-routing')
   

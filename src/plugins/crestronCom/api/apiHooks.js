@@ -28,8 +28,11 @@ export const lightingControlHook = { type: 's', join: '8' }
 /** String join for querying for and receiving device error notices. */
 export const errorReportingHook = { type: 's', join: '9'}
 
-/** String join for sending and receivingvideo wall commands. */
+/** String join for sending and receiving video wall commands. */
 export const videoWallHook = { type: 's', join: '10' }
+
+/** String join for sending and receiving camera control commands. */
+export const cameraControlHook = { type: 's', join: '11' }
 
 /**
  * Tries to send a command to the control system. If successful, the command will be routed
