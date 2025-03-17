@@ -37,7 +37,7 @@ export const useCameraStore = defineStore('cameraStore', () => {
     cameras.value.forEach((cam) => {
       if (!cam.IsOnline) {
         // removing existing errors before replacing collection
-        errorStore.clearError(cam.Id)
+        errorStore.removeError(cam.Id)
       }
     })
 

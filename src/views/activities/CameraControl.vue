@@ -16,24 +16,15 @@ const onCameraSelected = (id) => {
 }
 
 const onPresetSelect = (id) => {
-
-    console.log('CameraControl - onPresetSelect', id)
-
     cameraStore.sendPresetSelect(selectedCamera.value.Id, id)
 }
 
 const onTiltUp = () => {
-
-    console.log('CameraControl - onTiltUp')
-
     ptzVector.y = 1
     cameraStore.sendCameraPanTilt(selectedCamera.value.Id, ptzVector)
 }
 
 const onTiltDown = () => {
-
-    console.log('CameraControl - onTiltDown')
-
     ptzVector.y = -1
     cameraStore.sendCameraPanTilt(selectedCamera.value.Id, ptzVector)
 }
@@ -46,25 +37,16 @@ const onPanLeft = () => {
     cameraStore.sendCameraPanTilt(selectedCamera.value.Id, ptzVector)
 }
 const onPanRight = () => {
-
-    console.log('CameraControl - onPanRight')
-
     ptzVector.x = 1
     cameraStore.sendCameraPanTilt(selectedCamera.value.Id, ptzVector)
 }
 const onPtzStop = () => {
-
-    console.log('CameraControl - onPtzStop')
-
     ptzVector.x = 0
     ptzVector.y = 0
     cameraStore.sendCameraPanTilt(selectedCamera.value.Id, ptzVector)
 }
 
 const onZoom = (direction) => {
-
-    console.log('CameraControl - onZoom', direction)
-
     cameraStore.sendCameraZoom(selectedCamera.value.Id, direction)
 }
 </script>
