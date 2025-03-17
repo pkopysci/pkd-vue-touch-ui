@@ -94,6 +94,15 @@ export const testMenu = [
     Control: 'video-wall',
     SourceSelect: '',
     Tags: []
+  },
+  {
+    Id: 'MENU08',
+    Visible: true,
+    Label: 'Cameras',
+    Icon: 'camera',
+    Control: 'cameras',
+    SourceSelect: '',
+    Tags: []
   }
 ]
 
@@ -532,4 +541,26 @@ export const testVideoWallLayouts = [
     Height: 1,
     Cells: [{ Id: 'vw04d01', XPosition: 1, YPosition: 1, SourceId: 'vs01' }]
   },
+]
+
+export const testCameras = [
+  {
+    Id: 'cam01',
+    Label: 'Camera 1',
+    Icon: 'camera',
+    Control: '',
+    Manufacturer: 'Fake Camera',
+    Model: 'Fakery',
+    IsOnline: true,
+    SupportsZoom: true,
+    SupportsPanTilt: true,
+    SupportsSavingPresets: true,
+    Presets: [
+      { Id: 'preset1', Label: 'Preset 1' },
+      { Id: 'preset2', Label: 'Preset 2' },
+      { Id: 'preset3', Label: 'Preset 3' },
+      { Id: 'preset4', Label: 'Preset 4' }
+    ],
+    Tags: []
+  }
 ]

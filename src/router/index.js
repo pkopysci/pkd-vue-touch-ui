@@ -57,6 +57,11 @@ const router = createRouter({
       path: '/videoconference',
       name: 'video-conference',
       component: () => import('../views/activities/VideoConference.vue')
+    },
+    {
+      path: '/cameracontrol',
+      name: 'cameras',
+      component: () => import('../views/activities/CameraControl.vue')
     }
   ]
 })

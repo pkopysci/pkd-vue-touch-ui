@@ -19,6 +19,7 @@ import createLightingControlPlugin from './plugins/crestronCom/responses/lightin
 import createErrorPlugin from './plugins/crestronCom/responses/errorResponses'
 import createCustomEventPlugin from './plugins/crestronCom/responses/CustomEventFeedback'
 import createVideoWallPlugin from './plugins/crestronCom/responses/VideoWallFeedback'
+import createCameraControlPlugin from './plugins/crestronCom/responses/cameraFeedback'
 
 const app = createApp(App)
 app.use(createPinia())
@@ -47,3 +48,4 @@ createLightingControlPlugin()
 createCustomEventPlugin()
 createErrorPlugin()
 createVideoWallPlugin()
+createCameraControlPlugin()

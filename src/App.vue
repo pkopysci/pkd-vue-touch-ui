@@ -8,6 +8,7 @@ import { useAudioStore } from './stores/audioStore'
 import { useVideoWallStore } from './stores/videoWallStore'
 import { useLightingStore } from './stores/lightingStore'
 import { useControlledDeviceStore } from './stores/controlledDeviceStore'
+import { useCameraStore } from './stores/cameraStore'
 import ActiveView from './views/ActiveView.vue'
 import StandbyView from './views/StandbyView.vue'
 import SystemNoticeModal from './components/modals/SystemNoticeModal.vue'
@@ -22,6 +23,7 @@ const audioStore = useAudioStore()
 const videoWallStore = useVideoWallStore()
 const lightingStore = useLightingStore()
 const deviceControlStore = useControlledDeviceStore()
+const cameraStore = useCameraStore()
 
 const getData = () => {
   rootStore.requestConfigUpdate()
@@ -30,6 +32,7 @@ const getData = () => {
   videoWallStore.requestConfigUpdate()
   lightingStore.requestConfigUpdate()
   deviceControlStore.requestConfigUpdate()
+  cameraStore.requestConfigUpdate()
 }
 
 watch(rootStoreRefs.isOnline, () => {

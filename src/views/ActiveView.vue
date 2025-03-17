@@ -13,6 +13,7 @@ import ActiveHeader from '@/components/ui/ActiveHeader.vue'
 import LoadingModal from '@/components/modals/LoadingModal.vue'
 import AudioChannelModal from '@/components/modals/AudioChannelModal.vue'
 import { emptyChannel, useAudioStore } from '@/stores/audioStore'
+import CameraControl from './activities/CameraControl.vue'
 
 const modalStore = useModalStore()
 const rootStore = useRootStore()
