@@ -4,6 +4,7 @@ import { useErrorStore } from '@/stores/errorStore'
 import { useModalStore } from '@/stores/modalStore'
 import { useCustomEventStore } from '@/stores/customEventStore'
 import { useAudioStore } from '@/stores/audioStore'
+import router from "@/router/index.js";
 
 const errorStore = useErrorStore()
 const modalStore = useModalStore()
@@ -19,6 +20,9 @@ const onSelectErrors = () => {
 }
 const onSelectPower = () => {
   modalStore.setShutdownConfirmationVisibility(true)
+}
+const onSelectMics = () => {
+  router.push({ name: 'mics' })
 }
 const checkMics = () => {
   let newMute = false
@@ -40,7 +44,9 @@ onBeforeMount(() => {
 <template>
   <div class="active-header">
     <i v-if="customEventStore.activeEvents.length > 0" class="fa-solid fa-eye"></i>
-    <i v-show="micIsMuted" class="fa-solid fa-microphone-slash alert"></i>
+    <button v-show="micIsMuted" @click="onSelectMics()">
+      <i class="fa-solid fa-microphone-slash alert"></i>
+    </button>
     <div class="header-controls">
       <button @click="onSelectErrors()" v-show="errorStore.errorsList.length > 0">
         <i class="fa-solid fa-circle-exclamation alert"></i>
@@ -71,12 +77,12 @@ onBeforeMount(() => {
   align-items: center;
   justify-content: end;
   padding: 10px;
-  gap: 20px;
+  gap: 40px;
   font-size: 2.8rem;
 }
 .header-controls {
   display: flex;
-  gap: 40px;
+  gap: 60px;
   padding: 20px;
   border-radius: 10px;
   background: var(--card-background);

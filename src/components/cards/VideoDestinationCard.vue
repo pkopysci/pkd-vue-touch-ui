@@ -30,8 +30,8 @@ watch(props.dataObject, () => {
 <template>
   <MatrixDestinationCard :title="dataObject.Label">
     <button class="source-block" @click="$emit('routeSelected', dataObject.Id)">
-      <i :class="translateIconTag(selectedSource.Icon)"></i>
-      <h3>{{ selectedSource.Label }}</h3>
+      <i :class="translateIconTag(selectedSource.Icon)" class="source-icon"></i>
+      <span class="source-label">{{ selectedSource.Label }}</span>
     </button>
     <button
       v-if="selectedSource.Control.length > 0"
@@ -43,22 +43,26 @@ watch(props.dataObject, () => {
 </template>
 
 <style scoped>
+.source-icon {
+  font-size: 3rem;  
+}
+
+.source-label {
+  font-size: 1.5rem;
+}
+
 .source-block {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  margin-top: 15px;
+  gap:30px;
   background: none;
   border: none;
 }
-.source-block i {
-  font-size: 2.5rem;
-}
-.source-block h3 {
-  font-size: 1.8rem;
-}
+
 
 button {
   display: flex;

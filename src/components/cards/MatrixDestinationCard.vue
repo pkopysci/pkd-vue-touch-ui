@@ -17,7 +17,7 @@ defineProps(['title'])
 
 <style scoped>
 .matrix-destination-card {
-    height: 250px;
+    min-height: 280px;
     width: 250px;
     display: flex;
     flex-direction: column;    
@@ -27,8 +27,7 @@ defineProps(['title'])
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
-    max-width: 90%;
+    padding-top: 15px;
 }
 .card-title h2 {
     font-size: 1.8rem;

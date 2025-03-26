@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import { checkString, checkBoolean, checkDefined } from '@/data/validators'
 import { useRootStore } from './rootStore'
+import { useToast } from "vue-toastification";
 import {
   sendVideoConfigQuery,
   sendDisplaysConfigQuery,
@@ -52,6 +53,7 @@ export const useVideoStore = defineStore('videoStore', () => {
 
   const errorStore = useErrorStore()
   const rootStore = useRootStore()
+  const toast = useToast()
   
   /**
    * A collection of objects representing all controllable displays/projectors in the system.
@@ -275,7 +277,12 @@ export const useVideoStore = defineStore('videoStore', () => {
     ) {
       return
     }
-
+    
+    let index = displays.value.findIndex((x) => x.Id === displayId)
+    if (index > -1) {
+      toast.info(`${displays.value[index].Label} is turning ${newState ? 'on' : 'off'}`, {timeout: 10000})
+    }
+    
     sendDisplayPower(displayId, newState)
   }
   
