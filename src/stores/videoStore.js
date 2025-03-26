@@ -32,6 +32,8 @@ export const emptyDestination = {
 }
 
 export const emptyDisplay = {
+  Manufacturer: '',
+  Model: '',
   Id: '',
   Label: '',
   Icon: '',
@@ -168,8 +170,9 @@ export const useVideoStore = defineStore('videoStore', () => {
    */
   function updateDisplays(newDisplays) {
     if (!checkDefined(newDisplays, 'newDisplays', 'videoStore.updateDisplays')) return false
-    displays.value = newDisplays
     
+    displays.value.forEach((x) => {errorStore.removeError(x.Id)})
+    displays.value = newDisplays
     displays.value.forEach(item => {
       if (!item.IsOnline) {
         errorStore.addError(item.Id, `${item.Label} is offline.`)

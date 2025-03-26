@@ -54,7 +54,8 @@ export const useRootStore = defineStore('rootStore', () => {
   /**
    * Update all state information in the store. An error is logged if any value is invalid and
    * the store is not updated. See parameter documentation for data object properties.
-   * @param {boolean} isOnline true = UI is connected to control, false = disconnected.
+   * @param {string} Model the name of the device.
+   * @param {boolean} IsOnline true = UI is connected to control, false = disconnected.
    * @param {boolean} IsInUse true = system is in 'active' state, false = in standby state.
    * @param {string} RoomName the room name/label that will be displayed on the UI.
    * @param {string} HelpNumber The tech support contact info to display on the UI.
@@ -64,6 +65,7 @@ export const useRootStore = defineStore('rootStore', () => {
    * @param {Array<object>} MainMenu collection of activities that will be available to the user.
    */
   function updateStateData({
+    Model,  
     IsInUse,
     RoomName,
     HelpNumber,
@@ -74,6 +76,7 @@ export const useRootStore = defineStore('rootStore', () => {
     MainMenu
   }) {
     let result =
+      checkString(Model, 'Model', 'rootStore.updateStateData') &&
       checkBoolean(IsInUse, 'IsInUse', 'rootStore.updateStateData') &&
       checkBoolean(IsSecure, 'IsSecure', 'rootStore.updateStateData') &&
       checkBoolean(IsTech, 'IsTech', 'rootStore.updateStateData') &&
@@ -92,6 +95,7 @@ export const useRootStore = defineStore('rootStore', () => {
     helpNumber.value = HelpNumber
     roomType.value = RoomType.toLowerCase()
     isTech.value = IsTech
+    uiModel.value = Model
     defaultActivity.value = DefaultActivity
     Object.assign(mainMenu.value, MainMenu)
     securityStore.updateIsSecure(IsSecure)
