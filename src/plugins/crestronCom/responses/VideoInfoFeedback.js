@@ -10,10 +10,37 @@ const updateFullConfig = (videoStore, cmd) => {
 
 const videoCommands = {
   CONFIG: updateFullConfig,
-  ROUTE: (videoStore, cmd) => videoStore.updateVideoRoute(cmd.Data.DestId, cmd.Data.SrcId),
-  GLOBALFREEZE: (videoStore, cmd) => videoStore.updateGlobalVideoFreeze(cmd.Data.State),
-  GLOBALBLANK: (videoStore, cmd) => videoStore.updateGlobalVideoBlank(cmd.Data.State),
-  STATUS: (store, cmd) => store.updateAvrDevice(cmd.Data.Avr)
+  ROUTE: (videoStore, cmd) => {
+    try {
+      videoStore.updateVideoRoute(cmd.Data.DestId, cmd.Data.SrcId)
+    } catch (e) {
+      console.error("Video route" + e)
+    }
+    
+  },
+  GLOBALFREEZE: (videoStore, cmd) => {
+    try {
+      videoStore.updateGlobalVideoFreeze(cmd.Data.State)
+    } catch (e) {
+      console.error("Global freeze" + e)
+    }
+  },
+  GLOBALBLANK: (videoStore, cmd) => {
+    try {
+      videoStore.updateGlobalVideoBlank(cmd.Data.State)
+    } catch (e) {
+      console.error("Global blank" + e)
+    }
+    
+  },
+  STATUS: (store, cmd) => {
+    try {
+      store.updateAvrDevice(cmd.Data.Avr)
+    } catch (e) {
+      console.error("STATUS" + e)
+    }
+    
+  }
 }
 
 const displayCommands = {
@@ -37,7 +64,7 @@ export default function createVideoControlPlugin() {
     const parsed = parseResponse(dataBuffer)
     dataBuffer = parsed.remainingData
 
-    if (parsed.firstCommand) {
+    if (parsed.firstCommand && parsed.firstCommand.length > 0) {
       try {
         let cmd = JSON.parse(parsed.firstCommand)
         if (cmd.Command === 'ERROR') {
@@ -46,7 +73,7 @@ export default function createVideoControlPlugin() {
           videoCommands[cmd.Command](videoStore, cmd)
         }
       } catch (err) {
-        console.error(`createVideoControlPlugin - failed to parse response: ${err}`)
+        console.error(`createVideoControlPlugin - failed to parse response: ${parsed.firstCommand}\n${err.message}`)
       }
     }
   })
@@ -58,7 +85,7 @@ export default function createVideoControlPlugin() {
     let parsed = parseResponse(displayDataBuffer)
     displayDataBuffer = parsed.remainingData
 
-    if (parsed.firstCommand) {
+    if (parsed.firstCommand && parsed.firstCommand.length > 0) {
       try {
         const cmd = JSON.parse(parsed.firstCommand)
         if (cmd.Command === 'ERROR') {
@@ -67,7 +94,7 @@ export default function createVideoControlPlugin() {
           displayCommands[cmd.Command](videoStore, cmd)
         }
       } catch (err) {
-        console.error(`createVideoControlPlugin - failed to parse display response: ${err.message}`)
+        console.error(`createVideoControlPlugin - failed to parse display response: ${parsed.firstCommand}\n${err.message}`)
       }
     }
   })

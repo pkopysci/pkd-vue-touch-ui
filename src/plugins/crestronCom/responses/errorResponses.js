@@ -2,6 +2,20 @@ import { useErrorStore } from '@/stores/errorStore'
 import { errorReportingHook } from '../api/apiHooks'
 import { parseResponse } from './dataParser'
 
+
+const handlers = {
+  ERRLIST: (store, data) => {
+    if (!data.Errors) return
+    data.Errors.forEach((error) => store.addError(error.Id, error.Message))
+  },
+  ADDERROR: (store, data) => {
+    store.addError(data.Id, data.Message)
+  },
+  REMOVEERROR: (store, data) => {
+    store.removeError(data.Id)
+  },
+};
+
 export default function createErrorPlugin() {
   const errorStore = useErrorStore()
 
@@ -19,7 +33,7 @@ export default function createErrorPlugin() {
             console.error('errorResponses - Received ERROR RX from control: ')
             console.error(cmd)
         } else {
-            errorStore.updateErrors(cmd.Data)
+            handlers[cmd.Command](errorStore, cmd)
         }
       } catch (err) {
         console.error(
