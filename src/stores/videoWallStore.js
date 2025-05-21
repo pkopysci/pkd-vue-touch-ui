@@ -6,18 +6,7 @@ import {
   sendVideoWallCellRouteRequest
 } from '@/plugins/crestronCom/commands/videoWallCommands'
 import {useErrorStore} from "@/stores/errorStore.js";
-
-
-/**
- * A default/empty layout object used when a specific layout cannot be found.
- */
-export const EmptyLayout = {
-  Id: 'emptyLayout',
-  Label: 'Empty Layout',
-  Width: 0,
-  Height: 0,
-  Cells: []
-}
+import { emptySource } from './videoStore';
 
 /**
  * A default/empty cell object used when a specific cell cannot be found.
@@ -32,31 +21,47 @@ export const EmptyCell = {
 }
 
 /**
+ * A default/empty layout object used when a specific layout cannot be found.
+ */
+export const EmptyLayout = {
+  Id: 'emptyLayout',
+  Label: 'Empty Layout',
+  Width: 0,
+  Height: 0,
+  Cells: [EmptyCell]
+}
+
+export const EmptyCanvas = {
+  Id: 'emptyCanvas',
+  Label: 'Empty Canvas',
+  ActiveLayoutId: '',
+  StartupLayoutId: '',
+  Width: 0,
+  Height: 0,
+  Layouts: [EmptyLayout]
+}
+
+
+export const EmptyVideoWall = {
+  Id: 'emptywall',
+  Label: 'Empty Wall',
+  Icon: 'tv',
+  Tags: [],
+  Manufacturer: 'empty Manufacturer',
+  Model: 'empty Model',
+  IsOnline: true,
+  Canvases: [EmptyCanvas],
+  Sources: [emptySource]
+}
+
+/**
  * A store for all video wall related data. This only supports one video wall controller at a time.
  */
 export const useVideoWallStore = defineStore('videoWallStore', () => {
 
   const errorStore = useErrorStore()
-  
-  /**
-   * The list of available layouts that can be selected.
-   */
-  const layouts = ref([EmptyLayout])
 
-  /**
-   * The list of routable video wall sources.
-   */
-  const sources = ref([])
-
-  /**
-   * The currently selected layout on the wall controller.
-   */
-  const selectedLayout = ref(EmptyLayout)
-
-  /**
-   * The ID of the first wall controller in the collection as of the last config update.
-   */
-  const controllerId = ref('')
+  const controllers = ref([EmptyVideoWall])
 
   /**
    * Requests the current video wall configuration from the control system.
@@ -73,12 +78,16 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    * @param {boolean} isOnline true = the device is online, false = device is offline.
    */
   function updateDeviceConnectionStatus(deviceId, isOnline) {
-    if (deviceId !== controllerId.value) return
-    
+    let index = controllers.value.findIndex(controller => controller.Id === deviceId)
+    if (index < 0) return
+
+    let controller = controllers.value[index]
+    controller.IsOnline = isOnline
+
     if (isOnline) {
       errorStore.removeError(deviceId)
     } else {
-      errorStore.addError(deviceId, "Video wall controller is offline.")
+      errorStore.addError(deviceId, `${controller.Model} ${controller.Id} is offline.`)
     }
   }
 
@@ -89,11 +98,8 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    * @param {array<Object>} newSources The new list of routable sources objects.
    * @param {string} wallControlId The id of the primary wall controller that hosts the layouts.
    */
-  function updateConfig(newLayouts, newSources, wallControlId) {
-
-    layouts.value = newLayouts
-    sources.value = newSources
-    controllerId.value = wallControlId
+  function updateConfig(newControllers) {
+    controllers.value = newControllers
   }
 
   /**
@@ -104,10 +110,20 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    * @param {string} controlId the id of the video wall control object being updated.
    * @param {string} layoutId - The id of the layout that should be selected.
    */
-  function updateSelectedLayout(controlId, layoutId) {
-    if (controlId !== controllerId.value) return
-    let found = layouts.value.find((x) => x.Id === layoutId)
-    selectedLayout.value = found ? found : EmptyLayout
+  function updateSelectedLayout(controlId, canvasId, layoutId) {
+    let controller = controllers.value.find(controller => controller.Id === controlId)
+    if (!controller) {
+      console.error(`videoWallStore.updateSelectedLayout - controller ${controlId} not found`)
+      return
+    }
+
+    let canvas = controller.Canvases.find(canvas => canvas.Id === canvasId)
+    if (!canvas) {
+      console.error(`videoWallStore.updateSelectedLayout - canvas ${canvasId} not found on controller ${controlId}`)
+      return
+    }
+
+    canvas.ActiveLayoutId = layoutId
   }
 
   /**
@@ -117,17 +133,18 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    * @param {string} cellId - The id of the cell to update.
    * @param {string} sourceId - The id of the source currently routed to the cell.
    */
-  function updateCellRoute(cellId, sourceId) {
-   if (!selectedLayout.value) {
-    console.error("VideoWallStore.updateCellRoute() - no layout selected")
-    return
-   }
+  function updateCellRoute(controlId, canvasId, cellId, sourceId) {
+    let controller = controllers.value.find(controller => controller.Id === controlId)
+    if (!controller) return
 
-    let cell = selectedLayout.value.Cells.find((x) => x.Id === cellId)
-    if (!cell) {
-      console.error(`VideoWallStore.updateCellRoute() - no cell found with id ${cellId}`)
-      return
-    }
+    let canvas = controller.Canvases.find(canvas => canvas.Id === canvasId)
+    if (!canvas) return
+
+    var layout = canvas.Layouts.find(layout => layout.Id === canvas.ActiveLayoutId)
+    if (!layout) return
+
+    let cell = layout.Cells.find(cell => cell.Id === cellId)
+    if (!cell) return
 
     cell.SourceId = sourceId
   }
@@ -138,8 +155,8 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    *
    * @param {string} layoutId - The id of the layout to select. If the layout does not exist, nothing is done.
    */
-  function sendLayoutSelect(layoutId) {
-    sendVideoWallLayoutSelect(controllerId.value, layoutId)
+  function sendLayoutSelect(controlId, canvasId, layoutId) {
+    sendVideoWallLayoutSelect(controlId, canvasId, layoutId)
   }
 
   /**
@@ -149,15 +166,12 @@ export const useVideoWallStore = defineStore('videoWallStore', () => {
    * @param {string} cellId - The id of the cell to route the source to.
    * @param {string} sourceId - The id of the source to route to the cell.
    */
-  function sendCellRoute(sourceId, cellId) {
-   sendVideoWallCellRouteRequest(controllerId.value, cellId, sourceId)
+  function sendCellRoute(controlId, canvasId, cellId, sourceId) {
+   sendVideoWallCellRouteRequest(controlId, canvasId, cellId, sourceId)
   }
 
   return {
-    layouts,
-    sources,
-    selectedLayout,
-    controllerId,
+    controllers,
     requestConfigUpdate,
     updateConfig,
     updateSelectedLayout,

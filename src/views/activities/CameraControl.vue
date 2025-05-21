@@ -16,6 +16,7 @@ const onCameraSelected = (id) => {
 }
 
 const onPresetSelect = (id) => {
+    console.log(selectedCamera.value.Id)
     cameraStore.sendPresetSelect(selectedCamera.value.Id, id)
 }
 
@@ -30,9 +31,6 @@ const onTiltDown = () => {
 }
 
 const onPanLeft = () => {
-
-    console.log('CameraControl - onPanLeft')
-
     ptzVector.x = -1
     cameraStore.sendCameraPanTilt(selectedCamera.value.Id, ptzVector)
 }

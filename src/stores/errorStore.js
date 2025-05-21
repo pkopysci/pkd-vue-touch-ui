@@ -13,18 +13,11 @@ export const useErrorStore = defineStore('errorStore', () => {
   }
 
   /**
-   * Replace the current collection of errors with a new collection.
-   * @param {Array.<string>} newErrors the new collection of errors.
-   */
-  function updateErrors(newErrors) {
-    errorsList.value = newErrors
-  }
-
-  /**
    * @param {string} errId the id of the error. This will be used when referencing errors and removing them.
    * @param errMsg the error message to display on the UI.
    */
   function addError(errId, errMsg) {
+    if (!errorsList.value || errorsList.value.length === 0) return
     let existingIdx = errorsList.value.findIndex(x => x.errorId === errId)
     if (existingIdx === -1) {
       errorsList.value.push({ errorId: errId, errorMessage: errMsg })
@@ -35,12 +28,12 @@ export const useErrorStore = defineStore('errorStore', () => {
    * @param errId the id of the error to remove, if it exists.
    */
   function removeError(errId) {
+    if (!errorsList.value || errorsList.value.length === 0) return
     errorsList.value = errorsList.value.filter((x) => x.errorId !== errId)
   }
 
   return {
     errorsList,
-    updateErrors,
     queryAllErrors,
     removeError,
     addError

@@ -47,7 +47,7 @@ export default function createAudioControlPlugin() {
     dataBuffer += data
     const parsed = parseResponse(dataBuffer)
     dataBuffer = parsed.remainingData
-    if (parsed.firstCommand) {
+    if (parsed.firstCommand && parsed.firstCommand.length > 0) {
       try {
         const cmd = JSON.parse(parsed.firstCommand)
         if (cmd.Command === 'ERROR') {
