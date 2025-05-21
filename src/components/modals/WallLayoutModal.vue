@@ -3,6 +3,8 @@ import { useVideoWallStore } from '@/stores/videoWallStore'
 import { useModalStore } from '@/stores/modalStore'
 import ItemListModalWrapper from './ItemListModalWrapper.vue'
 
+const props = defineProps(['controller','canvas'])
+
 const videoWallStore = useVideoWallStore()
 const modalStore = useModalStore()
 
@@ -11,7 +13,7 @@ const onModalClose = () => {
 }
 
 const onLayoutSelect = (layoutId) => {
-  videoWallStore.sendLayoutSelect(layoutId)
+  videoWallStore.sendLayoutSelect(props.controller.Id, props.canvas.Id, layoutId)
   onModalClose()
 }
 
@@ -20,7 +22,7 @@ const onLayoutSelect = (layoutId) => {
 <template>
   <ItemListModalWrapper @closeModal="onModalClose" title="Video Wall Layouts">
     <button
-      v-for="layout in videoWallStore.layouts"
+      v-for="layout in canvas.Layouts"
       :key="layout.Id"
       class="layout-button"
       @click="

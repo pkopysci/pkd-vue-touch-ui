@@ -495,53 +495,56 @@ export const testTransportDevices = [
   }
 ]
 
-export const testVideoWallLayouts = [
-  {
-    Id: 'vw01',
-    Label: '2x2 Grid',
-    Width: 2,
-    Height: 2,
-    Cells: [
-      { Id: 'vw01d01', XPosition: 1, YPosition: 1, SourceId: 'vs01' },
-      { Id: 'vw01d02', XPosition: 2, YPosition: 1, SourceId: 'vs02' },
-      { Id: 'vw01d03', XPosition: 1, YPosition: 2, SourceId: 'vs03' },
-      { Id: 'vw01d04', XPosition: 2, YPosition: 2, SourceId: 'vs04' }
-    ]
-  },
-  {
-    Id: 'vw02',
-    Label: '4x2 Grid',
-    Width: 4,
-    Height: 2,
-    Cells: [
-      { Id: 'vw02d01', XPosition: 1, YPosition: 1, SourceId: 'vs01' },
-      { Id: 'vw02d02', XPosition: 2, YPosition: 1, SourceId: 'vs01' },
-      { Id: 'vw02d03', XPosition: 3, YPosition: 1, SourceId: 'vs01' },
-      { Id: 'vw02d04', XPosition: 4, YPosition: 1, SourceId: 'vs01' },
-      { Id: 'vw02d05', XPosition: 1, YPosition: 2, SourceId: 'vs01' },
-      { Id: 'vw02d06', XPosition: 2, YPosition: 2, SourceId: 'vs01' },
-      { Id: 'vw02d07', XPosition: 3, YPosition: 2, SourceId: 'vs01' },
-      { Id: 'vw02d08', XPosition: 4, YPosition: 2, SourceId: 'vs01' }
-    ]
-  },
-  {
-    Id: 'vw03',
-    Label: 'Dual Video',
-    Width: 2,
-    Height: 1,
-    Cells: [
-      { Id: 'vw03d01', XPosition: 1, YPosition: 1, SourceId: 'vs01' },
-      { Id: 'vw03d02', XPosition: 2, YPosition: 1, SourceId: 'vs01' }
-    ]
-  },
-  {
-    Id: 'vw04',
-    Label: 'Full Screen',
-    Width: 1,
-    Height: 1,
-    Cells: [{ Id: 'vw04d01', XPosition: 1, YPosition: 1, SourceId: 'vs01' }]
-  },
-]
+export const testVideoWalls = [{
+  Id: 'vw01',
+  Label: 'Video Wall 1',
+  Icon: 'tv',
+  Tags: [],
+  Manufacturer: 'Fake Manufacturer',
+  Model: 'Fake Model',
+  IsOnline: true,
+  Canvases: [
+    {
+      Id: 'canvas01',
+      Label: 'Canvas 1',
+      StartupLayoutId: 'layout01',
+      ActiveLayoutId: 'layout01',
+      Width: 4,
+      Height: 2,
+      Layouts: [
+        {
+          Id: 'layout01',
+          Label: 'Layout 1',
+          Width: 4,
+          Height: 2,
+          Cells: [
+            { Id: 'cell01', SourceId: 'vs01', XPosition: 1, YPosition: 0 },
+            { Id: 'cell02', SourceId: 'vs02', XPosition: 2, YPosition: 0 },
+            { Id: 'cell03', SourceId: 'vs03', XPosition: 3, YPosition: 0 },
+            { Id: 'cell04', SourceId: 'vs04', XPosition: 4, YPosition: 0 },
+            { Id: 'cell05', SourceId: 'vs01', XPosition: 1, YPosition: 1 },
+            { Id: 'cell06', SourceId: 'vs02', XPosition: 2, YPosition: 1 },
+            { Id: 'cell07', SourceId: 'vs03', XPosition: 3, YPosition: 1 },
+            { Id: 'cell08', SourceId: 'vs04', XPosition: 4, YPosition: 1 }
+          ]
+        },
+        {
+          Id: 'layout02',
+          Label: 'Layout 2',
+          Width: 2,
+          Height: 2,
+          Cells: [
+            { Id: 'cell01', SourceId: 'vs01', XPosition: 0, YPosition: 0 },
+            { Id: 'cell02', SourceId: 'vs02', XPosition: 1, YPosition: 0 },
+            { Id: 'cell03', SourceId: 'vs03', XPosition: 0, YPosition: 1 },
+            { Id: 'cell04', SourceId: 'vs04', XPosition: 1, YPosition: 1 }
+          ]
+        }
+      ]
+    }
+  ],
+  Sources: testVideoInputs 
+}]
 
 export const testCameras = [
   {
