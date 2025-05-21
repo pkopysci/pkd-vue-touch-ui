@@ -8,7 +8,7 @@ const commands = {
     store.updateConfig(cmd.Data.Controllers)
   },
   ROUTE: (store, cmd) => {
-    store.updateCellRoute(cmd.Data.ControlId, cmd.Data.CanvasId, cmd.Data.CellId, cmd.Data.SourceId)
+    store.updateCellRoute(cmd.Data.CtId, cmd.Data.CaId, cmd.Data.CeId, cmd.Data.ScId)
   },
   LAYOUT: (store, cmd) => {
     store.updateSelectedLayout(cmd.Data.ControlId, cmd.Data.CanvasId, cmd.Data.LayoutId)
