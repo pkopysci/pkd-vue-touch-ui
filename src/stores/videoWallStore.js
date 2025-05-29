@@ -36,8 +36,8 @@ export const EmptyCanvas = {
   Label: 'Empty Canvas',
   ActiveLayoutId: '',
   StartupLayoutId: '',
-  Width: 0,
-  Height: 0,
+  MaxWidth: 0,
+  MaxHeight: 0,
   Layouts: [EmptyLayout]
 }
 

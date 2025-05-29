@@ -1,6 +1,6 @@
 <script setup>
-import { ref } from 'vue'
-import { useVideoWallStore } from '@/stores/videoWallStore'
+import { onMounted, ref, watch } from 'vue'
+import { useVideoWallStore, EmptyLayout, EmptyVideoWall, EmptyCanvas } from '@/stores/videoWallStore'
 import { useModalStore } from '@/stores/modalStore'
 import WallLayoutModal from '@/components/modals/WallLayoutModal.vue'
 import SourceListModal from '@/components/modals/SourceListModal.vue'
@@ -8,7 +8,33 @@ import SourceListModal from '@/components/modals/SourceListModal.vue'
 const videoWallStore = useVideoWallStore()
 const modalStore = useModalStore()
 const windowSelected = ref(undefined)
+const controller = ref(EmptyVideoWall)
+const canvas = ref(EmptyCanvas)
+const layout = ref(EmptyLayout)
 
+onMounted(() => {
+  if (videoWallStore.controllers.length > 0 && 
+  videoWallStore.controllers[0].Canvases.length > 0) {
+    controller.value = videoWallStore.controllers[0]
+    canvas.value = videoWallStore.controllers[0].Canvases[0]  
+  }
+})
+
+const findLayout = (layoutId) => {
+  var layout = canvas.value.Layouts.find(layout => layout.Id === layoutId)
+  if (layout)
+  {
+    return layout
+  } else {
+    return EmptyLayout
+  }
+}
+
+watch(videoWallStore.controllers, () => {
+  controller.value = videoWallStore.controllers[0]
+  canvas.value = controller.value.Canvases[0]
+  layout.value = findLayout(canvas.value.ActiveLayoutId)
+})
 
 const showLayoutsModal = () => {
   modalStore.setVideoWallLayoutVisibility(true)
@@ -24,11 +50,7 @@ const onRouteRequested = (sourceId, destinationId) => {
 }
 
 const findSource = (sourceId) => {
-  return videoWallStore.controllers[0].Sources.find(source => source.Id === sourceId)
-}
-
-const findLayout = (layoutId) => {
-  return videoWallStore.controllers[0].Canvases[0].Layouts.find(layout => layout.Id === layoutId)
+  return controller.value.Sources.find(source => source.Id === sourceId)
 }
 
 </script>
@@ -36,22 +58,22 @@ const findLayout = (layoutId) => {
 <template>
   <SourceListModal
     v-show="modalStore.sourceListVisible"
-    :sourceList="videoWallStore.controllers[0].Sources"
+    :sourceList="controller.Sources"
     :destinationId="windowSelected?.Id"
     :selectedId="windowSelected ? windowSelected.selectedId : ''"
     @onSourceSelect="onRouteRequested"
   />
-  <WallLayoutModal :controller="videoWallStore.controllers[0]" :canvas="videoWallStore.controllers[0]?.Canvases[0]" v-show="modalStore.videoWallLayoutsVisible" />
+  <WallLayoutModal :controller="controller" :canvas="canvas" v-show="modalStore.videoWallLayoutsVisible" />
   <div class="video-wall fade-in">
     <div
       class="cells"
       :style="{
-        gridTemplateRows: 'repeat(' + videoWallStore.controllers[0].Canvases[0].Height + ', 1fr)',
-        gridTemplateColumns: 'repeat(' + videoWallStore.controllers[0].Canvases[0].Width + ', 1fr)'
+        gridTemplateRows: 'repeat(' + layout.Height + ', 1fr)',
+        gridTemplateColumns: 'repeat(' + layout.Width + ', 1fr)'
       }"
     >
       <button
-        v-for="cell in findLayout(videoWallStore.controllers[0].Canvases[0].ActiveLayoutId).Cells"
+        v-for="cell in layout.Cells"
         class="cell"
         :key="cell.Id"
         :style="{
@@ -66,7 +88,7 @@ const findLayout = (layoutId) => {
       </button>
     </div>
     <button
-      v-if="videoWallStore.controllers[0].Canvases[0].Layouts.length > 1"
+      v-if="canvas.Layouts.length > 1"
       @click="showLayoutsModal"
       class="layouts-button"
     >

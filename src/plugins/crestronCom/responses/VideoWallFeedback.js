@@ -14,7 +14,7 @@ const commands = {
     store.updateSelectedLayout(cmd.Data.ControlId, cmd.Data.CanvasId, cmd.Data.LayoutId)
   },
   STATUS: (store, cmd) => {
-    //store.updateVideoWallConnectionStatus(cmd.Data.ControlId, cmd.Data.IsOnline)
+    store.updateVideoWallConnectionStatus(cmd.Data.ControlId, cmd.Data.IsOnline)
   }
 }
 
