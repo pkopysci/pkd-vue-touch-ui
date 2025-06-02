@@ -2,6 +2,7 @@
 import { ref, onBeforeUnmount } from 'vue'
 import { useAudioStore } from '@/stores/audioStore'
 import LevelGauge from './ui/LevelGauge.vue'
+import TouchButton from './ui/TouchButton.vue'
 
 const audioStore = useAudioStore()
 const volDownActive = ref(false)
@@ -62,7 +63,7 @@ const onVolDownStop = () => {
 
 <template>
   <div class="active-footer">
-    <button
+    <TouchButton
       :style="{
         background:
           audioStore.programAudio && audioStore.programAudio.MuteState
@@ -70,10 +71,10 @@ const onVolDownStop = () => {
             : 'none'
       }"
       :class="{ active: audioStore.programAudio && audioStore.programAudio.MuteState }"
-      @click="onMuteToggle"
+      @touched="onMuteToggle"
     >
       <i class="fa-solid fa-volume-mute"></i>
-    </button>
+    </TouchButton>
     <button
       @mousedown="onVolDownStart()"
       @mouseleave="onVolDownStop()"

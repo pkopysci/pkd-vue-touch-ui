@@ -78,7 +78,7 @@ export const useAudioStore = defineStore('audioStore', () => {
      */
     function updateDspInfo(dataObject) {
         if (!checkDefined(dataObject, 'dataObject', 'audioStore.updateDspInfo')) return
-        audioDevices.value = dataObject        
+        audioDevices.value = dataObject       
         audioDevices.value.forEach((item) => {
             if (!item.IsOnline) {
                 errorStore.addError(item.Id, `${item.Label} is offline.`)

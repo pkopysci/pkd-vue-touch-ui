@@ -1,15 +1,16 @@
 <script setup>
 import { translateIconTag } from '@/data/translators';
+import TouchButton from './TouchButton.vue';
 
 defineProps(['id','label','icon', 'isActive'])
 defineEmits(['onSelect'])
 </script>
 
 <template>
-    <button class="source-button" :class="{'active': isActive}" @click="$emit('onSelect', id)">
+    <TouchButton class="source-button" :class="{'active': isActive}" @touched="$emit('onSelect', id)">
         <i v-if="icon" :class="translateIconTag(icon)"></i>
         {{ label }}
-    </button>
+    </TouchButton>
 </template>
 
 <style scoped>

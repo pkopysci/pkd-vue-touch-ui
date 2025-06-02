@@ -17,9 +17,10 @@ export const useErrorStore = defineStore('errorStore', () => {
    * @param errMsg the error message to display on the UI.
    */
   function addError(errId, errMsg) {
-    if (!errorsList.value || errorsList.value.length === 0) return
     let existingIdx = errorsList.value.findIndex(x => x.errorId === errId)
     if (existingIdx === -1) {
+
+
       errorsList.value.push({ errorId: errId, errorMessage: errMsg })
     }
   }
