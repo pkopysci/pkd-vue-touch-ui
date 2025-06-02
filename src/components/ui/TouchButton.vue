@@ -2,11 +2,12 @@
 import { ref } from 'vue'
 
 const pressed = ref(false)
-const emit = defineEmits(['click', 'touchstart', 'touchend'])
+const emit = defineEmits(['touched', 'touchstart', 'touchend', 'click'])
 
 const onPressed = () => {
   pressed.value = true
   emit('touchstart')
+  emit('touched')
 }
 
 const onReleased = () => {

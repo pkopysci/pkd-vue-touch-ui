@@ -7,14 +7,10 @@ defineEmits(['onSelect'])
 </script>
 
 <template>
-    <TouchButton class="source-button" :class="{'active': isActive}" @touchstart="$emit('onSelect', id)">
+    <TouchButton class="source-button" :class="{'active': isActive}" @touched="$emit('onSelect', id)">
         <i v-if="icon" :class="translateIconTag(icon)"></i>
         {{ label }}
     </TouchButton>
-    <!-- <button class="source-button" :class="{'active': isActive}" @click="$emit('onSelect', id)">
-        <i v-if="icon" :class="translateIconTag(icon)"></i>
-        {{ label }}
-    </button> -->
 </template>
 
 <style scoped>

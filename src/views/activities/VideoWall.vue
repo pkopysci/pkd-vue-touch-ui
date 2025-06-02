@@ -80,7 +80,7 @@ const getActiveLayout = () => {
     </div>
     <TouchButton
       v-if="videoWallStore.controllers[0].Canvases[0].Layouts.length > 1"
-      @touchstart="showLayoutsModal"
+      @touched="showLayoutsModal"
       class="layouts-button"
     >
       <i class="fa-solid fa-grip"></i>

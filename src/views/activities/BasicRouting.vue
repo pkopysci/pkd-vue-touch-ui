@@ -90,21 +90,17 @@ watch(videoStore.destinations, () => {
       </div>
     </div>
     <div class="video-buttons">
-      <TouchButton @touchstart="onVideoBlankToggle()" :class="{ active: videoStore.globalBlankActive }">
+      <TouchButton @touched="onVideoBlankToggle()" :class="{ active: videoStore.globalBlankActive }">
         <i class="fa-solid fa-eye-slash"></i>Blank
       </TouchButton>
 
-      <TouchButton @touchstart="onVideoFreezeToggle()" :class="{ active: videoStore.globalFreezeActive }">
+      <TouchButton @touched="onVideoFreezeToggle()" :class="{ active: videoStore.globalFreezeActive }">
         <i class="fa-solid fa-icicles"></i>Freeze
       </TouchButton>
 
-      <TouchButton v-show="showDeviceControlButton" @touchstart="onDeviceControlSelect(selectedId)">
+      <TouchButton v-show="showDeviceControlButton" @touched="onDeviceControlSelect(selectedId)">
         <i class="fa-solid fa-grip"></i>Controls
       </TouchButton>
-
-      <!-- <button v-show="showDeviceControlButton" @click="onDeviceControlSelect(selectedId)">
-        <i class="fa-solid fa-grip"></i>Controls
-      </button> -->
     </div>
   </div>
 </template>
