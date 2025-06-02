@@ -15,7 +15,7 @@ defineEmits(['closeModal'])
       <div class="card-content">
         <slot></slot>
       </div>
-      <button @click="$emit('closeModal')" class="close-button">X</button>
+      <button style="min-height: 90px;" @click="$emit('closeModal')" class="close-button">X</button>
     </CardWrapper>
   </div>
 </template>
@@ -48,5 +48,6 @@ defineEmits(['closeModal'])
   max-height: 90%;
   width: 100%;
   overflow-y: scroll;
+  margin-bottom: 25px;
 }
 </style>

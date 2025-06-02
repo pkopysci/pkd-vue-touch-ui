@@ -4,6 +4,7 @@ import { emptyDestination, useVideoStore } from '@/stores/videoStore'
 import { useModalStore } from '@/stores/modalStore'
 import { useCustomEventStore } from '@/stores/customEventStore'
 import SourceButton from '@/components/ui/SourceButton.vue'
+import TouchButton from '@/components/ui/TouchButton.vue'
 
 const videoStore = useVideoStore()
 const modalStore = useModalStore()
@@ -89,15 +90,21 @@ watch(videoStore.destinations, () => {
       </div>
     </div>
     <div class="video-buttons">
-      <button @click="onVideoBlankToggle()" :class="{ active: videoStore.globalBlankActive }">
+      <TouchButton @touchstart="onVideoBlankToggle()" :class="{ active: videoStore.globalBlankActive }">
         <i class="fa-solid fa-eye-slash"></i>Blank
-      </button>
-      <button @click="onVideoFreezeToggle()" :class="{ active: videoStore.globalFreezeActive }">
+      </TouchButton>
+
+      <TouchButton @touchstart="onVideoFreezeToggle()" :class="{ active: videoStore.globalFreezeActive }">
         <i class="fa-solid fa-icicles"></i>Freeze
-      </button>
-      <button v-show="showDeviceControlButton" @click="onDeviceControlSelect(selectedId)">
+      </TouchButton>
+
+      <TouchButton v-show="showDeviceControlButton" @touchstart="onDeviceControlSelect(selectedId)">
         <i class="fa-solid fa-grip"></i>Controls
-      </button>
+      </TouchButton>
+
+      <!-- <button v-show="showDeviceControlButton" @click="onDeviceControlSelect(selectedId)">
+        <i class="fa-solid fa-grip"></i>Controls
+      </button> -->
     </div>
   </div>
 </template>
